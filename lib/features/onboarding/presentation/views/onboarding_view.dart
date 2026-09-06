@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+
 import 'package:volt/features/onboarding/dataa/models/onboarding_model.dart';
-import 'package:volt/features/onboarding/presentation/widgets/circle_image.dart';
 import 'package:volt/features/onboarding/presentation/widgets/first_page_image.dart';
 import 'package:volt/features/onboarding/presentation/widgets/onboarding_button.dart';
 import 'package:volt/features/onboarding/presentation/widgets/onboarding_header.dart';
@@ -18,11 +18,9 @@ class _OnboardingViewState extends State<OnboardingView> {
 
   int _currentIndex = 0;
 
-  @override
-  void dispose() {
-    _pageController.dispose();
-    super.dispose();
-  }
+  // ============================================================
+  // PAGE NAVIGATION
+  // ============================================================
 
   void _nextPage() {
     if (_currentIndex < OnboardingModel.pages.length - 1) {
@@ -43,51 +41,95 @@ class _OnboardingViewState extends State<OnboardingView> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    final currentPage = OnboardingModel.pages[_currentIndex];
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
 
-    final bool isDarkBackground = _currentIndex == 2;
+  @override
+  Widget build(BuildContext context) {
+    final size = MediaQuery.sizeOf(context);
+
+    final screenWidth = size.width;
+    final screenHeight = size.height;
+
+    final currentPage = OnboardingModel.pages[_currentIndex];
+    final isDarkBackground = _currentIndex == 2;
+
+
+    final horizontalPadding = (screenWidth * 0.055).clamp(
+      16.0,
+      28.0,
+    );
+
+  
+    final contentHeight = (screenHeight * 0.59).clamp(
+      350.0,
+      445.0,
+    );
 
     return Scaffold(
       backgroundColor: currentPage.backgroundColor,
+
       body: SafeArea(
         child: Column(
           children: [
-            // ---------------- HEADER ----------------
-            OnboardingHeader(
-              currentIndex: _currentIndex,
-              onBackPressed: _previousPage,
-              onLoginPressed: () {
-                // Handle login button press
-              },
+            // ========================================================
+            // HEADER
+            // ========================================================
+
+            SizedBox(
+              height: 48,
+              width: double.infinity,
+              child: OnboardingHeader(
+                currentIndex: _currentIndex,
+                onBackPressed: _previousPage,
+                onLoginPressed: () {
+                  // TODO: Handle login
+                },
+              ),
             ),
 
-            // ---------------- PAGE VIEW ----------------
-            Expanded(
+
+            const SizedBox(height: 60),
+
+        
+
+            SizedBox(
+              height: contentHeight,
+              width: double.infinity,
+
               child: PageView.builder(
                 controller: _pageController,
+
                 itemCount: OnboardingModel.pages.length,
+
                 onPageChanged: (index) {
                   setState(() {
                     _currentIndex = index;
                   });
                 },
+
                 itemBuilder: (context, index) {
                   final item = OnboardingModel.pages[index];
 
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 32,
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        const Spacer(flex: 1),
+                  final itemIsDarkBackground = index == 2;
 
-                        // ---------------- IMAGE ----------------
+                  return Padding(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: horizontalPadding,
+                    ),
+
+                    child: Column(
+                      children: [
+                        // ==================================================
+                        // IMAGE
+                        // ==================================================
+
                         SizedBox(
-                          height:
-                              MediaQuery.of(context).size.height * 0.35,
+                          height: contentHeight * 0.68,
+                          width: double.infinity,
+
                           child: index == 0
                               ? FirstPageImage(
                                   imagePath: item.image,
@@ -98,64 +140,129 @@ class _OnboardingViewState extends State<OnboardingView> {
                                 ),
                         ),
 
-                        const SizedBox(height: 16),
+                        // ==================================================
+                        // TITLE
+                        // ==================================================
 
-                        // ---------------- TITLE ----------------
-                        Text(
-                          item.title,
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 24,
-                            fontWeight: FontWeight.w900,
-                            color: isDarkBackground
-                                ? Colors.white
-                                : const Color(0xFF1E293B),
+                        SizedBox(
+                          height: contentHeight * 0.13,
+                          width: double.infinity,
+
+                          child: Center(
+                            child: Text(
+                              item.title,
+                              textAlign: TextAlign.center,
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+
+                              style: TextStyle(
+                                fontSize: (screenWidth * 0.058).clamp(
+                                  20.0,
+                                  25.0,
+                                ),
+                                fontWeight: FontWeight.w900,
+                                height: 1.15,
+                                color: itemIsDarkBackground
+                                    ? Colors.white
+                                    : const Color(0xFF1E293B),
+                              ),
+                            ),
                           ),
                         ),
 
-                        const SizedBox(height: 6),
+                        // ==================================================
+                        // DESCRIPTION
+                        // ==================================================
 
-                        // ---------------- DESCRIPTION ----------------
-                        Text(
-                          item.description,
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: isDarkBackground
-                                ? Colors.white70
-                                : const Color(0xFF94A3B8),
-                            fontWeight: FontWeight.w600,
+                        SizedBox(
+                          height: contentHeight * 0.04,
+                          width: double.infinity,
+
+                          child: Center(
+                            child: Text(
+                              item.description,
+                              textAlign: TextAlign.center,
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+
+                              style: TextStyle(
+                                fontSize: (screenWidth * 0.033).clamp(
+                                  12.0,
+                                  14.0,
+                                ),
+                                fontWeight: FontWeight.w600,
+                                height: 1.3,
+                                color: itemIsDarkBackground
+                                    ? Colors.white70
+                                    : const Color(0xFF94A3B8),
+                              ),
+                            ),
                           ),
                         ),
-
-                        const SizedBox(height: 14),
-
-                        // ---------------- INDICATOR ----------------
-                        OnboardingIndicator(
-                          currentIndex: _currentIndex,
-                          itemCount: OnboardingModel.pages.length,
-                          activeColor: currentPage.buttonColor,
-                        ),
-
-                        const SizedBox(height: 18),
-
-                        // ---------------- BUTTON ----------------
-                        OnboardingButton(
-                          text: currentPage.buttonText,
-                          backgroundColor: currentPage.buttonColor,
-                          onPressed: _nextPage,
-                        ),
-
-                        const Spacer(flex: 3),
                       ],
                     ),
                   );
                 },
               ),
             ),
+
+            // ============================================================
+            // INDICATOR
+            // ============================================================
+
+            SizedBox(
+              height: 8,
+              child: Center(
+                child: OnboardingIndicator(
+                  currentIndex: _currentIndex,
+                  itemCount: OnboardingModel.pages.length,
+                  activeColor: currentPage.buttonColor,
+                ),
+              ),
+            ),
+
+            // ============================================================
+            // SMALL SPACE
+            // ============================================================
+
+            const SizedBox(height: 8),
+
+            // ============================================================
+            // BUTTON
+            // ============================================================
+
+            Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: horizontalPadding,
+              ),
+
+              child: SizedBox(
+                width: double.infinity,
+
+                height: (screenHeight * 0.058).clamp(
+                  38.0,
+                  48.0,
+                ),
+
+                child: OnboardingButton(
+                  text: currentPage.buttonText,
+                  backgroundColor: currentPage.buttonColor,
+                  onPressed: _nextPage,
+                ),
+              ),
+            ),
+
+            // ============================================================
+            // BOTTOM SPACE
+            // ============================================================
+
+            const Spacer(),
           ],
         ),
       ),
     );
   }
 }
+
+
+

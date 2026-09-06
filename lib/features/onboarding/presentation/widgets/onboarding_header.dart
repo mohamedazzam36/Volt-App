@@ -31,9 +31,23 @@ class OnboardingHeader extends StatelessWidget {
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(20),
-              border: Border.all(
-                color: const Color(0xFFE2E8F0),
-                width: 2.5,
+              border: Border(
+                top: BorderSide(
+                  color: const Color(0xFFE2E8F0),
+                  width: 1.5,
+                ),
+                left: BorderSide(
+                  color: const Color(0xFFE2E8F0),
+                  width: 2.5,
+                ),
+                right: BorderSide(
+                  color: const Color(0xFFE2E8F0),
+                  width: 2.5,
+                ),
+                bottom: BorderSide(
+                  color: const Color(0xFFE2E8F0),
+                  width: 4,
+                ),
               ),
             ),
             child: InkWell(
@@ -64,9 +78,7 @@ class OnboardingHeader extends StatelessWidget {
               icon: Icon(
                 Icons.arrow_forward,
                 size: 20,
-                color: isDarkBackground
-                    ? Colors.white60
-                    : Colors.black45,
+                color: isDarkBackground ? Colors.white60 : Colors.black45,
               ),
               onPressed: onBackPressed,
             )

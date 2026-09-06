@@ -14,71 +14,80 @@ class FirstPageImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
+        final width = constraints.maxWidth;
+        final height = constraints.maxHeight;
+
+        // حجم الدوائر Responsive
+        final circleSize = (width * 0.10).clamp(
+          36.0,
+          46.0,
+        );
+
         return Stack(
           clipBehavior: Clip.none,
           alignment: Alignment.center,
           children: [
-            // =========================
-            // Main Robot Image
-            // =========================
+            // =====================================================
+            // MAIN ROBOT IMAGE
+            // =====================================================
             SizedBox(
-              width: constraints.maxWidth * 0.82,
-              height: constraints.maxHeight * 0.85,
+              width: width * 0.55,
+              height: height * 0.90,
               child: Image.asset(
                 imagePath,
                 fit: BoxFit.contain,
               ),
             ),
 
-            // =========================
-            // Top Left Circle
-            // =========================
+            // =====================================================
+            // TOP LEFT CIRCLE
+            // =====================================================
             Positioned(
-              left: constraints.maxWidth * 0.00,
-              top: constraints.maxHeight * 0.1,
-              child: const CircleImage(
+              left: width * 0.02,
+              top: height * 0.10,
+              child: CircleImage(
                 assetPath: 'assets/images/SVG.png',
-                size: 42,
-                iconSize: 20,
+                size: circleSize,
+                iconSize: circleSize * 0.48,
               ),
             ),
 
-            // =========================
-            // Top Right Circle
-            // =========================
+            // =====================================================
+            // TOP RIGHT CIRCLE
+            // =====================================================
             Positioned(
-              right: constraints.maxWidth * 0.00,
-              top: constraints.maxHeight * 0.1,
-              child: const CircleImage(
+              right: width * 0.02,
+              top: height * 0.15,
+              child: CircleImage(
                 assetPath: 'assets/images/Vector.png',
-                size: 42,
-                iconSize: 20,
+                size: circleSize,
+                iconSize: circleSize * 0.48,
               ),
             ),
 
-            // =========================
-            // Bottom Left Circle
-            // =========================
+            // =====================================================
+            // BOTTOM LEFT CIRCLE
+            // =====================================================
             Positioned(
-              left: constraints.maxWidth * 0.04,
-              bottom: constraints.maxHeight * 0.1,
-              child: const CircleImage(
+              left: width * 0.07,
+              bottom: height * 0.14,
+              child: CircleImage(
                 assetPath: 'assets/images/SVG (1).png',
-                size: 42,
-                iconSize: 20,
+                size: circleSize,
+                iconSize: circleSize * 0.48,
               ),
             ),
 
-            // =========================
-            // Bottom Right Circle
-            // =========================
+            // =====================================================
+            // BOTTOM RIGHT CIRCLE
+            // =====================================================
             Positioned(
-              right: constraints.maxWidth * 0.02,
-              bottom: constraints.maxHeight * 0.06,
-              child: const CircleImage(
+              right: width * 0.01,
+              bottom: height * 0.06,
+              child: CircleImage(
                 assetPath: 'assets/images/book.png',
-                size: 42,
-                iconSize: 20,
+                size: circleSize,
+                iconSize: circleSize * 0.48,
               ),
             ),
           ],
@@ -87,3 +96,4 @@ class FirstPageImage extends StatelessWidget {
     );
   }
 }
+

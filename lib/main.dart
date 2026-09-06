@@ -16,7 +16,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        textTheme: GoogleFonts.cairoTextTheme(), 
+       fontFamily: GoogleFonts.cairo().fontFamily, 
+    
       ),
       home: const SplashView(),
     );
