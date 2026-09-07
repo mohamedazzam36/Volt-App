@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import 'package:volt/features/splash/presentation/views/splash_view.dart';
+import 'package:volt/volt_app.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,10 +15,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-       fontFamily: GoogleFonts.cairo().fontFamily, 
-    
+        fontFamily: GoogleFonts.cairo().fontFamily,
       ),
-      home: const SplashView(),
+      home: const VoltApp(),
     );
   }
 }
