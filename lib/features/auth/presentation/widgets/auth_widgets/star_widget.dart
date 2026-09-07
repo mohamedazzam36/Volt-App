@@ -1,0 +1,25 @@
+import 'package:flutter/material.dart';
+import 'package:volt/features/auth/presentation/widgets/painters/star_painter.dart';
+
+class StarWidget extends StatelessWidget {
+  final double size;
+  final Color color;
+  final double sharpness;
+
+  const StarWidget({
+    super.key,
+    this.size = 24,
+    this.color = const Color(0xFFFFD54F),
+    this.sharpness = 0.25,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return RepaintBoundary(
+      child: CustomPaint(
+        size: Size(size, size),
+        painter: StarPainter(color: color, spikesSharpness: sharpness),
+      ),
+    );
+  }
+}
