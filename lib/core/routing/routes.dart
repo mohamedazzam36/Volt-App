@@ -1,6 +1,4 @@
-class Routes {
-  Routes._();
-
+abstract final class Routes {
   static const String splash = "/splash";
   static const String onboarding = "/onboarding";
   static const String auth = "/auth";

@@ -20,7 +20,7 @@ class MessageWidget extends StatelessWidget {
     this.arrowWidth = 20.0,
     this.arrowHeight = 10.0,
     this.borderRadius = 16.0,
-    this.borderColor = AppColors.grayBorder,
+    this.borderColor = AppColors.messageBorder,
     this.borderWidth = 2,
     this.thresholdHeight = 65.0,
     this.fontSize,
