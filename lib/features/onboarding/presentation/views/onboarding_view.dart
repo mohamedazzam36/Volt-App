@@ -3,6 +3,7 @@ import 'package:volt/core/extensions/navigation_extension.dart';
 import 'package:volt/core/extensions/text_style_extension.dart';
 import 'package:volt/core/routing/routes.dart';
 import 'package:volt/core/shared_widgets/custom_elevated_button.dart';
+import 'package:volt/core/theme/app_colors.dart';
 import 'package:volt/core/theme/app_styles.dart';
 import 'package:volt/features/onboarding/dataa/models/onboarding_model.dart';
 import 'package:volt/features/onboarding/presentation/widgets/first_page_image.dart';
@@ -153,7 +154,11 @@ class _OnboardingViewState extends State<OnboardingView> {
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
 
-                              style: AppStyles.bold16.responsive(context),
+                              style: itemIsDarkBackground
+                                  ? AppStyles.bold16.responsive(context).copyWith(
+                                      color: AppColors.textOnBrand,
+                                    )
+                                  : AppStyles.bold16.responsive(context),
                             ),
                           ),
                         ),
@@ -172,16 +177,11 @@ class _OnboardingViewState extends State<OnboardingView> {
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
 
-                              style: TextStyle(
-                                fontSize: (screenWidth * 0.033).clamp(
-                                  12.0,
-                                  14.0,
-                                ),
-                                fontWeight: FontWeight.w600,
+                              style: AppStyles.semiBold14.responsive(context).copyWith(
                                 height: 1.3,
                                 color: itemIsDarkBackground
-                                    ? Colors.white70
-                                    : const Color(0xFF94A3B8),
+                                    ? AppColors.textOnBrand.withValues(alpha: 0.7)
+                                    : AppColors.neutralSlate,
                               ),
                             ),
                           ),

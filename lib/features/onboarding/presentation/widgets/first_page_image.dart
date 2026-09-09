@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:volt/core/constants/assets.gen.dart';
 
 import 'circle_image.dart';
 
@@ -46,7 +47,7 @@ class FirstPageImage extends StatelessWidget {
               left: width * 0.02,
               top: height * 0.10,
               child: CircleImage(
-                assetPath: 'assets/images/SVG.png',
+                assetPath: Assets.images.svg.path,
                 size: circleSize,
                 iconSize: circleSize * 0.48,
               ),
@@ -59,7 +60,7 @@ class FirstPageImage extends StatelessWidget {
               right: width * 0.02,
               top: height * 0.15,
               child: CircleImage(
-                assetPath: 'assets/images/Vector.png',
+                assetPath: Assets.images.vector.path,
                 size: circleSize,
                 iconSize: circleSize * 0.48,
               ),
@@ -72,7 +73,7 @@ class FirstPageImage extends StatelessWidget {
               left: width * 0.07,
               bottom: height * 0.14,
               child: CircleImage(
-                assetPath: 'assets/images/SVG (1).png',
+                assetPath: Assets.images.svg1.path,
                 size: circleSize,
                 iconSize: circleSize * 0.48,
               ),
@@ -85,7 +86,7 @@ class FirstPageImage extends StatelessWidget {
               right: width * 0.01,
               bottom: height * 0.06,
               child: CircleImage(
-                assetPath: 'assets/images/book.png',
+                assetPath: Assets.images.book.path,
                 size: circleSize,
                 iconSize: circleSize * 0.48,
               ),

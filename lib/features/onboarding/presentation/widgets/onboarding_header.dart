@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:volt/core/constants/app_strings.dart';
+import 'package:volt/core/extensions/text_style_extension.dart';
+import 'package:volt/core/theme/app_colors.dart';
+import 'package:volt/core/theme/app_styles.dart';
 
 class OnboardingHeader extends StatelessWidget {
   final int currentIndex;
@@ -25,23 +29,23 @@ class OnboardingHeader extends StatelessWidget {
         alignment: AlignmentDirectional.topEnd,
         child: Container(
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: AppColors.surfaceDefault,
             borderRadius: BorderRadius.circular(20),
             border: const Border(
               top: BorderSide(
-                color: Color(0xFFE2E8F0),
+                color: AppColors.borderSubtle,
                 width: 1.5,
               ),
               left: BorderSide(
-                color: Color(0xFFE2E8F0),
+                color: AppColors.borderSubtle,
                 width: 2.5,
               ),
               right: BorderSide(
-                color: Color(0xFFE2E8F0),
+                color: AppColors.borderSubtle,
                 width: 2.5,
               ),
               bottom: BorderSide(
-                color: Color(0xFFE2E8F0),
+                color: AppColors.borderSubtle,
                 width: 4,
               ),
             ),
@@ -49,17 +53,15 @@ class OnboardingHeader extends StatelessWidget {
           child: InkWell(
             borderRadius: BorderRadius.circular(20),
             onTap: onLoginPressed,
-            child: const Padding(
-              padding: EdgeInsets.symmetric(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(
                 horizontal: 16,
                 vertical: 4,
               ),
               child: Text(
-                'دخول',
-                style: TextStyle(
-                  color: Color(0xFF2CA8FF),
-                  fontSize: 12,
-                  fontWeight: FontWeight.w900,
+                OnboardingStrings.login,
+                style: AppStyles.black12.responsive(context).copyWith(
+                  color: AppColors.brandPrimary,
                 ),
               ),
             ),

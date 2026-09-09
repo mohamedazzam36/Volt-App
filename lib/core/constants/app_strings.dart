@@ -9,6 +9,7 @@ abstract final class CommonStrings {
 /// شاشة السبلاش
 abstract final class SplashStrings {
   static const String chargingMessage = 'يلا نشحن طاقة لعلمك!';
+  static const String byCtrlZ = 'by CTRL-Z';
 }
 
 /// شاشات الـ Onboarding الأربعة
@@ -29,6 +30,7 @@ abstract final class OnboardingStrings {
   static const String title4 = 'آمن للاطفال';
   static const String subTitle4 = 'تأكد من سلامتك مع فولت';
   static const String startPlaying = 'ابدأ اللعب';
+  static const String login = 'دخول';
 }
 
 /// نصوص المصادقة والتسجيل بالكامل (Auth)

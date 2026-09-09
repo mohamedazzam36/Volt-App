@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:volt/core/constants/app_strings.dart';
 import 'package:volt/core/constants/assets.gen.dart';
 import 'package:volt/core/extensions/navigation_extension.dart';
+import 'package:volt/core/extensions/text_style_extension.dart';
 import 'package:volt/core/routing/routes.dart';
 import 'package:volt/core/shared_widgets/speaking_robot.dart';
+import 'package:volt/core/theme/app_colors.dart';
 import 'package:volt/core/theme/app_styles.dart';
 
 import '../widgets/loading_bar.dart';
@@ -40,8 +42,8 @@ class _SplashViewState extends State<SplashView> {
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: [
-              Color(0xFF33B5FF),
-              Color(0xFFE8F7FF),
+              AppColors.brandPrimary,
+              AppColors.surfaceBlueSoft,
             ],
           ),
         ),
@@ -55,15 +57,17 @@ class _SplashViewState extends State<SplashView> {
               messageShiftingRatio: .65,
             ),
             const SizedBox(height: 20),
-            const Text('فولت', style: AppStyles.regular12),
-            const Text(
-              'by CTRL-Z',
-              style: TextStyle(
-                fontSize: 12,
-                fontWeight: FontWeight.w600,
-                color: Color(0xFF64748B),
-                letterSpacing: 1.1,
-              ),
+            Text(
+              CommonStrings.appName,
+              style: AppStyles.black36.responsive(context),
+            ),
+            Text(
+              SplashStrings.byCtrlZ,
+              style: AppStyles.semiBold12
+                  .responsive(context)
+                  .copyWith(
+                    color: AppColors.textSecondary,
+                  ),
             ),
             const SizedBox(height: 25),
             const LoadingBar(),

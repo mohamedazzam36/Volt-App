@@ -37,13 +37,15 @@ abstract final class AppColors {
   static const Color textError = Color(0xFFEA3D35);
   static const Color textWarning = Color(0xFFEF9420);
 
-  // Surface (6)
+  // Surface (8)
   static const Color surfaceDefault = Color(0xFFFFFFFF);
   static const Color surfaceSubtle = Color(0xFFF9FCFE);
   static const Color surfaceSoftBlue = Color(0xFFF2F8FD);
   static const Color surfaceGreenSoft = Color(0xFFEAFBF3);
   static const Color surfaceOrangeSoft = Color(0xFFFFE3D3);
   static const Color surfaceBlueSoft = Color(0xFFEBF4FF);
+  static const Color surfaceYellowSoft = Color(0xFFFFF9E6);
+  static const Color surfaceDarkNavy = Color(0xFF2C2B5B);
 
   // Border (2)
   static const Color borderDefault = Color(0xFFD7DBDE);

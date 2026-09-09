@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:volt/core/theme/app_colors.dart';
 
 class LoadingBar extends StatelessWidget {
   const LoadingBar({super.key});
@@ -9,7 +10,7 @@ class LoadingBar extends StatelessWidget {
       width: 140,
       height: 8,
       decoration: BoxDecoration(
-        color: Colors.white.withValues(alpha: 0.6),
+        color: AppColors.surfaceDefault.withValues(alpha: 0.6),
         borderRadius: BorderRadius.circular(10),
       ),
       child: Stack(
@@ -19,7 +20,7 @@ class LoadingBar extends StatelessWidget {
             child: Container(
               width: 80,
               decoration: BoxDecoration(
-                color: const Color(0xFF29B6F6),
+                color: AppColors.brandPrimary,
                 borderRadius: BorderRadius.circular(10),
               ),
             ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:volt/core/theme/app_colors.dart';
 
 class OnboardingIndicator extends StatelessWidget {
   final int currentIndex;
@@ -29,7 +30,7 @@ class OnboardingIndicator extends StatelessWidget {
             decoration: BoxDecoration(
               color: isActive
                   ? activeColor
-                  : Colors.grey.shade300,
+                  : AppColors.borderDefault,
               borderRadius: BorderRadius.circular(3),
             ),
           );

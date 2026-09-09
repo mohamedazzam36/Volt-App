@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:volt/core/theme/app_colors.dart';
 
 class CircleImage extends StatelessWidget {
   final String assetPath;
@@ -19,15 +20,15 @@ class CircleImage extends StatelessWidget {
       height: size,
       alignment: Alignment.center,
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: AppColors.surfaceDefault,
         shape: BoxShape.circle,
         border: Border.all(
-          color: const Color(0xff323b49),
+          color: const Color(0xffDEE3E7),
           width: 2,
         ),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(alpha: 0.35),
+            color: AppColors.black.withValues(alpha: 0.35),
 
             offset: const Offset(0, 3.5),
             blurRadius: 4,
