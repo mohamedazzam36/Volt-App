@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
-import '../../../../features/onboarding/presentation/views/onboarding_view.dart';
+import 'package:volt/core/constants/assets.gen.dart';
+import 'package:volt/core/extensions/navigation_extension.dart';
+import 'package:volt/core/routing/routes.dart';
+import 'package:volt/core/theme/app_styles.dart';
+
 import '../widgets/loading_bar.dart';
 import '../widgets/speech_bubble.dart';
 
@@ -20,10 +24,7 @@ class _SplashViewState extends State<SplashView> {
   void _navigateToOnboarding() async {
     await Future.delayed(const Duration(seconds: 3));
     if (mounted) {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => const OnboardingView()),
-      );
+      context.pushReplacementNamed(Routes.onboarding, arguments: 222);
     }
   }
 
@@ -50,18 +51,11 @@ class _SplashViewState extends State<SplashView> {
             const SpeechBubble(text: 'يلا نشحن طاقة تعلّمك!'),
             const SizedBox(height: 10),
             Image.asset(
-              'assets/images/robot_splash.png',
+              Assets.images.rasingLeftHandRobot.path,
               height: 220,
             ),
             const SizedBox(height: 20),
-            const Text(
-              'فولت',
-              style: TextStyle(
-                fontSize: 36,
-                fontWeight: FontWeight.w900,
-                color: Color(0xFF1E293B),
-              ),
-            ),
+            const Text('فولت', style: AppStyles.regular12),
             const Text(
               'by CTRL-Z',
               style: TextStyle(

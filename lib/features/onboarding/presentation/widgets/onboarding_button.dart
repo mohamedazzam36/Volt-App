@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:volt/core/extensions/text_style_extension.dart';
+import 'package:volt/core/theme/app_colors.dart';
+import 'package:volt/core/theme/app_styles.dart';
 
 class OnboardingButton extends StatelessWidget {
   final String text;
@@ -19,7 +22,7 @@ class OnboardingButton extends StatelessWidget {
       height: 43,
       child: Container(
         decoration: BoxDecoration(
-          color: backgroundColor.withOpacity(0.8),
+          color: backgroundColor.withValues(alpha: 0.8),
           borderRadius: BorderRadius.circular(11),
         ),
         padding: const EdgeInsets.only(bottom: 3),
@@ -35,11 +38,7 @@ class OnboardingButton extends StatelessWidget {
           ),
           child: Text(
             text,
-            style: const TextStyle(
-              fontSize: 14,
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-            ),
+            style: AppStyles.bold16.responsive(context).copyWith(color: AppColors.textOnBrand),
           ),
         ),
       ),

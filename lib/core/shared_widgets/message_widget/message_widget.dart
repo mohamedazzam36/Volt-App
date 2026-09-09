@@ -20,7 +20,7 @@ class MessageWidget extends StatelessWidget {
     this.arrowWidth = 20.0,
     this.arrowHeight = 10.0,
     this.borderRadius = 16.0,
-    this.borderColor = AppColors.messageBorder,
+    this.borderColor = const Color(0xFFDEE3E7),
     this.borderWidth = 2,
     this.thresholdHeight = 65.0,
     this.fontSize,
@@ -34,7 +34,7 @@ class MessageWidget extends StatelessWidget {
       padding: const EdgeInsets.all(8),
       constraints: BoxConstraints(maxWidth: maxWidth ?? 250),
       decoration: ShapeDecoration(
-        color: Colors.white,
+        color: AppColors.textOnBrand,
         shadows: [
           BoxShadow(
             color: Colors.black.withAlpha(80),

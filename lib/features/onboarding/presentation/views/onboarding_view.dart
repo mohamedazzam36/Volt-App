@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:volt/core/extensions/navigation_extension.dart';
+import 'package:volt/core/extensions/text_style_extension.dart';
 import 'package:volt/core/routing/routes.dart';
+import 'package:volt/core/theme/app_styles.dart';
 import 'package:volt/features/onboarding/dataa/models/onboarding_model.dart';
 import 'package:volt/features/onboarding/presentation/widgets/first_page_image.dart';
 import 'package:volt/features/onboarding/presentation/widgets/onboarding_button.dart';
@@ -151,17 +153,7 @@ class _OnboardingViewState extends State<OnboardingView> {
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
 
-                              style: TextStyle(
-                                fontSize: (screenWidth * 0.058).clamp(
-                                  20.0,
-                                  25.0,
-                                ),
-                                fontWeight: FontWeight.w900,
-                                height: 1.15,
-                                color: itemIsDarkBackground
-                                    ? Colors.white
-                                    : const Color(0xFF1E293B),
-                              ),
+                              style: AppStyles.bold16.responsive(context),
                             ),
                           ),
                         ),

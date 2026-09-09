@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:volt/core/constants/app_strings.dart';
+import 'package:volt/core/constants/assets.gen.dart';
+import 'package:volt/core/theme/app_colors.dart';
 
 class OnboardingModel {
   final String image;
@@ -19,11 +22,11 @@ class OnboardingModel {
 
   static List<OnboardingModel> pages = [
     OnboardingModel(
-      image: 'assets/images/onboarding1.png',
-      title: 'تعلّم بذكاء وحافظ على حماسك',
-      description: 'دروس مخصصة وتحديات ممتعة ومكافآت تنتظرك',
+      image: Assets.images.onboarding1.path,
+      title: OnboardingStrings.startPlaying,
+      description: OnboardingStrings.startPlaying,
       backgroundColor: const Color(0xFFFFFFFF),
-      buttonColor: const Color(0xFF4CAF50),
+      buttonColor: AppColors.accentGreen,
       buttonText: 'متابعة',
     ),
     OnboardingModel(

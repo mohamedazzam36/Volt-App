@@ -22,12 +22,12 @@ class CircleImage extends StatelessWidget {
         color: Colors.white,
         shape: BoxShape.circle,
         border: Border.all(
-          color: const Color(0xFF323B492E),
+          color: const Color(0xff323b49),
           width: 2,
         ),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.35),
+            color: Colors.black.withValues(alpha: 0.35),
 
             offset: const Offset(0, 3.5),
             blurRadius: 4,

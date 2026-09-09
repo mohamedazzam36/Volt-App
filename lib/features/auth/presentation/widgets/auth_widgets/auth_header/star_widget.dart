@@ -15,10 +15,15 @@ class StarWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RepaintBoundary(
-      child: CustomPaint(
-        size: Size(size, size),
-        painter: StarPainter(color: color, spikesSharpness: sharpness),
+    return SizedBox(
+      width: size.clamp(12, 40),
+      child: AspectRatio(
+        aspectRatio: 1,
+        child: RepaintBoundary(
+          child: CustomPaint(
+            painter: StarPainter(color: color, spikesSharpness: sharpness),
+          ),
+        ),
       ),
     );
   }

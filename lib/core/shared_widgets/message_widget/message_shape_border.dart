@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:volt/core/theme/app_colors.dart';
 
 class MessageShapeBorder extends ShapeBorder {
   final double arrowWidth;
@@ -13,7 +12,7 @@ class MessageShapeBorder extends ShapeBorder {
     this.arrowWidth = 20.0,
     this.arrowHeight = 10.0,
     this.borderRadius = 16.0,
-    this.borderColor = AppColors.messageBorder,
+    this.borderColor = const Color(0xFFDEE3E7),
     this.borderWidth = 2,
     this.thresholdHeight = 65.0,
   });

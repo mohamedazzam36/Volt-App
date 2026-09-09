@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 // أنواع أشكال السحاب المتاحة
 enum CloudShape { flatBottom, rounded, puffy }
 
-// ==================== 1. كود السحابة ====================
+// ==================== كود السحابة ====================
 
 class CloudPainter extends CustomPainter {
   final CloudShape shape;
@@ -26,7 +26,6 @@ class CloudPainter extends CustomPainter {
 
     switch (shape) {
       case CloudShape.flatBottom:
-        // سحابة بقاعدة مسطحة (نفس شكل التصميم عندك)
         path.moveTo(w * 0.15, h * 0.85);
         path.lineTo(w * 0.85, h * 0.85);
         path.quadraticBezierTo(w, h * 0.85, w * 0.95, h * 0.6);
@@ -37,7 +36,6 @@ class CloudPainter extends CustomPainter {
         break;
 
       case CloudShape.rounded:
-        // سحابة كروية وناعمة
         path.addRRect(
           RRect.fromRectAndRadius(
             Rect.fromLTWH(w * 0.1, h * 0.4, w * 0.8, h * 0.45),
@@ -49,12 +47,14 @@ class CloudPainter extends CustomPainter {
         break;
 
       case CloudShape.puffy:
-        // سحابة منفوخة ومنحنية الأطراف
-        path.moveTo(w * 0.2, h * 0.7);
-        path.cubicTo(0, h * 0.6, 0, h * 0.3, w * 0.25, h * 0.3);
-        path.cubicTo(w * 0.3, h * 0.05, w * 0.7, h * 0.05, w * 0.75, h * 0.3);
-        path.cubicTo(w, h * 0.3, w, h * 0.6, w * 0.8, h * 0.7);
-        path.close();
+        // 1. الشكل البيضاوي الأساسي (كبير ومفرود واخد أغلب المساحة من تحت)
+        path.addOval(
+          Rect.fromLTWH(0, h * 0.2, w * 0.85, h * 0.8),
+        );
+        // 2. الشكل البيضاوي الثانوي (أصغر ومترحل يمين وفوق سنة وداخل فيه بنعومة)
+        path.addOval(
+          Rect.fromLTWH(w * 0.35, h * 0.3, w * 0.65, h * 0.6),
+        );
         break;
     }
 
