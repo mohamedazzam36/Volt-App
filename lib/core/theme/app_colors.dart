@@ -65,4 +65,5 @@ abstract final class AppColors {
 
   // Neutral (1)
   static const Color neutralSlate = Color(0xFF93A1B4);
+  static const Color black = Color(0xFF000000);
 }

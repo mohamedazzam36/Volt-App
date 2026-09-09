@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:volt/core/extensions/navigation_extension.dart';
 import 'package:volt/core/extensions/text_style_extension.dart';
 import 'package:volt/core/routing/routes.dart';
+import 'package:volt/core/shared_widgets/custom_elevated_button.dart';
 import 'package:volt/core/theme/app_styles.dart';
 import 'package:volt/features/onboarding/dataa/models/onboarding_model.dart';
 import 'package:volt/features/onboarding/presentation/widgets/first_page_image.dart';
-import 'package:volt/features/onboarding/presentation/widgets/onboarding_button.dart';
 import 'package:volt/features/onboarding/presentation/widgets/onboarding_header.dart';
 import 'package:volt/features/onboarding/presentation/widgets/onboarding_indicator.dart';
 
@@ -206,34 +206,12 @@ class _OnboardingViewState extends State<OnboardingView> {
                 ),
               ),
             ),
-
-            // ============================================================
-            // SMALL SPACE
-            // ============================================================
             const SizedBox(height: 8),
 
-            // ============================================================
-            // BUTTON
-            // ============================================================
-            Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: horizontalPadding,
-              ),
-
-              child: SizedBox(
-                width: double.infinity,
-
-                height: (screenHeight * 0.058).clamp(
-                  38.0,
-                  48.0,
-                ),
-
-                child: OnboardingButton(
-                  text: currentPage.buttonText,
-                  backgroundColor: currentPage.buttonColor,
-                  onPressed: _nextPage,
-                ),
-              ),
+            CustomElevatedButton(
+              onTap: _nextPage,
+              text: currentPage.buttonText,
+              color: currentPage.buttonColor,
             ),
 
             // ============================================================

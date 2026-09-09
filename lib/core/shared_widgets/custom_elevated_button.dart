@@ -1,16 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:volt/core/extensions/text_style_extension.dart';
+import 'package:volt/core/extensions/ui_extension.dart';
+import 'package:volt/core/theme/app_styles.dart';
+
+import '../theme/app_colors.dart';
 
 class CustomElevatedButton extends StatefulWidget {
   const CustomElevatedButton({
     super.key,
     required this.onTap,
     required this.text,
-    required this.color,
-    required this.bottomColor,
+    this.color = AppColors.brandPrimary,
+    this.textColor = AppColors.textOnBrand,
   });
   final VoidCallback onTap;
   final String text;
-  final Color color, bottomColor;
+  final Color color, textColor;
 
   @override
   State<CustomElevatedButton> createState() => _CustomElevatedButtonState();
@@ -27,7 +32,7 @@ class _CustomElevatedButtonState extends State<CustomElevatedButton> {
   Widget build(BuildContext context) {
     return SizedBox(
       height: 54,
-      width: 300,
+      width: (context.width * 0.85).clamp(200, 600),
       child: GestureDetector(
         onTapDown: (_) {
           _pressDown();
@@ -39,23 +44,19 @@ class _CustomElevatedButtonState extends State<CustomElevatedButton> {
         onTapCancel: _releaseUp,
         child: Container(
           decoration: BoxDecoration(
-            color: widget.color,
+            color: Color.lerp(widget.color, Colors.black, 0.25),
             borderRadius: BorderRadius.circular(16),
           ),
           child: Container(
             margin: EdgeInsets.only(bottom: bottomBorder),
             decoration: BoxDecoration(
-              color: widget.bottomColor,
+              color: widget.color,
               borderRadius: BorderRadius.circular(16),
             ),
             alignment: Alignment.center,
             child: Text(
               widget.text,
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-              ),
+              style: AppStyles.extraBold14.responsive(context).copyWith(color: widget.textColor),
             ),
           ),
         ),

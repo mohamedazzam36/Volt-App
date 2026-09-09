@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:volt/core/constants/app_strings.dart';
 import 'package:volt/core/constants/assets.gen.dart';
 import 'package:volt/core/extensions/navigation_extension.dart';
 import 'package:volt/core/routing/routes.dart';
+import 'package:volt/core/shared_widgets/speaking_robot.dart';
 import 'package:volt/core/theme/app_styles.dart';
 
 import '../widgets/loading_bar.dart';
-import '../widgets/speech_bubble.dart';
 
 class SplashView extends StatefulWidget {
   const SplashView({super.key});
@@ -48,11 +49,10 @@ class _SplashViewState extends State<SplashView> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Spacer(flex: 2),
-            const SpeechBubble(text: 'يلا نشحن طاقة تعلّمك!'),
-            const SizedBox(height: 10),
-            Image.asset(
-              Assets.images.rasingLeftHandRobot.path,
-              height: 220,
+            SpeakingRobot(
+              message: SplashStrings.chargingMessage,
+              robotImagePath: Assets.images.rasingLeftHandRobot.path,
+              messageShiftingRatio: .65,
             ),
             const SizedBox(height: 20),
             const Text('فولت', style: AppStyles.regular12),

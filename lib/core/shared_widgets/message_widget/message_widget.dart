@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:volt/core/shared_widgets/message_widget/message_shape_border.dart';
 import 'package:volt/core/theme/app_colors.dart';
+import 'package:volt/core/theme/app_styles.dart';
 
 class MessageWidget extends StatelessWidget {
   final double arrowWidth;
@@ -13,6 +14,7 @@ class MessageWidget extends StatelessWidget {
   final double? fontSize;
   final double? maxWidth;
   final Color? fontColor;
+  final bool isOneLine;
 
   const MessageWidget(
     this.message, {
@@ -26,12 +28,13 @@ class MessageWidget extends StatelessWidget {
     this.fontSize,
     this.fontColor,
     this.maxWidth,
+    this.isOneLine = true,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(8),
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
       constraints: BoxConstraints(maxWidth: maxWidth ?? 250),
       decoration: ShapeDecoration(
         color: AppColors.textOnBrand,
@@ -52,9 +55,12 @@ class MessageWidget extends StatelessWidget {
           arrowWidth: arrowWidth,
         ),
       ),
-      child: Text(
-        message,
-        style: TextStyle(fontSize: fontSize ?? 12, color: fontColor ?? Colors.black),
+      child: FittedBox(
+        fit: isOneLine ? BoxFit.scaleDown : BoxFit.none,
+        child: Text(
+          message,
+          style: AppStyles.bold16,
+        ),
       ),
     );
   }
