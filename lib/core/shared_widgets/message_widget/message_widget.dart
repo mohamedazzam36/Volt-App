@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:volt/core/extensions/text_style_extension.dart';
 import 'package:volt/core/shared_widgets/message_widget/message_shape_border.dart';
 import 'package:volt/core/theme/app_colors.dart';
 import 'package:volt/core/theme/app_styles.dart';
@@ -55,13 +56,18 @@ class MessageWidget extends StatelessWidget {
           arrowWidth: arrowWidth,
         ),
       ),
-      child: FittedBox(
-        fit: isOneLine ? BoxFit.scaleDown : BoxFit.none,
-        child: Text(
-          message,
-          style: AppStyles.bold16,
-        ),
-      ),
+      child: isOneLine
+          ? FittedBox(
+              fit: BoxFit.scaleDown,
+              child: Text(
+                message,
+                style: AppStyles.bold16.responsive(context),
+              ),
+            )
+          : Text(
+              message,
+              style: AppStyles.bold16.responsive(context),
+            ),
     );
   }
 }

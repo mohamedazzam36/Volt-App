@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:volt/features/auth/presentation/widgets/auth_widgets/auth_header/cloud_painter.dart';
 import 'package:volt/features/auth/presentation/widgets/auth_widgets/auth_header/cloud_widget.dart';
-import 'package:volt/features/auth/presentation/widgets/painters/cloud_painter.dart';
 
 class AnimatedCloud extends StatelessWidget {
   const AnimatedCloud({

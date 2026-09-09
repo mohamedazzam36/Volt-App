@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:volt/core/routing/routes.dart';
 import 'package:volt/features/auth/presentation/views/auth_view.dart';
+import 'package:volt/features/auth/presentation/views/login_view.dart';
+import 'package:volt/features/auth/presentation/views/register_view.dart';
 import 'package:volt/features/onboarding/presentation/views/onboarding_view.dart';
 import 'package:volt/features/splash/presentation/views/splash_view.dart';
 
 class AppRouter {
-  static const initialRoute = Routes.splash;
+  static const initialRoute = Routes.auth;
 
   static Route<dynamic>? onGenerateRoute(RouteSettings settings) {
     return switch (settings.name) {
@@ -17,6 +19,12 @@ class AppRouter {
       ),
       Routes.auth => MaterialPageRoute(
         builder: (context) => const AuthView(),
+      ),
+      Routes.login => MaterialPageRoute(
+        builder: (context) => const LoginView(),
+      ),
+      Routes.register => MaterialPageRoute(
+        builder: (context) => const RegisterView(),
       ),
       Routes.home => MaterialPageRoute(
         builder: (context) => const _UnknownScreen(),

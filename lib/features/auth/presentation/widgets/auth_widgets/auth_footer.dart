@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:volt/core/extensions/ui_extension.dart';
-import 'package:volt/features/auth/presentation/widgets/auth_widgets/auth_footer/auth_footer_painter.dart';
+import 'package:volt/features/auth/presentation/widgets/auth_widgets/auth_footer_painter.dart';
 
 class AuthFooter extends StatelessWidget {
   const AuthFooter({

@@ -4,7 +4,12 @@ import 'package:volt/features/auth/presentation/widgets/auth_widgets/auth_header
 import 'package:volt/features/auth/presentation/widgets/auth_widgets/auth_header/animated_star.dart';
 
 class AuthHeader extends StatefulWidget {
-  const AuthHeader({super.key});
+  final bool startFromLeft;
+
+  const AuthHeader({
+    super.key,
+    this.startFromLeft = false,
+  });
 
   @override
   State<AuthHeader> createState() => _AuthHeaderState();
@@ -32,7 +37,7 @@ class _AuthHeaderState extends State<AuthHeader> with SingleTickerProviderStateM
       duration: const Duration(milliseconds: 3000),
     );
 
-    // السحب: تخلص في ~980ms الأولانية
+    final dir = widget.startFromLeft ? -1.0 : 1.0;
     _cloudFade = Tween<double>(begin: 0, end: 1).animate(
       CurvedAnimation(
         parent: _ctrl,
@@ -40,21 +45,21 @@ class _AuthHeaderState extends State<AuthHeader> with SingleTickerProviderStateM
       ),
     );
 
-    _cloud1Slide = Tween<Offset>(begin: const Offset(0.3, 0), end: Offset.zero).animate(
+    _cloud1Slide = Tween<Offset>(begin: Offset(0.3 * dir, 0), end: Offset.zero).animate(
       CurvedAnimation(
         parent: _ctrl,
         curve: const Interval(0.0, 0.28, curve: Curves.easeOut),
       ),
     );
 
-    _cloud2Slide = Tween<Offset>(begin: const Offset(0.5, 0), end: Offset.zero).animate(
+    _cloud2Slide = Tween<Offset>(begin: Offset(0.5 * dir, 0), end: Offset.zero).animate(
       CurvedAnimation(
         parent: _ctrl,
         curve: const Interval(0.023, 0.30, curve: Curves.easeOut),
       ),
     );
 
-    _cloud3Slide = Tween<Offset>(begin: const Offset(0.7, 0), end: Offset.zero).animate(
+    _cloud3Slide = Tween<Offset>(begin: Offset(0.7 * dir, 0), end: Offset.zero).animate(
       CurvedAnimation(
         parent: _ctrl,
         curve: const Interval(0.047, 0.33, curve: Curves.easeOut),

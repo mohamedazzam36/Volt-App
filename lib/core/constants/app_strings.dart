@@ -4,6 +4,7 @@ abstract final class CommonStrings {
   static const String next = 'التالي';
   static const String skip = 'تخطي';
   static const String continueAction = 'متابعة';
+  static const String back = 'رجوع';
 }
 
 /// شاشة السبلاش

@@ -6,8 +6,9 @@ import 'package:volt/core/routing/routes.dart';
 import 'package:volt/core/shared_widgets/custom_elevated_button.dart';
 import 'package:volt/core/shared_widgets/speaking_robot.dart';
 import 'package:volt/core/theme/app_colors.dart';
+import 'package:volt/features/auth/presentation/widgets/auth_widgets/back_ghost_button.dart';
 
-class AuthBody extends StatelessWidget {
+class RegisterBody extends StatelessWidget {
   const new({super.key});
 
   @override
@@ -15,24 +16,19 @@ class AuthBody extends StatelessWidget {
     return Column(
       children: [
         SpeakingRobot(
-          message: AuthStrings.robotWelcome,
+          message: AuthStrings.robotIntro,
           robotImagePath: Assets.images.rasingLeftHandRobot.path,
           messageShiftingRatio: .65,
         ),
-        const SizedBox(height: 42),
+        const SizedBox(height: 54),
         CustomElevatedButton(
           text: AuthStrings.createAccount,
-          color: AppColors.brandSecondaryGreen,
+          color: AppColors.brandSecondaryOrange,
           textColor: AppColors.textOnBrand,
           onTap: () => context.pushNamed(Routes.register),
         ),
-        const SizedBox(height: 12),
-        CustomElevatedButton(
-          text: AuthStrings.login,
-          color: AppColors.textOnBrand,
-          textColor: AppColors.textPrimary,
-          onTap: () => context.pushNamed(Routes.login),
-        ),
+        const SizedBox(height: 16),
+        const BackGhostButton(),
       ],
     );
   }
