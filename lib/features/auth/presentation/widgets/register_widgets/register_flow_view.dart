@@ -5,6 +5,7 @@ import 'package:volt/core/routing/routes.dart';
 import 'package:volt/features/auth/presentation/widgets/auth_widgets/auth_base_layout.dart';
 import 'package:volt/features/auth/presentation/widgets/register_widgets/register_age_input_body.dart';
 import 'package:volt/features/auth/presentation/widgets/register_widgets/register_email_input_body.dart';
+import 'package:volt/features/auth/presentation/widgets/register_widgets/register_finish_view.dart';
 import 'package:volt/features/auth/presentation/widgets/register_widgets/register_name_input_body.dart';
 import 'package:volt/features/auth/presentation/widgets/register_widgets/register_password_input_body.dart';
 
@@ -70,8 +71,13 @@ class _RegisterFlowViewState extends State<RegisterFlowView> {
             _selectedAge = age; // 2. بنحفظ العمر لما يدوس التالي
           },
           onNextStep: () {
-            debugPrint('تم تسجيل البيانات: الاسم، الإيميل، والعمر: $_selectedAge');
-            // هنا هتكلم الـ Cubit وتديله الداتا كلها
+            context.push(
+              RegisterFinishView(
+                name: _nameController.text,
+                email: _emailController.text,
+                age: _selectedAge,
+              ),
+            );
           },
         );
       default:

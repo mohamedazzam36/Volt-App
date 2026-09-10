@@ -5,10 +5,12 @@ import 'package:volt/core/constants/app_strings.dart';
 import 'package:volt/core/constants/assets.gen.dart';
 import 'package:volt/core/extensions/ui_extension.dart';
 import 'package:volt/core/shared_widgets/speaking_robot.dart';
+import 'package:volt/core/theme/app_colors.dart';
 import 'package:volt/core/utils/validators.dart';
 import 'package:volt/features/auth/presentation/widgets/auth_widgets/auth_buttons_section.dart';
 import 'package:volt/features/auth/presentation/widgets/auth_widgets/auth_text_field.dart';
 import 'package:volt/features/auth/presentation/widgets/auth_widgets/auth_thinking_robot.dart';
+import 'package:volt/features/auth/presentation/widgets/auth_widgets/auth_worried_robot.dart';
 
 class RegisterEmailInputBody extends StatefulWidget {
   const RegisterEmailInputBody({
@@ -83,7 +85,9 @@ class _RegisterEmailInputBodyState extends State<RegisterEmailInputBody> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        _isValid
+        _errorText != null
+            ? const AuthWorriedRobot()
+            : _isValid
             ? SpeakingRobot(
                 message: AuthStrings.validEmailMessage,
                 robotImagePath: Assets.images.authRobotHappy.path,
@@ -103,6 +107,7 @@ class _RegisterEmailInputBodyState extends State<RegisterEmailInputBody> {
         AuthButtonsSection(
           isValid: _isValid,
           onMainButtonTap: _onSubmit,
+          activeColor: AppColors.brandSecondaryBlue,
           onGoogleTap: () {
             debugPrint('Google tapped...');
           },

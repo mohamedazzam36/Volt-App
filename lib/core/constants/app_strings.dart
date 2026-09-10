@@ -56,7 +56,7 @@ abstract final class AuthStrings {
   static const String greatRobotName = 'اسم رائع ! ⚡';
   static const String askEmail = 'كيف يمكننا الوصول اليك؟';
   static const String validEmailMessage = 'عظيم !';
-  static const String emailErrorRobotMessage = 'يبدو ان هناك خطأ ما !';
+  static const String inputErrorRobotMessage = 'يبدو ان هناك خطأ ما !';
   static const String robotWontLook = 'لن افتح عيناى !';
   static const String robotWillLook = 'حسنا سوف انظر !';
   static const String strongPassword = 'تبدو كلمة مرور قوية !';

@@ -30,6 +30,10 @@ class $AssetsImagesGen {
   AssetGenImage get authRobotDance =>
       const AssetGenImage('assets/images/auth_robot_dance.png');
 
+  /// File path: assets/images/auth_robot_dance_with_background.png
+  AssetGenImage get authRobotDanceWithBackground =>
+      const AssetGenImage('assets/images/auth_robot_dance_with_background.png');
+
   /// File path: assets/images/auth_robot_happy.png
   AssetGenImage get authRobotHappy =>
       const AssetGenImage('assets/images/auth_robot_happy.png');
@@ -83,6 +87,7 @@ class $AssetsImagesGen {
     svg,
     vector,
     authRobotDance,
+    authRobotDanceWithBackground,
     authRobotHappy,
     authRobotHidingHisEyes,
     authRobotOpeningTheDoor,
