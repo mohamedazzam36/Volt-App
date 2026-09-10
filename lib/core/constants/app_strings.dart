@@ -64,8 +64,9 @@ abstract final class AuthStrings {
   static const String letsGo = 'هيا بنا !';
 
   // حقول الإدخال والـ Hints والتحقق
-  static const String robotNameHint = 'المستخدم (لا تستخدم اسمك الحقيقي)';
   static const String surpriseMe = 'فاجئنى';
+  static const String emptyNameError = 'برجاء إدخال الاسم!';
+  static const String shortNameError = 'الاسم يجب ألا يقل عن حرفين';
   static const String emailHint = "mail@example.com";
   static const String emailLabel = "البريد الإلكتروني";
   static const String invalidEmailError = 'هذا بريد الكترونى غير صالح';

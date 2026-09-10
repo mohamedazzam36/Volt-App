@@ -1,3 +1,5 @@
+import '../constants/app_strings.dart';
+
 abstract final class AppValidators {
   static String? validateEmail(String? value) {
     if (value == null || value.trim().isEmpty) {
@@ -32,5 +34,20 @@ abstract final class AppValidators {
     if (RegExp(r'[!@#\$&*~%^()_+=<>?]').hasMatch(password)) score++; // 5. رمز خاص
 
     return score;
+  }
+
+  static String? validateName(String? value) {
+    final text = value?.trim() ?? '';
+
+    if (text.isEmpty) {
+      return AuthStrings.emptyNameError;
+    }
+
+    // يتأكد إن الاسم على الأقل حرفين
+    if (text.length < 2) {
+      return AuthStrings.shortNameError;
+    }
+
+    return null;
   }
 }

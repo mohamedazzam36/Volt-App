@@ -74,7 +74,7 @@ class AuthTextField extends StatefulWidget {
     this.obscureText,
     this.onVisibilityToggle,
     this.labelText = 'الاسم',
-    this.hintText = 'مثال: محمد عزام',
+    this.hintText = 'مثال: محمد',
     this.isValid = false,
     this.errorText,
     this.onChanged,
@@ -128,7 +128,10 @@ class _AuthTextFieldState extends State<AuthTextField> {
                 ? AppColors.statusError.withValues(alpha: 0.06)
                 : (widget.isValid ? AppColors.surfaceBlueSoft : AppColors.surfaceSubtle),
             hintText: widget.hintText,
-            hintTextDirection: TextDirection.ltr,
+            hintTextDirection:
+                (widget.isPassword || widget.keyboardType == TextInputType.emailAddress)
+                ? TextDirection.ltr
+                : null,
             hintStyle: AppStyles.semiBold18
                 .responsive(context)
                 .copyWith(color: AppColors.textSecondary),

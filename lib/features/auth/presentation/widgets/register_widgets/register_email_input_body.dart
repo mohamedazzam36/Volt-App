@@ -11,23 +11,37 @@ import 'package:volt/features/auth/presentation/widgets/auth_widgets/auth_text_f
 import 'package:volt/features/auth/presentation/widgets/auth_widgets/auth_thinking_robot.dart';
 
 class RegisterEmailInputBody extends StatefulWidget {
-  const RegisterEmailInputBody({super.key, required this.onNextStep});
+  const RegisterEmailInputBody({
+    super.key,
+    required this.onNextStep,
+    required this.emailController,
+  });
   final VoidCallback onNextStep;
+  final TextEditingController emailController;
   @override
   State<RegisterEmailInputBody> createState() => _RegisterEmailInputBodyState();
 }
 
 class _RegisterEmailInputBodyState extends State<RegisterEmailInputBody> {
-  final TextEditingController _emailController = TextEditingController();
   Timer? _debounce;
 
   bool _isValid = false;
   String? _errorText;
 
   @override
+  void initState() {
+    super.initState();
+    if (widget.emailController.text.isNotEmpty) {
+      final error = AppValidators.validateEmail(widget.emailController.text);
+      if (error == null) {
+        _isValid = true;
+      }
+    }
+  }
+
+  @override
   void dispose() {
     _debounce?.cancel();
-    _emailController.dispose();
     super.dispose();
   }
 
@@ -52,8 +66,7 @@ class _RegisterEmailInputBodyState extends State<RegisterEmailInputBody> {
   void _onSubmit() {
     if (_debounce?.isActive ?? false) _debounce!.cancel();
 
-    final error = AppValidators.validateEmail(_emailController.text);
-
+    final error = AppValidators.validateEmail(widget.emailController.text);
     setState(() {
       if (error != null) {
         _errorText = error;
@@ -81,7 +94,7 @@ class _RegisterEmailInputBodyState extends State<RegisterEmailInputBody> {
             : const AuthThinkingRobot(AuthStrings.askEmail),
         const SizedBox(height: 40),
         AuthTextField.email(
-          controller: _emailController,
+          controller: widget.emailController,
           onChanged: _onEmailChanged,
           isValid: _isValid,
           errorText: _errorText,

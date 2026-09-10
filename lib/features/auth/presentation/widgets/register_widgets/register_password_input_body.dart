@@ -8,43 +8,55 @@ import 'package:volt/features/auth/presentation/widgets/auth_widgets/auth_button
 import 'package:volt/features/auth/presentation/widgets/auth_widgets/auth_hiding_eyes_robot.dart';
 import 'package:volt/features/auth/presentation/widgets/auth_widgets/auth_text_field.dart';
 import 'package:volt/features/auth/presentation/widgets/auth_widgets/auth_thinking_robot.dart';
-import 'package:volt/features/auth/presentation/widgets/register_view/password_strength_indicator.dart'; // الفايل اللي عملناه قبل كده
+import 'package:volt/features/auth/presentation/widgets/register_widgets/password_strength_indicator.dart'; // الفايل اللي عملناه قبل كده
 
 class RegisterPasswordInputBody extends StatefulWidget {
-  const RegisterPasswordInputBody({super.key, required this.onNextStep});
+  const RegisterPasswordInputBody({
+    super.key,
+    required this.onNextStep,
+    required this.passwordController,
+  });
   final VoidCallback onNextStep;
+  final TextEditingController passwordController;
 
   @override
   State<RegisterPasswordInputBody> createState() => _RegisterPasswordInputBodyState();
 }
 
 class _RegisterPasswordInputBodyState extends State<RegisterPasswordInputBody> {
-  final TextEditingController _passwordController = TextEditingController();
   Timer? _debounce;
 
   bool _isValid = false;
   String? _errorText;
   int _passwordStrength = 0;
-  bool _isPasswordVisible = false; // حالة العين
+  bool _isPasswordVisible = false;
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.passwordController.text.isNotEmpty) {
+      final text = widget.passwordController.text;
+      _passwordStrength = AppValidators.calculatePasswordStrength(text);
+      final error = AppValidators.validatePassword(text);
+      if (error == null) _isValid = true;
+    }
+  }
 
   @override
   void dispose() {
     _debounce?.cancel();
-    _passwordController.dispose();
     super.dispose();
   }
 
   void _onPasswordChanged(String value) {
     if (_debounce?.isActive ?? false) _debounce!.cancel();
 
-    // تحديث قوة الباسورد لحظياً مع كل حرف (بدون تأخير)
     setState(() {
       _passwordStrength = AppValidators.calculatePasswordStrength(value);
       _isValid = false;
       _errorText = null;
     });
 
-    // الـ Debounce للـ Validation النهائي بس
     _debounce = Timer(const Duration(milliseconds: 500), () {
       final error = AppValidators.validatePassword(value);
       if (error == null && value.isNotEmpty) {
@@ -58,7 +70,7 @@ class _RegisterPasswordInputBodyState extends State<RegisterPasswordInputBody> {
   void _onSubmit() {
     if (_debounce?.isActive ?? false) _debounce!.cancel();
 
-    final error = AppValidators.validatePassword(_passwordController.text);
+    final error = AppValidators.validatePassword(widget.passwordController.text);
 
     setState(() {
       if (error != null) {
@@ -72,7 +84,6 @@ class _RegisterPasswordInputBodyState extends State<RegisterPasswordInputBody> {
     });
   }
 
-  // ميثود لتحديد رسالة الروبوت بناءً على حالته
   String _getRobotMessage() {
     if (_isPasswordVisible) return AuthStrings.robotWillLook;
     if (_isValid) return AuthStrings.strongPassword;
@@ -89,10 +100,9 @@ class _RegisterPasswordInputBodyState extends State<RegisterPasswordInputBody> {
         const SizedBox(height: 40),
 
         AuthTextField.password(
-          controller: _passwordController,
+          controller: widget.passwordController,
           onChanged: _onPasswordChanged,
           errorText: _errorText,
-          // هنا إحنا بنعمل Override على الأيقونة عشان نخلي الـ Body هو اللي يحس بيها
           obscureText: !_isPasswordVisible,
           onVisibilityToggle: () {
             setState(() {
@@ -100,18 +110,13 @@ class _RegisterPasswordInputBodyState extends State<RegisterPasswordInputBody> {
             });
           },
         ),
-
         const SizedBox(height: 12),
-
-        // مؤشر قوة كلمة المرور تحت التيكست فيلد
         PasswordStrengthIndicator(strength: _passwordStrength),
-
         const SizedBox(height: 32),
-
         AuthButtonsSection(
           isValid: _isValid,
           buttonText: CommonStrings.next,
-          activeColor: AppColors.brandSecondaryOrange, // لون الزرار البرتقالي زي الديزاين
+          activeColor: AppColors.brandSecondaryOrange,
           onMainButtonTap: _onSubmit,
           onGoogleTap: () {
             debugPrint('Google tapped...');

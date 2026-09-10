@@ -3,7 +3,7 @@ import 'package:volt/core/extensions/ui_extension.dart';
 import 'package:volt/core/theme/app_colors.dart';
 import 'package:volt/features/auth/presentation/widgets/auth_widgets/auth_footer.dart';
 import 'package:volt/features/auth/presentation/widgets/auth_widgets/auth_header/auth_header.dart';
-import 'package:volt/features/auth/presentation/widgets/register_view/register_body.dart';
+import 'package:volt/features/auth/presentation/widgets/register_widgets/register_body.dart';
 
 class RegisterViewBody extends StatelessWidget {
   const new({super.key});
