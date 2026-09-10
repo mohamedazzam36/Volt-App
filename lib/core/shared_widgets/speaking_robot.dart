@@ -28,28 +28,25 @@ class SpeakingRobot extends StatelessWidget {
     final double defaultRobotWidth = (context.width * 0.45).clamp(140.0, 300.0);
     final double robotFinalWidth = robotWidth ?? defaultRobotWidth;
 
-    return SizedBox(
-      width: robotFinalWidth * 1.4,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        spacing: spaceAfterMessage,
-        children: [
-          Transform.translate(
-            offset: Offset((messageShiftingRatio - 0.5) * robotFinalWidth, 0),
-            child: MessageWidget(
-              message,
-              maxWidth: robotFinalWidth * 1.2,
-              isOneLine: isMessageOneLine,
-            ),
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      spacing: spaceAfterMessage,
+      children: [
+        Transform.translate(
+          offset: Offset((messageShiftingRatio - 0.5) * robotFinalWidth, 0),
+          child: MessageWidget(
+            message,
+            // maxWidth: robotFinalWidth * 1.5,
+            isOneLine: isMessageOneLine,
           ),
+        ),
 
-          Image.asset(
-            robotImagePath,
-            width: robotFinalWidth,
-            fit: BoxFit.contain,
-          ),
-        ],
-      ),
+        Image.asset(
+          robotImagePath,
+          width: robotFinalWidth,
+          fit: BoxFit.contain,
+        ),
+      ],
     );
   }
 }

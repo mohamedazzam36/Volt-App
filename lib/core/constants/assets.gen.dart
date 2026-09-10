@@ -26,6 +26,34 @@ class $AssetsImagesGen {
   /// File path: assets/images/Vector.png
   AssetGenImage get vector => const AssetGenImage('assets/images/Vector.png');
 
+  /// File path: assets/images/auth_robot_dance.png
+  AssetGenImage get authRobotDance =>
+      const AssetGenImage('assets/images/auth_robot_dance.png');
+
+  /// File path: assets/images/auth_robot_happy.png
+  AssetGenImage get authRobotHappy =>
+      const AssetGenImage('assets/images/auth_robot_happy.png');
+
+  /// File path: assets/images/auth_robot_hiding_his_eyes.png
+  AssetGenImage get authRobotHidingHisEyes =>
+      const AssetGenImage('assets/images/auth_robot_hiding_his_eyes.png');
+
+  /// File path: assets/images/auth_robot_opening_the_door.png
+  AssetGenImage get authRobotOpeningTheDoor =>
+      const AssetGenImage('assets/images/auth_robot_opening_the_door.png');
+
+  /// File path: assets/images/auth_robot_says_hi.png
+  AssetGenImage get authRobotSaysHi =>
+      const AssetGenImage('assets/images/auth_robot_says_hi.png');
+
+  /// File path: assets/images/auth_robot_thinking.png
+  AssetGenImage get authRobotThinking =>
+      const AssetGenImage('assets/images/auth_robot_thinking.png');
+
+  /// File path: assets/images/auth_robot_worried.png
+  AssetGenImage get authRobotWorried =>
+      const AssetGenImage('assets/images/auth_robot_worried.png');
+
   /// File path: assets/images/book.png
   AssetGenImage get book => const AssetGenImage('assets/images/book.png');
 
@@ -54,6 +82,13 @@ class $AssetsImagesGen {
     svg1,
     svg,
     vector,
+    authRobotDance,
+    authRobotHappy,
+    authRobotHidingHisEyes,
+    authRobotOpeningTheDoor,
+    authRobotSaysHi,
+    authRobotThinking,
+    authRobotWorried,
     book,
     onboarding1,
     onboarding2,

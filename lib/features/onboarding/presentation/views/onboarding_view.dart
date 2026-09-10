@@ -37,15 +37,6 @@ class _OnboardingViewState extends State<OnboardingView> {
     }
   }
 
-  void _previousPage() {
-    if (_currentIndex > 0) {
-      _pageController.previousPage(
-        duration: const Duration(milliseconds: 300),
-        curve: Curves.easeInOut,
-      );
-    }
-  }
-
   @override
   void dispose() {
     _pageController.dispose();
@@ -80,16 +71,14 @@ class _OnboardingViewState extends State<OnboardingView> {
             // ========================================================
             // HEADER
             // ========================================================
-
-            SizedBox(
-              height: 48,
-              width: double.infinity,
-              child: OnboardingHeader(
-                currentIndex: _currentIndex,
-                onBackPressed: _previousPage,
-                onLoginPressed: () {
-                  // TODO: Handle login
-                },
+            Padding(
+              padding: const EdgeInsetsDirectional.only(end: 16.0, top: 16.0),
+              child: Align(
+                alignment: AlignmentDirectional.topEnd,
+                child: OnboardingHeader(
+                  currentIndex: _currentIndex,
+                  onSkipPressed: () => context.pushNamed(Routes.auth),
+                ),
               ),
             ),
 
@@ -155,9 +144,11 @@ class _OnboardingViewState extends State<OnboardingView> {
                               overflow: TextOverflow.ellipsis,
 
                               style: itemIsDarkBackground
-                                  ? AppStyles.bold16.responsive(context).copyWith(
-                                      color: AppColors.textOnBrand,
-                                    )
+                                  ? AppStyles.bold16
+                                        .responsive(context)
+                                        .copyWith(
+                                          color: AppColors.textOnBrand,
+                                        )
                                   : AppStyles.bold16.responsive(context),
                             ),
                           ),
@@ -177,12 +168,14 @@ class _OnboardingViewState extends State<OnboardingView> {
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
 
-                              style: AppStyles.semiBold14.responsive(context).copyWith(
-                                height: 1.3,
-                                color: itemIsDarkBackground
-                                    ? AppColors.textOnBrand.withValues(alpha: 0.7)
-                                    : AppColors.neutralSlate,
-                              ),
+                              style: AppStyles.semiBold14
+                                  .responsive(context)
+                                  .copyWith(
+                                    height: 1.3,
+                                    color: itemIsDarkBackground
+                                        ? AppColors.textOnBrand.withValues(alpha: 0.7)
+                                        : AppColors.neutralSlate,
+                                  ),
                             ),
                           ),
                         ),
@@ -211,7 +204,7 @@ class _OnboardingViewState extends State<OnboardingView> {
             CustomElevatedButton(
               onTap: _nextPage,
               text: currentPage.buttonText,
-              color: currentPage.buttonColor,
+              backgroundColor: currentPage.buttonColor,
             ),
 
             // ============================================================

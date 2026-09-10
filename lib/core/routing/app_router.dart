@@ -7,7 +7,7 @@ import 'package:volt/features/onboarding/presentation/views/onboarding_view.dart
 import 'package:volt/features/splash/presentation/views/splash_view.dart';
 
 class AppRouter {
-  static const initialRoute = Routes.auth;
+  static const initialRoute = Routes.register;
 
   static Route<dynamic>? onGenerateRoute(RouteSettings settings) {
     return switch (settings.name) {

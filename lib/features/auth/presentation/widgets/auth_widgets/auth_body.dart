@@ -22,14 +22,14 @@ class AuthBody extends StatelessWidget {
         const SizedBox(height: 42),
         CustomElevatedButton(
           text: AuthStrings.createAccount,
-          color: AppColors.brandSecondaryGreen,
+          backgroundColor: AppColors.brandSecondaryGreen,
           textColor: AppColors.textOnBrand,
           onTap: () => context.pushNamed(Routes.register),
         ),
         const SizedBox(height: 12),
         CustomElevatedButton(
           text: AuthStrings.login,
-          color: AppColors.textOnBrand,
+          backgroundColor: AppColors.textOnBrand,
           textColor: AppColors.textPrimary,
           onTap: () => context.pushNamed(Routes.login),
         ),

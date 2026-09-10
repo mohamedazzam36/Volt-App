@@ -23,7 +23,7 @@ class LoginBody extends StatelessWidget {
         const SizedBox(height: 42),
         CustomElevatedButton(
           text: AuthStrings.createAccount,
-          color: AppColors.brandSecondaryYellow,
+          backgroundColor: AppColors.brandSecondaryYellow,
           textColor: AppColors.textOnBrand,
           onTap: () => context.pushNamed(Routes.register),
         ),

@@ -23,7 +23,7 @@ class CircleImage extends StatelessWidget {
         color: AppColors.surfaceDefault,
         shape: BoxShape.circle,
         border: Border.all(
-          color: const Color(0xffDEE3E7),
+          color: AppColors.borderSubtle,
           width: 2,
         ),
         boxShadow: [
