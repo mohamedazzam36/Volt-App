@@ -10,6 +10,9 @@ class VoltApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      onGenerateInitialRoutes: (initialRoute) => [
+        AppRouter.onGenerateRoute(RouteSettings(name: initialRoute))!,
+      ],
       onGenerateRoute: AppRouter.onGenerateRoute,
       initialRoute: AppRouter.initialRoute,
       theme: AppTheme.lightTheme,

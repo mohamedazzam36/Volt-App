@@ -6,7 +6,7 @@ import 'package:volt/core/shared_widgets/custom_elevated_button.dart';
 import 'package:volt/core/shared_widgets/speaking_robot.dart';
 import 'package:volt/core/theme/app_colors.dart';
 import 'package:volt/features/auth/presentation/widgets/auth_widgets/back_ghost_button.dart';
-import 'package:volt/features/auth/presentation/widgets/register_view/register_input_view.dart';
+import 'package:volt/features/auth/presentation/widgets/register_view/register_flow_view.dart';
 
 class RegisterBody extends StatelessWidget {
   const new({super.key});
@@ -25,7 +25,7 @@ class RegisterBody extends StatelessWidget {
           text: AuthStrings.createAccount,
           backgroundColor: AppColors.brandSecondaryOrange,
           textColor: AppColors.textOnBrand,
-          onTap: () => context.push(const RegisterInputView()),
+          onTap: () => context.push(const RegisterFlowView()),
         ),
         const SizedBox(height: 16),
         const BackGhostButton(),

@@ -10,14 +10,14 @@ class CustomElevatedButton extends StatefulWidget {
     super.key,
     required this.onTap,
     required this.text,
-    this.backgroundColor = AppColors.brandPrimary,
-    this.textColor = AppColors.textOnBrand,
+    this.backgroundColor,
+    this.textColor,
     this.width,
   });
   final VoidCallback onTap;
   final String text;
   final double? width;
-  final Color backgroundColor, textColor;
+  final Color? backgroundColor, textColor;
 
   @override
   State<CustomElevatedButton> createState() => _CustomElevatedButtonState();
@@ -52,13 +52,15 @@ class _CustomElevatedButtonState extends State<CustomElevatedButton> {
           child: Container(
             margin: EdgeInsets.only(bottom: bottomBorder),
             decoration: BoxDecoration(
-              color: widget.backgroundColor,
+              color: widget.backgroundColor ?? AppColors.brandPrimary,
               borderRadius: BorderRadius.circular(16),
             ),
             alignment: Alignment.center,
             child: Text(
               widget.text,
-              style: AppStyles.extraBold14.responsive(context).copyWith(color: widget.textColor),
+              style: AppStyles.extraBold14
+                  .responsive(context)
+                  .copyWith(color: widget.textColor ?? AppColors.textOnBrand),
             ),
           ),
         ),

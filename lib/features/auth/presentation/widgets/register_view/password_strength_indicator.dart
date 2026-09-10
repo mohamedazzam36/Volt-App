@@ -8,6 +8,7 @@ class PasswordStrengthIndicator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      // mainAxisAlignment: .center,
       children: List.generate(5, (index) {
         final isActive = index < strength;
 

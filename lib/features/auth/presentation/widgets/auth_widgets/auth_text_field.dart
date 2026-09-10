@@ -17,6 +17,8 @@ class AuthTextField extends StatefulWidget {
   final void Function(String)? onChanged;
   final TextInputType keyboardType;
   final String? Function(String?)? validator;
+  final bool? obscureText; // عشان نجبره ياخد حالة الإخفاء من بره لو حبينا
+  final VoidCallback? onVisibilityToggle;
 
   // 1. الديفولت كونستراكتور
   const AuthTextField({
@@ -30,6 +32,8 @@ class AuthTextField extends StatefulWidget {
     this.onChanged,
     this.keyboardType = TextInputType.text,
     this.validator,
+    this.obscureText,
+    this.onVisibilityToggle,
   });
 
   // 2. Named Constructor للإيميل
@@ -42,6 +46,8 @@ class AuthTextField extends StatefulWidget {
     this.isValid = false,
     this.errorText,
     this.onChanged,
+    this.obscureText,
+    this.onVisibilityToggle,
     this.validator,
   }) : isPassword = false,
        keyboardType = TextInputType.emailAddress;
@@ -54,6 +60,8 @@ class AuthTextField extends StatefulWidget {
     this.hintText = '••••••••',
     this.errorText,
     this.onChanged,
+    this.obscureText,
+    this.onVisibilityToggle,
     this.validator,
   }) : isPassword = true,
        isValid = false,
@@ -63,6 +71,8 @@ class AuthTextField extends StatefulWidget {
   const AuthTextField.name({
     super.key,
     this.controller,
+    this.obscureText,
+    this.onVisibilityToggle,
     this.labelText = 'الاسم',
     this.hintText = 'مثال: محمد عزام',
     this.isValid = false,
@@ -105,7 +115,7 @@ class _AuthTextFieldState extends State<AuthTextField> {
           onChanged: widget.onChanged,
           validator: widget.validator,
           keyboardType: widget.keyboardType,
-          obscureText: _obscureText,
+          obscureText: widget.obscureText ?? _obscureText,
           cursorHeight: 18,
           textDirection: (widget.isPassword || widget.keyboardType == TextInputType.emailAddress)
               ? TextDirection.ltr
@@ -135,14 +145,20 @@ class _AuthTextFieldState extends State<AuthTextField> {
             suffixIcon: widget.isPassword
                 ? IconButton(
                     icon: Icon(
-                      _obscureText ? Icons.visibility_off_outlined : Icons.visibility_outlined,
+                      (widget.obscureText ?? _obscureText)
+                          ? Icons.visibility_off_outlined
+                          : Icons.visibility_outlined,
                       color: AppColors.iconSecondary,
                       size: 22,
                     ),
                     onPressed: () {
-                      setState(() {
-                        _obscureText = !_obscureText;
-                      });
+                      if (widget.onVisibilityToggle != null) {
+                        widget.onVisibilityToggle!();
+                      } else {
+                        setState(() {
+                          _obscureText = !_obscureText;
+                        });
+                      }
                     },
                   )
                 : null,
