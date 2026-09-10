@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:volt/core/extensions/navigation_extension.dart';
-import 'package:volt/core/extensions/text_style_extension.dart';
 import 'package:volt/core/routing/routes.dart';
-import 'package:volt/core/shared_widgets/custom_elevated_button.dart';
-import 'package:volt/core/theme/app_colors.dart';
-import 'package:volt/core/theme/app_styles.dart';
+import 'package:volt/features/onboarding/dataa/models/onboarding_data.dart';
 import 'package:volt/features/onboarding/dataa/models/onboarding_model.dart';
-import 'package:volt/features/onboarding/presentation/widgets/first_page_image.dart';
+import 'package:volt/features/onboarding/presentation/widgets/onboarding_footer.dart';
 import 'package:volt/features/onboarding/presentation/widgets/onboarding_header.dart';
-import 'package:volt/features/onboarding/presentation/widgets/onboarding_indicator.dart';
+import 'package:volt/features/onboarding/presentation/widgets/onboarding_page.dart';
 
 class OnboardingView extends StatefulWidget {
   const OnboardingView({super.key});
@@ -18,32 +15,35 @@ class OnboardingView extends StatefulWidget {
 }
 
 class _OnboardingViewState extends State<OnboardingView> {
-  final PageController _pageController = PageController();
-
+  late final PageController _pageController;
   int _currentIndex = 0;
 
-  // ============================================================
-  // PAGE NAVIGATION
-  // ============================================================
+  static const _pageAnimationDuration = Duration(milliseconds: 300);
 
-  void _nextPage() {
-    if (_currentIndex < OnboardingModel.pages.length - 1) {
-      _pageController.nextPage(
-        duration: const Duration(milliseconds: 300),
-        curve: Curves.easeInOut,
-      );
-    } else {
-      context.pushReplacementNamed(Routes.auth);
-    }
+  @override
+  void initState() {
+    super.initState();
+    _pageController = PageController();
   }
 
-  void _previousPage() {
-    if (_currentIndex > 0) {
-      _pageController.previousPage(
-        duration: const Duration(milliseconds: 300),
+  void _nextPage() {
+    final pages = OnboardingData.pages;
+
+    if (_currentIndex < pages.length - 1) {
+      _pageController.nextPage(
+        duration: _pageAnimationDuration,
         curve: Curves.easeInOut,
       );
+      return;
     }
+
+    context.pushReplacementNamed(Routes.auth);
+  }
+
+  void _onPageChanged(int index) {
+    setState(() {
+      _currentIndex = index;
+    });
   }
 
   @override
@@ -55,171 +55,81 @@ class _OnboardingViewState extends State<OnboardingView> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.sizeOf(context);
+    final width = size.width;
+    final height = size.height;
 
-    final screenWidth = size.width;
-    final screenHeight = size.height;
+    final pages = OnboardingData.pages;
+    final currentPage = pages[_currentIndex];
 
-    final currentPage = OnboardingModel.pages[_currentIndex];
-
-    final horizontalPadding = (screenWidth * 0.055).clamp(
-      16.0,
-      28.0,
-    );
-
-    final contentHeight = (screenHeight * 0.59).clamp(
-      350.0,
-      445.0,
-    );
-
+    final horizontalPadding = (width * 0.055).clamp(16.0, 28.0);
+    final contentHeight = (height * 0.58).clamp(360.0, 460.0);
     return Scaffold(
       backgroundColor: currentPage.backgroundColor,
-
       body: SafeArea(
         child: Column(
           children: [
-            // ========================================================
-            // HEADER
-            // ========================================================
+            _buildHeader(isDark: currentPage.isDark),
 
-            SizedBox(
-              height: 48,
-              width: double.infinity,
-              child: OnboardingHeader(
+            const Spacer(flex: 2),
+
+            _buildPageView(
+              pages: pages,
+              contentHeight: contentHeight,
+              horizontalPadding: horizontalPadding,
+            ),
+
+            const SizedBox(height: 12),
+
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
+              child: OnboardingFooter(
                 currentIndex: _currentIndex,
-                onBackPressed: _previousPage,
-                onLoginPressed: () {
-                  // TODO: Handle login
-                },
+                currentPage: currentPage,
+                onNext: _nextPage,
               ),
             ),
 
-            const SizedBox(height: 60),
-
-            SizedBox(
-              height: contentHeight,
-              width: double.infinity,
-
-              child: PageView.builder(
-                controller: _pageController,
-
-                itemCount: OnboardingModel.pages.length,
-
-                onPageChanged: (index) {
-                  setState(() {
-                    _currentIndex = index;
-                  });
-                },
-
-                itemBuilder: (context, index) {
-                  final item = OnboardingModel.pages[index];
-
-                  final itemIsDarkBackground = index == 2;
-
-                  return Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: horizontalPadding,
-                    ),
-
-                    child: Column(
-                      children: [
-                        // ==================================================
-                        // IMAGE
-                        // ==================================================
-
-                        SizedBox(
-                          height: contentHeight * 0.68,
-                          width: double.infinity,
-
-                          child: index == 0
-                              ? FirstPageImage(
-                                  imagePath: item.image,
-                                )
-                              : Image.asset(
-                                  item.image,
-                                  fit: BoxFit.contain,
-                                ),
-                        ),
-
-                        // ==================================================
-                        // TITLE
-                        // ==================================================
-                        SizedBox(
-                          height: contentHeight * 0.13,
-                          width: double.infinity,
-
-                          child: Center(
-                            child: Text(
-                              item.title,
-                              textAlign: TextAlign.center,
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-
-                              style: itemIsDarkBackground
-                                  ? AppStyles.bold16.responsive(context).copyWith(
-                                      color: AppColors.textOnBrand,
-                                    )
-                                  : AppStyles.bold16.responsive(context),
-                            ),
-                          ),
-                        ),
-
-                        // ==================================================
-                        // DESCRIPTION
-                        // ==================================================
-                        SizedBox(
-                          height: contentHeight * 0.04,
-                          width: double.infinity,
-
-                          child: Center(
-                            child: Text(
-                              item.description,
-                              textAlign: TextAlign.center,
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-
-                              style: AppStyles.semiBold14.responsive(context).copyWith(
-                                height: 1.3,
-                                color: itemIsDarkBackground
-                                    ? AppColors.textOnBrand.withValues(alpha: 0.7)
-                                    : AppColors.neutralSlate,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  );
-                },
-              ),
-            ),
-
-            // ============================================================
-            // INDICATOR
-            // ============================================================
-            SizedBox(
-              height: 8,
-              child: Center(
-                child: OnboardingIndicator(
-                  currentIndex: _currentIndex,
-                  itemCount: OnboardingModel.pages.length,
-                  activeColor: currentPage.buttonColor,
-                ),
-              ),
-            ),
-            const SizedBox(height: 8),
-
-            CustomElevatedButton(
-              onTap: _nextPage,
-              text: currentPage.buttonText,
-              color: currentPage.buttonColor,
-            ),
-
-            // ============================================================
-            // BOTTOM SPACE
-            // ============================================================
-            const Spacer(),
+            const Spacer(flex: 3),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _buildHeader({required bool isDark}) {
+    return SizedBox(
+      height: 48,
+      width: double.infinity,
+      child: OnboardingHeader(
+        currentIndex: _currentIndex,
+        isDark: isDark,
+        onSkipPressed: () {
+          context.pushReplacementNamed(Routes.auth);
+        },
+      ),
+    );
+  }
+
+  Widget _buildPageView({
+    required List<OnboardingModel> pages,
+    required double contentHeight,
+    required double horizontalPadding,
+  }) {
+    return SizedBox(
+      height: contentHeight,
+      width: double.infinity,
+      child: PageView.builder(
+        controller: _pageController,
+        itemCount: pages.length,
+        onPageChanged: _onPageChanged,
+        itemBuilder: (context, index) {
+          return OnboardingPage(
+            item: pages[index],
+            index: index,
+            contentHeight: contentHeight,
+            horizontalPadding: horizontalPadding,
+          );
+        },
       ),
     );
   }

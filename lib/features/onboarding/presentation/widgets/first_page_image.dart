@@ -1,6 +1,6 @@
+
 import 'package:flutter/material.dart';
 import 'package:volt/core/constants/assets.gen.dart';
-
 import 'circle_image.dart';
 
 class FirstPageImage extends StatelessWidget {
@@ -18,21 +18,16 @@ class FirstPageImage extends StatelessWidget {
         final width = constraints.maxWidth;
         final height = constraints.maxHeight;
 
-        // حجم الدوائر Responsive
-        final circleSize = (width * 0.10).clamp(
-          36.0,
-          46.0,
-        );
+        final circleSize = (width * 0.12).clamp(40.0, 48.0);
+        final iconSize = circleSize * 0.50;
 
         return Stack(
           clipBehavior: Clip.none,
           alignment: Alignment.center,
           children: [
-            // =====================================================
-            // MAIN ROBOT IMAGE
-            // =====================================================
+            // MAIN IMAGE
             SizedBox(
-              width: width * 0.55,
+              width: width * 0.65,
               height: height * 0.90,
               child: Image.asset(
                 imagePath,
@@ -40,55 +35,48 @@ class FirstPageImage extends StatelessWidget {
               ),
             ),
 
-            // =====================================================
-            // TOP LEFT CIRCLE
-            // =====================================================
+            // TOP LEFT (Chart Icon)
             Positioned(
-              left: width * 0.02,
+              left: width * 0.04,
               top: height * 0.10,
               child: CircleImage(
-                assetPath: Assets.images.svg.path,
+                assetPath: Assets.images.chartIcon.path,
                 size: circleSize,
-                iconSize: circleSize * 0.48,
+                iconSize: iconSize,
               ),
             ),
 
-            // =====================================================
-            // TOP RIGHT CIRCLE
-            // =====================================================
+            // TOP RIGHT (Zap Icon)
             Positioned(
-              right: width * 0.02,
-              top: height * 0.15,
+              right: width * 0.04,
+              top: height * 0.12,
               child: CircleImage(
-                assetPath: Assets.images.vector.path,
+                assetPath: Assets.images.vector.path, // أو أيقونة الكهرباء/الصاعقة
                 size: circleSize,
-                iconSize: circleSize * 0.48,
+                iconSize: iconSize,
               ),
             ),
 
-            // =====================================================
-            // BOTTOM LEFT CIRCLE
-            // =====================================================
+            // BOTTOM LEFT (Book Icon)
             Positioned(
-              left: width * 0.07,
-              bottom: height * 0.14,
-              child: CircleImage(
-                assetPath: Assets.images.svg1.path,
-                size: circleSize,
-                iconSize: circleSize * 0.48,
-              ),
-            ),
-
-            // =====================================================
-            // BOTTOM RIGHT CIRCLE
-            // =====================================================
-            Positioned(
-              right: width * 0.01,
-              bottom: height * 0.06,
+              left: width * 0.04,
+              bottom: height * 0.22,
               child: CircleImage(
                 assetPath: Assets.images.book.path,
+
                 size: circleSize,
-                iconSize: circleSize * 0.48,
+                iconSize: iconSize,
+              ),
+            ),
+
+            // BOTTOM RIGHT (Ribbon/Badge Icon)
+            Positioned(
+              right: width * 0.04,
+              bottom: height * 0.20,
+              child: CircleImage(
+                assetPath: Assets.images.awardIcon.path, // أيقونة الميدالية/الشارة
+                size: circleSize,
+                iconSize: iconSize,
               ),
             ),
           ],
@@ -97,4 +85,3 @@ class FirstPageImage extends StatelessWidget {
     );
   }
 }
-

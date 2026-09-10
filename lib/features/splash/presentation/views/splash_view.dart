@@ -7,7 +7,6 @@ import 'package:volt/core/routing/routes.dart';
 import 'package:volt/core/shared_widgets/speaking_robot.dart';
 import 'package:volt/core/theme/app_colors.dart';
 import 'package:volt/core/theme/app_styles.dart';
-
 import '../widgets/loading_bar.dart';
 
 class SplashView extends StatefulWidget {
@@ -27,7 +26,7 @@ class _SplashViewState extends State<SplashView> {
   void _navigateToOnboarding() async {
     await Future.delayed(const Duration(seconds: 3));
     if (mounted) {
-      context.pushReplacementNamed(Routes.onboarding, arguments: 222);
+      context.pushReplacementNamed(Routes.onboarding);
     }
   }
 
@@ -51,16 +50,20 @@ class _SplashViewState extends State<SplashView> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Spacer(flex: 2),
+
             SpeakingRobot(
               message: SplashStrings.chargingMessage,
               robotImagePath: Assets.images.rasingLeftHandRobot.path,
-              messageShiftingRatio: .65,
+              messageShiftingRatio: 0.65,
             ),
+
             const SizedBox(height: 20),
+
             Text(
               CommonStrings.appName,
               style: AppStyles.black36.responsive(context),
             ),
+
             Text(
               SplashStrings.byCtrlZ,
               style: AppStyles.semiBold12
@@ -69,8 +72,11 @@ class _SplashViewState extends State<SplashView> {
                     color: AppColors.textSecondary,
                   ),
             ),
+
             const SizedBox(height: 25),
+
             const LoadingBar(),
+
             const Spacer(flex: 3),
           ],
         ),
