@@ -6,14 +6,14 @@ import 'package:volt/core/theme/app_styles.dart';
 
 class OnboardingHeader extends StatelessWidget {
   final int currentIndex;
-  final VoidCallback onBackPressed;
-  final VoidCallback onLoginPressed;
+  final bool isDark;
+  final VoidCallback onSkipPressed;
 
   const OnboardingHeader({
     super.key,
     required this.currentIndex,
-    required this.onBackPressed,
-    required this.onLoginPressed,
+    this.isDark = false,
+    required this.onSkipPressed,
   });
 
   @override
@@ -25,48 +25,56 @@ class OnboardingHeader extends StatelessWidget {
         top: 12,
         bottom: 4,
       ),
-      child: Align(
-        alignment: AlignmentDirectional.topEnd,
-        child: Container(
-          decoration: BoxDecoration(
-            color: AppColors.surfaceDefault,
-            borderRadius: BorderRadius.circular(20),
-            border: const Border(
-              top: BorderSide(
-                color: AppColors.borderSubtle,
-                width: 1.5,
-              ),
-              left: BorderSide(
-                color: AppColors.borderSubtle,
-                width: 2.5,
-              ),
-              right: BorderSide(
-                color: AppColors.borderSubtle,
-                width: 2.5,
-              ),
-              bottom: BorderSide(
-                color: AppColors.borderSubtle,
-                width: 4,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          // SKIP BUTTON WITH 3D BORDER
+          Container(
+            decoration: BoxDecoration(
+              color: AppColors.surfaceDefault,
+              borderRadius: BorderRadius.circular(20),
+              border: const Border(
+                top: BorderSide(
+                  color: AppColors.borderSubtle,
+                  width: 1.5,
+                ),
+                left: BorderSide(
+                  color: AppColors.borderSubtle,
+                  width: 2.5,
+                ),
+                right: BorderSide(
+                  color: AppColors.borderSubtle,
+                  width: 2.5,
+                ),
+                bottom: BorderSide(
+                  color: AppColors.borderSubtle,
+                  width: 4,
+                ),
               ),
             ),
-          ),
-          child: InkWell(
-            borderRadius: BorderRadius.circular(20),
-            onTap: onLoginPressed,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 16,
-                vertical: 4,
-              ),
-              child: Text(
-                OnboardingStrings.login,
-                style: AppStyles.black12.responsive(context).copyWith(
-                  color: AppColors.brandPrimary,
+            child: Material(
+              color: Colors.transparent,
+              child: InkWell(
+                borderRadius: BorderRadius.circular(20),
+                onTap: onSkipPressed,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 6,
+                  ),
+                  child: Text(
+                    CommonStrings.skip,
+                    style: AppStyles.black12
+                        .responsive(context)
+                        .copyWith(
+                          color: AppColors.brandPrimary,
+                        ),
+                  ),
                 ),
               ),
             ),
           ),
-        ),
+        ],
       ),
     );
   }

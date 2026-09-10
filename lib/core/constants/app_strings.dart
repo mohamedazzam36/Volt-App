@@ -8,7 +8,7 @@ abstract final class CommonStrings {
 
 /// شاشة السبلاش
 abstract final class SplashStrings {
-  static const String chargingMessage = 'يلا نشحن طاقة لعلمك!';
+  static const String chargingMessage = 'هيا نشحن طاقة تعلمك!';
   static const String byCtrlZ = 'by CTRL-Z';
 }
 
