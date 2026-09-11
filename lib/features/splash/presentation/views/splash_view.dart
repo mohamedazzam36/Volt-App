@@ -11,7 +11,8 @@ import 'package:volt/core/theme/app_styles.dart';
 import '../widgets/loading_bar.dart';
 
 class SplashView extends StatefulWidget {
-  const SplashView({super.key});
+  const SplashView({super.key, required this.isOnboardingView});
+  final bool isOnboardingView;
 
   @override
   State<SplashView> createState() => _SplashViewState();
@@ -27,7 +28,11 @@ class _SplashViewState extends State<SplashView> {
   void _navigateToOnboarding() async {
     await Future.delayed(const Duration(seconds: 3));
     if (mounted) {
-      context.pushReplacementNamed(Routes.onboarding, arguments: 222);
+      if (widget.isOnboardingView) {
+        context.pushReplacementNamed(Routes.auth);
+      } else {
+        context.pushReplacementNamed(Routes.onboarding);
+      }
     }
   }
 

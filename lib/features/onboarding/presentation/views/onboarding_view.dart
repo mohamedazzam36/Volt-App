@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:volt/core/di/service_locator.dart';
 import 'package:volt/core/extensions/navigation_extension.dart';
 import 'package:volt/core/extensions/text_style_extension.dart';
 import 'package:volt/core/routing/routes.dart';
 import 'package:volt/core/shared_widgets/custom_elevated_button.dart';
+import 'package:volt/core/storage/cache_helper.dart';
+import 'package:volt/core/storage/pref_keys.dart';
 import 'package:volt/core/theme/app_colors.dart';
 import 'package:volt/core/theme/app_styles.dart';
 import 'package:volt/features/onboarding/dataa/models/onboarding_model.dart';
@@ -33,6 +36,7 @@ class _OnboardingViewState extends State<OnboardingView> {
         curve: Curves.easeInOut,
       );
     } else {
+      sl<CacheHelper>().setBool(PrefKeys.isOnboardingViewed, true);
       context.pushReplacementNamed(Routes.auth);
     }
   }
@@ -77,7 +81,10 @@ class _OnboardingViewState extends State<OnboardingView> {
                 alignment: AlignmentDirectional.topEnd,
                 child: OnboardingHeader(
                   currentIndex: _currentIndex,
-                  onSkipPressed: () => context.pushNamed(Routes.auth),
+                  onSkipPressed: () {
+                    sl<CacheHelper>().setBool(PrefKeys.isOnboardingViewed, true);
+                    context.pushReplacementNamed(Routes.auth);
+                  },
                 ),
               ),
             ),

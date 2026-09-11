@@ -6,14 +6,20 @@ import 'package:volt/features/auth/presentation/views/register_view.dart';
 import 'package:volt/features/onboarding/presentation/views/onboarding_view.dart';
 import 'package:volt/features/splash/presentation/views/splash_view.dart';
 
+import '../di/service_locator.dart';
+import '../storage/cache_helper.dart';
+import '../storage/pref_keys.dart';
+
 class AppRouter {
-  static const initialRoute = Routes.register;
+  static const initialRoute = Routes.splash;
 
   static Route<dynamic>? onGenerateRoute(RouteSettings settings) {
     return switch (settings.name) {
       Routes.splash => MaterialPageRoute(
         settings: settings,
-        builder: (context) => const SplashView(),
+        builder: (context) => SplashView(
+          isOnboardingView: sl<CacheHelper>().getBool(PrefKeys.isOnboardingViewed) ?? false,
+        ),
       ),
       Routes.onboarding => MaterialPageRoute(
         settings: settings,
