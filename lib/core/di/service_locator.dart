@@ -11,6 +11,8 @@ import 'package:volt/features/auth/data/data_sources/auth_remote_data_source.dar
 import 'package:volt/features/auth/data/repos/auth_repo.dart';
 import 'package:volt/features/auth/data/repos/auth_repo_impl.dart';
 import 'package:volt/features/auth/presentation/cubits/auth_cubit/auth_cubit.dart';
+import 'package:volt/features/auth/presentation/cubits/login_cubit/login_cubit.dart';
+import 'package:volt/features/auth/presentation/cubits/register_cubit/register_cubit.dart';
 
 import '../network/api_service.dart';
 import '../network/auth_interceptor.dart';
@@ -82,4 +84,6 @@ void _initAuthFeature() {
   sl.registerLazySingleton<AuthRepo>(() => AuthRepoImpl(sl(), sl()));
 
   sl.registerLazySingleton(() => AuthCubit(sl()));
+  sl.registerLazySingleton(() => LoginCubit(sl()));
+  sl.registerLazySingleton(() => RegisterCubit(sl()));
 }

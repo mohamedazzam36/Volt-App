@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:volt/core/constants/app_strings.dart';
 import 'package:volt/core/extensions/navigation_extension.dart';
 import 'package:volt/core/routing/routes.dart';
+import 'package:volt/features/auth/data/models/register_request_model.dart';
 import 'package:volt/features/auth/presentation/widgets/auth_widgets/auth_base_layout.dart';
 import 'package:volt/features/auth/presentation/widgets/register_widgets/register_age_input_body.dart';
 import 'package:volt/features/auth/presentation/widgets/register_widgets/register_email_input_body.dart';
@@ -73,9 +74,12 @@ class _RegisterFlowViewState extends State<RegisterFlowView> {
           onNextStep: () {
             context.push(
               RegisterFinishView(
-                name: _nameController.text,
-                email: _emailController.text,
-                age: _selectedAge,
+                requestModel: RegisterRequestModel(
+                  fullName: _nameController.text,
+                  email: _emailController.text,
+                  age: _selectedAge,
+                  password: _passwordController.text,
+                ),
               ),
             );
           },

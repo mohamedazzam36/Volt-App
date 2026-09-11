@@ -1,17 +1,17 @@
 abstract final class ApiEndpoints {
   // ================= Auth =================
-  static const String guest = 'auth/guest';
-  static const String register = 'auth/register';
-  static const String login = 'auth/login';
-  static const String google = 'auth/google';
-  static const String refresh = 'auth/refresh';
-  static const String logout = 'auth/logout';
-  static const String forgotPassword = 'auth/forgot-password';
-  static const String verifyResetOtp = 'auth/verify-reset-otp';
-  static const String resetPassword = 'auth/reset-password';
+  static const String guest = 'api/auth/guest';
+  static const String register = 'api/auth/register';
+  static const String login = 'api/auth/login';
+  static const String google = 'api/auth/google';
+  static const String refresh = 'api/auth/refresh';
+  static const String logout = 'api/auth/logout';
+  static const String forgotPassword = 'api/auth/forgot-password';
+  static const String verifyResetOtp = 'api/auth/verify-reset-otp';
+  static const String resetPassword = 'api/auth/reset-password';
 
   // ================= Users =================
-  static const String userMe = 'users/me';
+  static const String userMe = 'api/users/me';
 
   // // ================= Content Types =================
   // static const String contentTypes = 'content/content-types';
