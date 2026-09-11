@@ -4,6 +4,7 @@ import 'package:volt/core/errors/api_failures.dart';
 import 'package:volt/core/errors/failures.dart';
 import 'package:volt/core/models/user_model.dart';
 import 'package:volt/features/auth/data/models/register_request_model.dart';
+import 'package:volt/features/auth/data/models/reset_token_model.dart';
 
 import '../data_sources/auth_local_data_source.dart';
 import '../data_sources/auth_remote_data_source.dart';
@@ -100,6 +101,53 @@ class AuthRepoImpl implements AuthRepo {
       return const Right(null);
     } catch (e) {
       return Left(UnknownFailure('Failed to clear local data'));
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> forgetPassword(String email) async {
+    try {
+      await _remoteDataSource.forgetPassword(email);
+      return const Right(null);
+    } on DioException catch (e) {
+      return Left(ApiFailure.fromDioException(e));
+    } catch (e) {
+      return Left(UnknownFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> resetPassword({
+    required String email,
+    required String password,
+    required String resetToken,
+  }) async {
+    try {
+      await _remoteDataSource.resetPassword(
+        email: email,
+        password: password,
+        resetToken: resetToken,
+      );
+      return const Right(null);
+    } on DioException catch (e) {
+      return Left(ApiFailure.fromDioException(e));
+    } catch (e) {
+      return Left(UnknownFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, ResetTokenModel>> verifyOtpCode({
+    required String email,
+    required String otpCode,
+  }) async {
+    try {
+      final result = await _remoteDataSource.verifyOtpCode(email: email, otpCode: otpCode);
+      return Right(result);
+    } on DioException catch (e) {
+      return Left(ApiFailure.fromDioException(e));
+    } catch (e) {
+      return Left(UnknownFailure(e.toString()));
     }
   }
 }

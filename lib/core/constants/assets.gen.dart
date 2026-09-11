@@ -61,9 +61,21 @@ class $AssetsImagesGen {
   /// File path: assets/images/book.png
   AssetGenImage get book => const AssetGenImage('assets/images/book.png');
 
+  /// File path: assets/images/check_email_robot.png
+  AssetGenImage get checkEmailRobot =>
+      const AssetGenImage('assets/images/check_email_robot.png');
+
   /// File path: assets/images/forgot_password.png
   AssetGenImage get forgotPassword =>
       const AssetGenImage('assets/images/forgot_password.png');
+
+  /// File path: assets/images/forgot_password_robot.png
+  AssetGenImage get forgotPasswordRobot =>
+      const AssetGenImage('assets/images/forgot_password_robot.png');
+
+  /// File path: assets/images/lets_recover_password_robot.png
+  AssetGenImage get letsRecoverPasswordRobot =>
+      const AssetGenImage('assets/images/lets_recover_password_robot.png');
 
   /// File path: assets/images/onboarding1.png
   AssetGenImage get onboarding1 =>
@@ -99,7 +111,10 @@ class $AssetsImagesGen {
     authRobotThinking,
     authRobotWorried,
     book,
+    checkEmailRobot,
     forgotPassword,
+    forgotPasswordRobot,
+    letsRecoverPasswordRobot,
     onboarding1,
     onboarding2,
     onboarding3,

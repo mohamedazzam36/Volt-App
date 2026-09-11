@@ -4,13 +4,13 @@ import 'package:volt/core/shared_widgets/custom_app_bar_elevated_button.dart';
 class AuthAppBar extends StatelessWidget {
   const AuthAppBar({
     super.key,
-    required this.buttonText,
-    required this.onButtonTap,
+    this.buttonText,
+    this.onButtonTap,
     this.padding,
     this.onBackTap,
   });
-  final String buttonText;
-  final Function() onButtonTap;
+  final String? buttonText;
+  final Function()? onButtonTap;
   final VoidCallback? onBackTap;
   final EdgeInsetsGeometry? padding;
 
@@ -32,7 +32,8 @@ class AuthAppBar extends StatelessWidget {
               size: 20,
             ),
           ),
-          CustomAppBarElevatedButton(onTap: onButtonTap, text: buttonText),
+          if (buttonText != null && onButtonTap != null)
+            CustomAppBarElevatedButton(onTap: onButtonTap!, text: buttonText!),
         ],
       ),
     );

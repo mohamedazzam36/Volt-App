@@ -17,6 +17,7 @@ import 'package:volt/features/auth/presentation/widgets/auth_widgets/auth_hiding
 import 'package:volt/features/auth/presentation/widgets/auth_widgets/auth_text_field.dart';
 import 'package:volt/features/auth/presentation/widgets/auth_widgets/auth_thinking_robot.dart';
 import 'package:volt/features/auth/presentation/widgets/auth_widgets/auth_worried_robot.dart';
+import 'package:volt/features/auth/presentation/widgets/login_widgets/forget_password_flow_view.dart';
 import 'package:volt/features/auth/presentation/widgets/login_widgets/forget_password_widget.dart';
 import 'package:volt/features/auth/presentation/widgets/login_widgets/login_robot_saying_hi.dart';
 
@@ -158,7 +159,9 @@ class _LoginFlowViewState extends State<LoginFlowView> {
             canPop: !isLoading,
             child: AuthBaseLayout(
               appBarButtonText: AuthStrings.createAccount,
-              onAppBarButtonTap: isLoading ? () {} : () => context.pushAboveNamed(Routes.auth, Routes.register),
+              onAppBarButtonTap: isLoading
+                  ? () {}
+                  : () => context.pushAboveNamed(Routes.auth, Routes.register),
               onBackTap: isLoading ? () {} : null,
               child: IgnorePointer(
                 ignoring: isLoading,
@@ -197,16 +200,18 @@ class _LoginFlowViewState extends State<LoginFlowView> {
 
                       ForgetPasswordWidget(
                         onTap: () {
-                          // context.push(const ForgotPasswordView());
+                          context.push(
+                            BlocProvider(
+                              create: (context) => sl<LoginCubit>(),
+                              child: const ForgetPasswordFlowView(),
+                            ),
+                          );
                         },
                       ),
                       const SizedBox(height: 32),
 
                       AuthButtonsSection(
-                        isValid:
-                            _isEmailValid &&
-                            _passwordController.text.isNotEmpty &&
-                            !isLoading,
+                        isValid: _isEmailValid && _passwordController.text.isNotEmpty && !isLoading,
                         buttonText: AuthStrings.loginButton,
                         activeColor: AppColors.brandSecondaryBlue,
                         onMainButtonTap: isLoading ? () {} : () => _onSubmit(context),

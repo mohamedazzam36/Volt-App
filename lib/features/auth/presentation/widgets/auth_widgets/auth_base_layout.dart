@@ -5,25 +5,27 @@ import 'package:volt/features/auth/presentation/widgets/auth_widgets/auth_app_ba
 import 'package:volt/features/auth/presentation/widgets/auth_widgets/auth_term_footer.dart';
 
 class AuthBaseLayout extends StatelessWidget {
-  final String appBarButtonText;
-  final VoidCallback onAppBarButtonTap;
+  final String? appBarButtonText;
+  final VoidCallback? onAppBarButtonTap;
   final VoidCallback? onBackTap;
   final Widget child;
   final bool showFooter;
+  final Color? backgroundColor;
 
   const AuthBaseLayout({
     super.key,
-    required this.appBarButtonText,
-    required this.onAppBarButtonTap,
+    this.appBarButtonText,
+    this.onAppBarButtonTap,
     required this.child,
     this.showFooter = true,
     this.onBackTap,
+    this.backgroundColor,
   });
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.surfaceDefault,
+      backgroundColor: backgroundColor ?? AppColors.surfaceDefault,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 18),

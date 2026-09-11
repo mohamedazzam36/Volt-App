@@ -46,7 +46,7 @@ class _CustomElevatedButtonState extends State<CustomElevatedButton> {
         onTapCancel: _releaseUp,
         child: Container(
           decoration: BoxDecoration(
-            color: Color.lerp(widget.backgroundColor, Colors.black, 0.25),
+            color: Color.lerp(widget.backgroundColor ?? AppColors.brandPrimary, Colors.black, 0.25),
             borderRadius: BorderRadius.circular(16),
           ),
           child: Container(

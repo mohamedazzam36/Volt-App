@@ -88,4 +88,22 @@ abstract final class AuthStrings {
   static const String emailOrUsernameHint = 'learner@example.com';
   static const String invalidEmailOrUsername = 'يجب إدخال بريد الكتروني / اسم مستخدم صحيح';
   static const String incorrectPassword = 'كلمة المرور غير صحيحة';
+
+  // شاشات استعادة كلمة المرور (Forget Password)
+  static const String forgetPasswordTitle = 'نسيت كلمة المرور؟';
+  static const String forgetPasswordSubTitle = 'استرجع كلمة المرور الخاصة بك';
+  static const String useVerificationCode = 'ارسال رمز التحقق';
+  static const String backToLogin = 'العودة الى تسجيل الدخول';
+  static const String checkEmailTitle = 'تفقد بريدك الالكتروني!';
+  static const String confirmAccountTitle = 'تأكيد الحساب';
+  static const String confirmAccountSubTitle = 'لقد ارسلنا رمز تاكيد مكون من ست احرف لبريدك الشخصي';
+  static const String confirmButton = 'تأكيد';
+  static const String codeExpiresIn = 'تنتهي صلاحية الكود فى';
+  static const String resendCode = 'اعد ارسال الرمز';
+  static const String invalidCodeError = 'كود غير صحيح ، اعد المحاولة مجددا';
+  static const String enterFullOtpError = 'برجاء إدخال رمز التحقق كاملاً';
+  static const String codeExpiredError = 'انتهت صلاحية الرمز';
+  static const String letsRecoverPassword = 'لنسترد كلمة المرور !';
+  static const String newPasswordHint = 'كلمة المرور الجديدة';
+  static const String resetPasswordButton = 'اعادة التعيين';
 }

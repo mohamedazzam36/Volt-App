@@ -84,6 +84,6 @@ void _initAuthFeature() {
   sl.registerLazySingleton<AuthRepo>(() => AuthRepoImpl(sl(), sl()));
 
   sl.registerLazySingleton(() => AuthCubit(sl()));
-  sl.registerLazySingleton(() => LoginCubit(sl()));
-  sl.registerLazySingleton(() => RegisterCubit(sl()));
+  sl.registerFactory(() => LoginCubit(sl()));
+  sl.registerFactory(() => RegisterCubit(sl()));
 }

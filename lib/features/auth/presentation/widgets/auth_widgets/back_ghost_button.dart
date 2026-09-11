@@ -6,14 +6,21 @@ import 'package:volt/core/theme/app_colors.dart';
 import 'package:volt/core/theme/app_styles.dart';
 
 class BackGhostButton extends StatelessWidget {
-  const BackGhostButton({super.key});
+  final String? text;
+  final VoidCallback? onTap;
+
+  const BackGhostButton({
+    super.key,
+    this.text,
+    this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => context.pop(),
+      onTap: onTap ?? () => context.pop(),
       child: Text(
-        CommonStrings.back,
+        text ?? CommonStrings.back,
         style: AppStyles.extraBold14.responsive(context).copyWith(color: AppColors.textSecondary),
       ),
     );
