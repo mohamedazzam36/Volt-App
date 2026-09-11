@@ -3,6 +3,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:volt/core/routing/app_router.dart';
 import 'package:volt/core/theme/app_theme.dart';
 
+
 class VoltApp extends StatelessWidget {
   const VoltApp({super.key});
 

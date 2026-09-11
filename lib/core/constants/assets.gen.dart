@@ -17,8 +17,24 @@ import 'package:vector_graphics/vector_graphics.dart' as _vg;
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  /// File path: assets/images/Battery 1.png
+  AssetGenImage get battery1 =>
+      const AssetGenImage('assets/images/Battery 1.png');
+
+  /// File path: assets/images/ReadingBook.png
+  AssetGenImage get readingBook =>
+      const AssetGenImage('assets/images/ReadingBook.png');
+
   /// File path: assets/images/Vector.png
   AssetGenImage get vector => const AssetGenImage('assets/images/Vector.png');
+
+  /// File path: assets/images/VoltActiveMode.png
+  AssetGenImage get voltActiveMode =>
+      const AssetGenImage('assets/images/VoltActiveMode.png');
+
+  /// File path: assets/images/VoltCelebrating.png
+  AssetGenImage get voltCelebrating =>
+      const AssetGenImage('assets/images/VoltCelebrating.png');
 
   /// File path: assets/images/award_icon.png
   AssetGenImage get awardIcon =>
@@ -30,6 +46,9 @@ class $AssetsImagesGen {
   /// File path: assets/images/chart_icon.png
   AssetGenImage get chartIcon =>
       const AssetGenImage('assets/images/chart_icon.png');
+
+  /// File path: assets/images/led 1.png
+  AssetGenImage get led1 => const AssetGenImage('assets/images/led 1.png');
 
   /// File path: assets/images/onboarding1.png
   AssetGenImage get onboarding1 =>
@@ -47,21 +66,36 @@ class $AssetsImagesGen {
   AssetGenImage get onboarding4 =>
       const AssetGenImage('assets/images/onboarding4.png');
 
+  /// File path: assets/images/potentiometer 1.png
+  AssetGenImage get potentiometer1 =>
+      const AssetGenImage('assets/images/potentiometer 1.png');
+
   /// File path: assets/images/rasing_left_hand_robot.png
   AssetGenImage get rasingLeftHandRobot =>
       const AssetGenImage('assets/images/rasing_left_hand_robot.png');
 
+  /// File path: assets/images/resistor 1.png
+  AssetGenImage get resistor1 =>
+      const AssetGenImage('assets/images/resistor 1.png');
+
   /// List of all assets
   List<AssetGenImage> get values => [
+    battery1,
+    readingBook,
     vector,
+    voltActiveMode,
+    voltCelebrating,
     awardIcon,
     book,
     chartIcon,
+    led1,
     onboarding1,
     onboarding2,
     onboarding3,
     onboarding4,
+    potentiometer1,
     rasingLeftHandRobot,
+    resistor1,
   ];
 }
 
