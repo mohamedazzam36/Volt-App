@@ -77,4 +77,15 @@ abstract final class AuthStrings {
   static const String ageDescription = 'تحديد عمرك يضمن حصولك على تجربة فولت المناسبة لك!';
   static const String finishAccountCreation = 'انشاء الحساب';
   static const String startGame = 'ابدأ اللعب !';
+
+  // شاشة تسجيل الدخول (Login)
+  static const String welcomeBack = 'اهلا بعودتك !';
+  static const String letsLogin = 'هيا بنا لتسجيل دخولك!';
+  static const String dontWorryWontLook = 'لن انظر لا تقلق !';
+  static const String okWillLookABit = 'حسنا سوف انظر قليلا !';
+  static const String forgotPassword = 'هل نسيت كلمة المرور؟';
+  static const String loginButton = 'تسجيل الدخول';
+  static const String emailOrUsernameHint = 'learner@example.com';
+  static const String invalidEmailOrUsername = 'يجب إدخال بريد الكتروني / اسم مستخدم صحيح';
+  static const String incorrectPassword = 'كلمة المرور غير صحيحة';
 }

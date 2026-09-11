@@ -4,8 +4,9 @@ import 'package:volt/core/extensions/ui_extension.dart';
 import 'package:volt/core/shared_widgets/speaking_robot.dart';
 
 class AuthHidingEyesRobot extends StatelessWidget {
-  const AuthHidingEyesRobot(this.message, {super.key});
+  const AuthHidingEyesRobot(this.message, {super.key, this.robotWidth});
   final String message;
+  final double? robotWidth;
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +15,7 @@ class AuthHidingEyesRobot extends StatelessWidget {
       robotImagePath: Assets.images.authRobotHidingHisEyes.path,
       messageShiftingRatio: .5,
       spaceAfterMessage: 6,
-      robotWidth: (context.width * 0.25).clamp(100.0, 200.0),
+      robotWidth: robotWidth ?? (context.width * 0.25).clamp(100.0, 200.0),
     );
   }
 }

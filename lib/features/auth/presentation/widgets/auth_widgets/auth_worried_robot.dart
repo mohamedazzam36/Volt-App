@@ -5,8 +5,13 @@ import 'package:volt/core/extensions/ui_extension.dart';
 import 'package:volt/core/shared_widgets/speaking_robot.dart';
 
 class AuthWorriedRobot extends StatelessWidget {
-  const AuthWorriedRobot({super.key, this.message = AuthStrings.inputErrorRobotMessage});
+  const AuthWorriedRobot({
+    super.key,
+    this.message = AuthStrings.inputErrorRobotMessage,
+    this.robotWidth,
+  });
   final String message;
+  final double? robotWidth;
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +20,7 @@ class AuthWorriedRobot extends StatelessWidget {
       robotImagePath: Assets.images.authRobotWorried.path,
       messageShiftingRatio: .65,
       spaceAfterMessage: 6,
-      robotWidth: (context.width * 0.25).clamp(100.0, 200.0),
+      robotWidth: robotWidth ?? (context.width * 0.25).clamp(100.0, 200.0),
     );
   }
 }

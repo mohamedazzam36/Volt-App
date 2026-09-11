@@ -61,6 +61,10 @@ class $AssetsImagesGen {
   /// File path: assets/images/book.png
   AssetGenImage get book => const AssetGenImage('assets/images/book.png');
 
+  /// File path: assets/images/forgot_password.png
+  AssetGenImage get forgotPassword =>
+      const AssetGenImage('assets/images/forgot_password.png');
+
   /// File path: assets/images/onboarding1.png
   AssetGenImage get onboarding1 =>
       const AssetGenImage('assets/images/onboarding1.png');
@@ -95,6 +99,7 @@ class $AssetsImagesGen {
     authRobotThinking,
     authRobotWorried,
     book,
+    forgotPassword,
     onboarding1,
     onboarding2,
     onboarding3,
@@ -123,8 +128,12 @@ class $AssetsSvgsGen {
 }
 
 abstract final class Assets {
+  static const String aEnv = '.env';
   static const $AssetsImagesGen images = $AssetsImagesGen();
   static const $AssetsSvgsGen svgs = $AssetsSvgsGen();
+
+  /// List of all assets
+  static List<String> get values => [aEnv];
 }
 
 class AssetGenImage {
