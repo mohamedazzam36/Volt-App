@@ -22,8 +22,8 @@ class ApiService {
           );
 
   // GET Request
-  Future<dynamic> get({
-    required String endpoint,
+  Future<dynamic> get(
+    String endpoint, {
     Map<String, dynamic>? queryParameters,
     Options? options,
   }) async {
@@ -36,8 +36,9 @@ class ApiService {
   }
 
   // POST Request
-  Future<dynamic> post({
-    required String endpoint,
+  Future<dynamic> post(
+    String endpoint, {
+
     dynamic data,
     Map<String, dynamic>? queryParameters,
     Options? options,
@@ -52,8 +53,8 @@ class ApiService {
   }
 
   // PUT Request
-  Future<dynamic> put({
-    required String endpoint,
+  Future<dynamic> put(
+    String endpoint, {
     dynamic data,
     Map<String, dynamic>? queryParameters,
     Options? options,
@@ -68,8 +69,8 @@ class ApiService {
   }
 
   // DELETE Request
-  Future<dynamic> delete({
-    required String endpoint,
+  Future<dynamic> delete(
+    String endpoint, {
     dynamic data,
     Map<String, dynamic>? queryParameters,
     Options? options,

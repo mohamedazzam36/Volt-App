@@ -13,29 +13,29 @@ abstract final class ApiEndpoints {
   // ================= Users =================
   static const String userMe = 'users/me';
 
-  // ================= Content Types =================
-  static const String contentTypes = 'content/content-types';
+  // // ================= Content Types =================
+  // static const String contentTypes = 'content/content-types';
 
-  // ================= Levels =================
-  static const String levels = 'content/levels';
-  static const String swapLevelsOrder = 'content/levels/swap-order';
+  // // ================= Levels =================
+  // static const String levels = 'content/levels';
+  // static const String swapLevelsOrder = 'content/levels/swap-order';
 
-  static String levelDetails(String id) => 'content/levels/$id';
-  static String levelLessons(String levelId) => 'content/levels/$levelId/lessons';
+  // static String levelDetails(String id) => 'content/levels/$id';
+  // static String levelLessons(String levelId) => 'content/levels/$levelId/lessons';
 
-  // ================= Lessons =================
-  static const String lessons = 'content/lessons';
-  static const String swapLessonsOrder = 'content/lessons/swap-order';
+  // // ================= Lessons =================
+  // static const String lessons = 'content/lessons';
+  // static const String swapLessonsOrder = 'content/lessons/swap-order';
 
-  static String lessonDetails(String id) => 'content/lessons/$id';
-  static String publishLesson(String id) => 'content/lessons/$id/publish';
-  static String lessonContents(String lessonId) => 'content/lessons/$lessonId/contents';
+  // static String lessonDetails(String id) => 'content/lessons/$id';
+  // static String publishLesson(String id) => 'content/lessons/$id/publish';
+  // static String lessonContents(String lessonId) => 'content/lessons/$lessonId/contents';
 
-  // ================= Contents =================
-  static const String swapContentsOrder = 'content/contents/swap-order';
+  // // ================= Contents =================
+  // static const String swapContentsOrder = 'content/contents/swap-order';
 
-  static String contentDetails(String contentId) => 'content/contents/$contentId';
+  // static String contentDetails(String contentId) => 'content/contents/$contentId';
 
-  // ================= Media =================
-  static const String uploadMediaImages = 'content/media/images';
+  // // ================= Media =================
+  // static const String uploadMediaImages = 'content/media/images';
 }

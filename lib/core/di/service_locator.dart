@@ -6,6 +6,11 @@ import 'package:get_it/get_it.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:volt/core/storage/cache_helper.dart';
+import 'package:volt/features/auth/data/data_sources/auth_local_data_source.dart';
+import 'package:volt/features/auth/data/data_sources/auth_remote_data_source.dart';
+import 'package:volt/features/auth/data/repos/auth_repo.dart';
+import 'package:volt/features/auth/data/repos/auth_repo_impl.dart';
+import 'package:volt/features/auth/presentation/cubits/auth_cubit/auth_cubit.dart';
 
 import '../network/api_service.dart';
 import '../network/auth_interceptor.dart';
@@ -48,6 +53,9 @@ Future<void> _initCore() async {
     AuthInterceptor(
       dio: dio,
       secureStorageHelper: sl(),
+      onUnauthorized: () {
+        sl<AuthCubit>().logout();
+      },
     ),
     if (kDebugMode)
       PrettyDioLogger(
@@ -68,12 +76,10 @@ Future<void> _initCore() async {
 }
 
 void _initAuthFeature() {
-  // Data Sources
-  // sl.registerLazySingleton<AuthRemoteDataSource>(() => AuthRemoteDataSourceImpl(sl()));
+  sl.registerLazySingleton<AuthRemoteDataSource>(() => AuthRemoteDataSourceImpl(sl()));
+  sl.registerLazySingleton<AuthLocalDataSource>(() => AuthLocalDataSourceImpl(sl()));
 
-  // Repositories
-  // sl.registerLazySingleton<AuthRepo>(() => AuthRepoImpl(sl()));
+  sl.registerLazySingleton<AuthRepo>(() => AuthRepoImpl(sl(), sl()));
 
-  // Blocs / Cubits
-  // sl.registerFactory(() => LoginCubit(sl()));
+  sl.registerLazySingleton(() => AuthCubit(sl()));
 }

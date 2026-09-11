@@ -6,10 +6,12 @@ import 'api_endpoints.dart';
 class AuthInterceptor extends Interceptor {
   final Dio _dio;
   final SecureStorageHelper _secureStorageHelper;
+  final void Function() onUnauthorized;
 
   AuthInterceptor({
     required this._dio,
     required this._secureStorageHelper,
+    required this.onUnauthorized,
   });
 
   @override
@@ -52,6 +54,7 @@ class AuthInterceptor extends Interceptor {
         }
       } else {
         await _secureStorageHelper.clearAll();
+        onUnauthorized();
       }
     }
 

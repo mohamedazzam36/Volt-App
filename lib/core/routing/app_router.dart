@@ -18,7 +18,7 @@ class AppRouter {
       Routes.splash => MaterialPageRoute(
         settings: settings,
         builder: (context) => SplashView(
-          isOnboardingView: sl<CacheHelper>().getBool(PrefKeys.isOnboardingViewed) ?? false,
+          isOnboardingViewed: sl<CacheHelper>().getBool(PrefKeys.isOnboardingViewed) ?? false,
         ),
       ),
       Routes.onboarding => MaterialPageRoute(

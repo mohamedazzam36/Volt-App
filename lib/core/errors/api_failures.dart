@@ -2,41 +2,41 @@ import 'package:dio/dio.dart';
 
 import 'failures.dart';
 
-class ApiFailures extends Failures {
-  const ApiFailures(super.errMessage);
+class ApiFailure extends Failure {
+  const ApiFailure(super.errMessage);
 
-  factory ApiFailures.fromDioException(DioException dioEx) {
+  factory ApiFailure.fromDioException(DioException dioEx) {
     switch (dioEx.type) {
       case DioExceptionType.connectionTimeout:
-        return const ApiFailures("Connection timeout. Please try again later.");
+        return const ApiFailure("Connection timeout. Please try again later.");
 
       case DioExceptionType.sendTimeout:
-        return const ApiFailures("Send timeout. Check your internet connection.");
+        return const ApiFailure("Send timeout. Check your internet connection.");
 
       case DioExceptionType.receiveTimeout:
-        return const ApiFailures("Receive timeout. Server took too long to respond.");
+        return const ApiFailure("Receive timeout. Server took too long to respond.");
 
       case DioExceptionType.badCertificate:
-        return const ApiFailures("Bad certificate. Secure connection failed.");
+        return const ApiFailure("Bad certificate. Secure connection failed.");
 
       case DioExceptionType.badResponse:
         final statusCode = dioEx.response?.statusCode ?? 0;
         final responseData = dioEx.response?.data;
-        return ApiFailures.fromBadResponse(statusCode, responseData);
+        return ApiFailure._fromBadResponse(statusCode, responseData);
 
       case DioExceptionType.cancel:
-        return const ApiFailures("Request was cancelled.");
+        return const ApiFailure("Request was cancelled.");
 
       case DioExceptionType.connectionError:
-        return const ApiFailures("Connection error. Please check your network.");
+        return const ApiFailure("Connection error. Please check your network.");
 
       case DioExceptionType.unknown:
       default:
-        return const ApiFailures("Unexpected error occurred. Please try again.");
+        return const ApiFailure("Unexpected error occurred. Please try again.");
     }
   }
 
-  factory ApiFailures.fromBadResponse(int statusCode, dynamic responseData) {
+  factory ApiFailure._fromBadResponse(int statusCode, dynamic responseData) {
     String? serverMessage;
     if (responseData is Map<String, dynamic>) {
       if (responseData['message'] != null) {
@@ -49,28 +49,28 @@ class ApiFailures extends Failures {
     }
 
     if (serverMessage != null && serverMessage.isNotEmpty) {
-      return ApiFailures(serverMessage);
+      return ApiFailure(serverMessage);
     }
 
     switch (statusCode) {
       case 400:
-        return const ApiFailures("Bad request.");
+        return const ApiFailure("Bad request.");
       case 401:
-        return const ApiFailures("Unauthorized. Please login again.");
+        return const ApiFailure("Unauthorized. Please login again.");
       case 403:
-        return const ApiFailures("Forbidden. You don't have permission.");
+        return const ApiFailure("Forbidden. You don't have permission.");
       case 404:
-        return const ApiFailures("Resource not found.");
+        return const ApiFailure("Resource not found.");
       case 409:
-        return const ApiFailures("Conflict occurred.");
+        return const ApiFailure("Conflict occurred.");
       case 422:
-        return const ApiFailures("Validation error.");
+        return const ApiFailure("Validation error.");
       case 500:
-        return const ApiFailures("Internal server error.");
+        return const ApiFailure("Internal server error.");
       case 503:
-        return const ApiFailures("Service unavailable. Try again later.");
+        return const ApiFailure("Service unavailable. Try again later.");
       default:
-        return ApiFailures("Received invalid status code: $statusCode");
+        return ApiFailure("Received invalid status code: $statusCode");
     }
   }
 }
