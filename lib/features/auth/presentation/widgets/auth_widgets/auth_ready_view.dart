@@ -73,9 +73,9 @@ class _AuthReadyViewState extends State<AuthReadyView> {
                   padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 24.0),
                   child: CustomElevatedButton(
                     onTap: () {
-                      context.pushNamedAndRemoveAll(Routes.home);
+                      context.pushNamedAndRemoveAll(Routes.quiz);
                     },
-                    text: AuthStrings.startGame, // 'ابدأ اللعب !'
+                    text: AuthStrings.startGame,
                     width: double.infinity,
                     backgroundColor: AppColors.brandSecondaryGreen,
                   ),
