@@ -1,4 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- إذن الإنترنت الأساسي -->
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:label="volt"
         android:name="${applicationName}"
@@ -40,6 +44,12 @@
         <intent>
             <action android:name="android.intent.action.PROCESS_TEXT"/>
             <data android:mimeType="text/plain"/>
+        </intent>
+        <!-- لضمان فتح نافذة تسجيل دخول جوجل على أندرويد 11 فما فوق -->
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.BROWSABLE" />
+            <data android:scheme="https" />
         </intent>
     </queries>
 </manifest>

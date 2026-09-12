@@ -9,12 +9,14 @@ class CustomElevatedButton extends StatefulWidget {
     super.key,
     required this.onTap,
     required this.text,
-    this.color = AppColors.brandPrimary,
-    this.textColor = AppColors.textOnBrand,
+    this.backgroundColor,
+    this.textColor,
+    this.width,
   });
   final VoidCallback? onTap;
   final String text;
-  final Color color, textColor;
+  final double? width;
+  final Color? backgroundColor, textColor;
 
   @override
   State<CustomElevatedButton> createState() => _CustomElevatedButtonState();
@@ -31,7 +33,7 @@ class _CustomElevatedButtonState extends State<CustomElevatedButton> {
   Widget build(BuildContext context) {
     return SizedBox(
       height: 54,
-      width: (context.width * 0.85).clamp(200, 600),
+      width: widget.width ?? (context.width * 0.85).clamp(200, 600),
       child: GestureDetector(
         onTapDown: (_) {
           _pressDown();
@@ -43,19 +45,21 @@ class _CustomElevatedButtonState extends State<CustomElevatedButton> {
         onTapCancel: _releaseUp,
         child: Container(
           decoration: BoxDecoration(
-            color: Color.lerp(widget.color, Colors.black, 0.25),
+            color: Color.lerp(widget.backgroundColor ?? AppColors.brandPrimary, Colors.black, 0.25),
             borderRadius: BorderRadius.circular(16),
           ),
           child: Container(
             margin: EdgeInsets.only(bottom: bottomBorder),
             decoration: BoxDecoration(
-              color: widget.color,
+              color: widget.backgroundColor ?? AppColors.brandPrimary,
               borderRadius: BorderRadius.circular(16),
             ),
             alignment: Alignment.center,
             child: Text(
               widget.text,
-              style: AppStyles.extraBold14.responsive(context).copyWith(color: widget.textColor),
+              style: AppStyles.extraBold14
+                  .responsive(context)
+                  .copyWith(color: widget.textColor ?? AppColors.textOnBrand),
             ),
           ),
         ),

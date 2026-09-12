@@ -40,6 +40,38 @@ class $AssetsImagesGen {
   AssetGenImage get awardIcon =>
       const AssetGenImage('assets/images/award_icon.png');
 
+  /// File path: assets/images/auth_robot_dance.png
+  AssetGenImage get authRobotDance =>
+      const AssetGenImage('assets/images/auth_robot_dance.png');
+
+  /// File path: assets/images/auth_robot_dance_with_background.png
+  AssetGenImage get authRobotDanceWithBackground =>
+      const AssetGenImage('assets/images/auth_robot_dance_with_background.png');
+
+  /// File path: assets/images/auth_robot_happy.png
+  AssetGenImage get authRobotHappy =>
+      const AssetGenImage('assets/images/auth_robot_happy.png');
+
+  /// File path: assets/images/auth_robot_hiding_his_eyes.png
+  AssetGenImage get authRobotHidingHisEyes =>
+      const AssetGenImage('assets/images/auth_robot_hiding_his_eyes.png');
+
+  /// File path: assets/images/auth_robot_opening_the_door.png
+  AssetGenImage get authRobotOpeningTheDoor =>
+      const AssetGenImage('assets/images/auth_robot_opening_the_door.png');
+
+  /// File path: assets/images/auth_robot_says_hi.png
+  AssetGenImage get authRobotSaysHi =>
+      const AssetGenImage('assets/images/auth_robot_says_hi.png');
+
+  /// File path: assets/images/auth_robot_thinking.png
+  AssetGenImage get authRobotThinking =>
+      const AssetGenImage('assets/images/auth_robot_thinking.png');
+
+  /// File path: assets/images/auth_robot_worried.png
+  AssetGenImage get authRobotWorried =>
+      const AssetGenImage('assets/images/auth_robot_worried.png');
+
   /// File path: assets/images/book.png
   AssetGenImage get book => const AssetGenImage('assets/images/book.png');
 
@@ -49,6 +81,22 @@ class $AssetsImagesGen {
 
   /// File path: assets/images/led 1.png
   AssetGenImage get led1 => const AssetGenImage('assets/images/led 1.png');
+
+  /// File path: assets/images/check_email_robot.png
+  AssetGenImage get checkEmailRobot =>
+      const AssetGenImage('assets/images/check_email_robot.png');
+
+  /// File path: assets/images/forgot_password.png
+  AssetGenImage get forgotPassword =>
+      const AssetGenImage('assets/images/forgot_password.png');
+
+  /// File path: assets/images/forgot_password_robot.png
+  AssetGenImage get forgotPasswordRobot =>
+      const AssetGenImage('assets/images/forgot_password_robot.png');
+
+  /// File path: assets/images/lets_recover_password_robot.png
+  AssetGenImage get letsRecoverPasswordRobot =>
+      const AssetGenImage('assets/images/lets_recover_password_robot.png');
 
   /// File path: assets/images/onboarding1.png
   AssetGenImage get onboarding1 =>
@@ -89,6 +137,19 @@ class $AssetsImagesGen {
     book,
     chartIcon,
     led1,
+    authRobotDance,
+    authRobotDanceWithBackground,
+    authRobotHappy,
+    authRobotHidingHisEyes,
+    authRobotOpeningTheDoor,
+    authRobotSaysHi,
+    authRobotThinking,
+    authRobotWorried,
+    book,
+    checkEmailRobot,
+    forgotPassword,
+    forgotPasswordRobot,
+    letsRecoverPasswordRobot,
     onboarding1,
     onboarding2,
     onboarding3,
@@ -119,8 +180,12 @@ class $AssetsSvgsGen {
 }
 
 abstract final class Assets {
+  static const String aEnv = '.env';
   static const $AssetsImagesGen images = $AssetsImagesGen();
   static const $AssetsSvgsGen svgs = $AssetsSvgsGen();
+
+  /// List of all assets
+  static List<String> get values => [aEnv];
 }
 
 class AssetGenImage {

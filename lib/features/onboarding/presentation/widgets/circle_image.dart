@@ -17,8 +17,7 @@ class CircleImage extends StatefulWidget {
   State<CircleImage> createState() => _CircleImageState();
 }
 
-class _CircleImageState extends State<CircleImage>
-    with SingleTickerProviderStateMixin {
+class _CircleImageState extends State<CircleImage> with SingleTickerProviderStateMixin {
   late final AnimationController _controller;
   late final Animation<double> _animation;
 
@@ -31,15 +30,16 @@ class _CircleImageState extends State<CircleImage>
       duration: const Duration(milliseconds: 1200),
     )..repeat(reverse: true);
 
-    _animation = Tween<double>(
-      begin: -6,
-      end: 6,
-    ).animate(
-      CurvedAnimation(
-        parent: _controller,
-        curve: Curves.easeInOut,
-      ),
-    );
+    _animation =
+        Tween<double>(
+          begin: -6,
+          end: 6,
+        ).animate(
+          CurvedAnimation(
+            parent: _controller,
+            curve: Curves.easeInOut,
+          ),
+        );
   }
 
   @override
@@ -66,7 +66,7 @@ class _CircleImageState extends State<CircleImage>
           color: AppColors.surfaceDefault,
           shape: BoxShape.circle,
           border: Border.all(
-            color:AppColors.borderSubtle,
+            color: AppColors.borderSubtle,
             width: 2,
           ),
           boxShadow: [

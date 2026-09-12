@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:volt/core/extensions/ui_extension.dart';
 import 'package:volt/core/theme/app_colors.dart';
 import 'package:volt/features/auth/presentation/widgets/auth_widgets/auth_body.dart';
-import 'package:volt/features/auth/presentation/widgets/auth_widgets/auth_footer/auth_footer.dart';
+import 'package:volt/features/auth/presentation/widgets/auth_widgets/auth_footer.dart';
 import 'package:volt/features/auth/presentation/widgets/auth_widgets/auth_header/auth_header.dart';
 
 class AuthViewBody extends StatelessWidget {

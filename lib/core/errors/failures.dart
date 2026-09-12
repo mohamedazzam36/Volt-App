@@ -1,0 +1,9 @@
+abstract class Failure {
+  final String errMessage;
+
+  const Failure(this.errMessage);
+}
+
+class UnknownFailure extends Failure {
+  UnknownFailure(super.errMessage);
+}
