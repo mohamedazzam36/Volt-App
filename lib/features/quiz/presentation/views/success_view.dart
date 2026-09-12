@@ -41,12 +41,12 @@ class QuizSuccessView extends StatelessWidget {
               // زر المتابعة الأخضر
               CustomElevatedButton(
                 text: CommonStrings.continueAction,
-                color: const Color(0xFF48B452), // الدرجة المحددة لزر النجاح في التصميم
+                backgroundColor: const Color(0xFF48B452), // الدرجة المحددة لزر النجاح في التصميم
                 textColor: Colors.white,
                 onTap: onContinue,
               ),
 
-             const Spacer(flex: 4),
+              const Spacer(flex: 4),
             ],
           ),
         ),

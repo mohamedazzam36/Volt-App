@@ -15,7 +15,7 @@ import '../storage/cache_helper.dart';
 import '../storage/pref_keys.dart';
 
 class AppRouter {
-  static const initialRoute = Routes.home;
+  static const initialRoute = Routes.splash;
 
   static Route<dynamic>? onGenerateRoute(RouteSettings settings) {
     return switch (settings.name) {

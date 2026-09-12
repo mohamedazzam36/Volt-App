@@ -4,6 +4,7 @@ import 'package:volt/core/shared_widgets/custom_elevated_button.dart';
 import 'package:volt/core/theme/app_colors.dart';
 import 'package:volt/features/quiz/presentation/widgets/image_option_card.dart';
 import 'package:volt/features/quiz/presentation/widgets/quiz_question_section.dart';
+
 import '../../data/models/option_model.dart';
 
 class ImageQuizView extends StatelessWidget {
@@ -65,9 +66,7 @@ class ImageQuizView extends StatelessWidget {
           // 3. زر الإرسال الموحد
           CustomElevatedButton(
             text: CommonStrings.sent,
-            color: isButtonActive
-                ? AppColors.brandPrimary
-                : AppColors.borderDefault,
+            backgroundColor: isButtonActive ? AppColors.brandPrimary : AppColors.borderDefault,
             textColor: AppColors.textOnBrand,
             onTap: isButtonActive ? onCheckPressed : null,
           ),

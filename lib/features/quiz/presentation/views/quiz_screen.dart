@@ -8,13 +8,13 @@ import 'package:volt/features/quiz/presentation/widgets/question_types/true_fals
 
 import '../../data/models/question_model.dart';
 import '../cubits/quiz_state.dart';
-import 'success_view.dart';
 import '../widgets/question_types/image_choice_quiz_view.dart';
 import '../widgets/question_types/text_choice_quiz_view.dart';
 import '../widgets/question_types/word_chips_quiz_view.dart';
 import '../widgets/quiz_header.dart';
 import '../widgets/quiz_question_section.dart';
 import '../widgets/quiz_text_field.dart';
+import 'success_view.dart';
 
 class QuizScreen extends StatefulWidget {
   const QuizScreen({super.key});
@@ -98,7 +98,9 @@ class _QuizScreenState extends State<QuizScreen> {
                             question.type == QuestionType.wordChips
                         ? QuizStrings.checkAnswer
                         : CommonStrings.sent,
-                    color: state.isButtonEnabled ? AppColors.brandPrimary : AppColors.borderDefault,
+                    backgroundColor: state.isButtonEnabled
+                        ? AppColors.brandPrimary
+                        : AppColors.borderDefault,
                     textColor: AppColors.textOnBrand,
                     onTap: () {
                       if (state.isButtonEnabled) {

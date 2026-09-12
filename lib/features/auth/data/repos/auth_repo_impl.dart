@@ -25,7 +25,6 @@ class AuthRepoImpl implements AuthRepo {
         accessToken: result.tokens.accessToken,
         refreshToken: result.tokens.refreshToken,
       );
-
       return Right(result.user);
     } on DioException catch (e) {
       return Left(ApiFailure.fromDioException(e));
@@ -81,10 +80,6 @@ class AuthRepoImpl implements AuthRepo {
         return Left(UnknownFailure('No token found'));
       }
       final result = await _remoteDataSource.getProfile();
-      await _localDataSource.saveTokens(
-        accessToken: result.tokens.accessToken,
-        refreshToken: result.tokens.refreshToken,
-      );
 
       return Right(result.user);
     } on DioException catch (e) {

@@ -6,7 +6,6 @@ import 'package:volt/core/routing/app_router.dart';
 import 'package:volt/core/theme/app_theme.dart';
 import 'package:volt/features/auth/presentation/cubits/auth_cubit/auth_cubit.dart';
 
-
 class VoltApp extends StatelessWidget {
   const VoltApp({super.key});
 
@@ -15,7 +14,7 @@ class VoltApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => sl<AuthCubit>()..checkAuthStatus(),
+          create: (context) => sl<AuthCubit>(),
         ),
       ],
       child: MaterialApp(

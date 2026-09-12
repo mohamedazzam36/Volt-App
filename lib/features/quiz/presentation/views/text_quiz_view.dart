@@ -143,7 +143,9 @@ class _TextQuizViewState extends State<TextQuizView> {
                 height: 48,
                 child: CustomElevatedButton(
                   text: CommonStrings.sent,
-                  color: _isButtonEnabled ? AppColors.brandPrimary : AppColors.borderDefault,
+                  backgroundColor: _isButtonEnabled
+                      ? AppColors.brandPrimary
+                      : AppColors.borderDefault,
                   textColor: AppColors.textOnBrand,
                   onTap: _submitAnswer,
                 ),

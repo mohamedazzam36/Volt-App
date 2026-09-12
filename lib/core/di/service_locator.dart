@@ -32,7 +32,7 @@ Future<void> _initCore() async {
 
   // 1. Storage
   const secureStorage = FlutterSecureStorage(
-    aOptions: AndroidOptions(resetOnError: true),
+    // aOptions: AndroidOptions(resetOnError: true),
     iOptions: IOSOptions(accessibility: KeychainAccessibility.first_unlock),
   );
   sl.registerLazySingleton(() => SecureStorageHelper(secureStorage));

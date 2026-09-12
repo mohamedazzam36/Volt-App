@@ -27,7 +27,7 @@ class OnboardingFooter extends StatelessWidget {
           child: Center(
             child: OnboardingIndicator(
               currentIndex: currentIndex,
-              itemCount: OnboardingData.pages.length, 
+              itemCount: OnboardingData.pages.length,
               activeColor: currentPage.buttonColor,
             ),
           ),
@@ -39,7 +39,7 @@ class OnboardingFooter extends StatelessWidget {
         CustomElevatedButton(
           onTap: onNext,
           text: currentPage.buttonText,
-          color: currentPage.buttonColor,
+          backgroundColor: currentPage.buttonColor,
         ),
       ],
     );

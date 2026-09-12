@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:volt/core/constants/app_strings.dart';
 import 'package:volt/core/constants/assets.gen.dart';
+import 'package:volt/core/extensions/navigation_extension.dart';
 import 'package:volt/core/extensions/ui_extension.dart';
+import 'package:volt/core/routing/routes.dart';
 import 'package:volt/core/shared_widgets/custom_elevated_button.dart';
 import 'package:volt/core/shared_widgets/speaking_robot.dart';
 import 'package:volt/core/theme/app_colors.dart';
@@ -71,7 +73,7 @@ class _AuthReadyViewState extends State<AuthReadyView> {
                   padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 24.0),
                   child: CustomElevatedButton(
                     onTap: () {
-                      // لو اليوزر داس على الزرار بنفسه
+                      context.pushNamedAndRemoveAll(Routes.home);
                     },
                     text: AuthStrings.startGame, // 'ابدأ اللعب !'
                     width: double.infinity,

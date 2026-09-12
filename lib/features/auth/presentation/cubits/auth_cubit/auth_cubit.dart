@@ -1,5 +1,4 @@
 import 'package:bloc/bloc.dart';
-import 'package:equatable/equatable.dart';
 import 'package:volt/core/models/user_model.dart';
 import 'package:volt/features/auth/data/repos/auth_repo.dart';
 

@@ -88,6 +88,7 @@ abstract final class AuthStrings {
   static const String emailOrUsernameHint = 'learner@example.com';
   static const String invalidEmailOrUsername = 'يجب إدخال بريد الكتروني / اسم مستخدم صحيح';
   static const String incorrectPassword = 'كلمة المرور غير صحيحة';
+  static const String letsGo = 'هيا بنا !';
 
   // شاشات استعادة كلمة المرور (Forget Password)
   static const String forgetPasswordTitle = 'نسيت كلمة المرور؟';

@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:volt/core/di/service_locator.dart';
 import 'package:volt/core/extensions/navigation_extension.dart';
+import 'package:volt/core/extensions/text_style_extension.dart';
 import 'package:volt/core/routing/routes.dart';
 import 'package:volt/core/shared_widgets/custom_elevated_button.dart';
 import 'package:volt/core/storage/cache_helper.dart';
 import 'package:volt/core/storage/pref_keys.dart';
 import 'package:volt/core/theme/app_colors.dart';
 import 'package:volt/core/theme/app_styles.dart';
-import 'package:volt/features/onboarding/dataa/models/onboarding_model.dart';
-import 'package:volt/features/onboarding/presentation/widgets/onboarding_footer.dart';
+import 'package:volt/features/onboarding/dataa/models/onboarding_data.dart';
+import 'package:volt/features/onboarding/presentation/widgets/first_page_image.dart';
 import 'package:volt/features/onboarding/presentation/widgets/onboarding_header.dart';
 import 'package:volt/features/onboarding/presentation/widgets/onboarding_indicator.dart';
-import 'package:volt/features/onboarding/presentation/widgets/onboarding_page.dart';
 
 class OnboardingView extends StatefulWidget {
   const OnboardingView({super.key});
@@ -23,9 +23,14 @@ class OnboardingView extends StatefulWidget {
 class _OnboardingViewState extends State<OnboardingView> {
   late final PageController _pageController;
   int _currentIndex = 0;
+  @override
+  void initState() {
+    super.initState();
+    _pageController = PageController();
+  }
 
   void _nextPage() {
-    if (_currentIndex < OnboardingModel.pages.length - 1) {
+    if (_currentIndex < OnboardingData.pages.length - 1) {
       _pageController.nextPage(
         duration: const Duration(milliseconds: 300),
         curve: Curves.easeInOut,
@@ -84,7 +89,7 @@ class _OnboardingViewState extends State<OnboardingView> {
               child: PageView.builder(
                 controller: _pageController,
 
-                itemCount: OnboardingModel.pages.length,
+                itemCount: OnboardingData.pages.length,
 
                 onPageChanged: (index) {
                   setState(() {
@@ -93,7 +98,7 @@ class _OnboardingViewState extends State<OnboardingView> {
                 },
 
                 itemBuilder: (context, index) {
-                  final item = OnboardingModel.pages[index];
+                  final item = OnboardingData.pages[index];
 
                   final itemIsDarkBackground = index == 2;
 
@@ -187,7 +192,7 @@ class _OnboardingViewState extends State<OnboardingView> {
               child: Center(
                 child: OnboardingIndicator(
                   currentIndex: _currentIndex,
-                  itemCount: OnboardingModel.pages.length,
+                  itemCount: OnboardingData.pages.length,
                   activeColor: currentPage.buttonColor,
                 ),
               ),
