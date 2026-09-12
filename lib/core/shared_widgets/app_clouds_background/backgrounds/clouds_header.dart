@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:volt/core/extensions/ui_extension.dart';
-import 'package:volt/features/auth/presentation/widgets/auth_widgets/auth_header/animated_cloud.dart';
-import 'package:volt/features/auth/presentation/widgets/auth_widgets/auth_header/animated_star.dart';
+import 'package:volt/core/shared_widgets/app_clouds_background/backgrounds/animated_cloud.dart';
+import 'package:volt/core/shared_widgets/app_clouds_background/backgrounds/animated_star.dart';
 
-class AuthHeader extends StatefulWidget {
+class CloudsHeader extends StatefulWidget {
   final bool startFromLeft;
 
-  const AuthHeader({
+  const CloudsHeader({
     super.key,
     this.startFromLeft = false,
   });
 
   @override
-  State<AuthHeader> createState() => _AuthHeaderState();
+  State<CloudsHeader> createState() => _CloudsHeaderState();
 }
 
-class _AuthHeaderState extends State<AuthHeader> with SingleTickerProviderStateMixin {
+class _CloudsHeaderState extends State<CloudsHeader> with SingleTickerProviderStateMixin {
   late final AnimationController _ctrl;
 
   late final Animation<Offset> _cloud1Slide;

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class AuthFooterPainter extends CustomPainter {
+class WavesFooterPainter extends CustomPainter {
   final Color baseColor;
   final Color topWaveColor;
   final Color connectorColor;
 
-  AuthFooterPainter({
+  WavesFooterPainter({
     required this.baseColor,
     required this.topWaveColor,
     required this.connectorColor,
@@ -87,7 +87,7 @@ class AuthFooterPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(covariant AuthFooterPainter oldDelegate) {
+  bool shouldRepaint(covariant WavesFooterPainter oldDelegate) {
     return oldDelegate.baseColor != baseColor ||
         oldDelegate.topWaveColor != topWaveColor ||
         oldDelegate.connectorColor != connectorColor;

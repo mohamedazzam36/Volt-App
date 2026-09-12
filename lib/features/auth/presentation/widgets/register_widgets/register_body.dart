@@ -5,7 +5,7 @@ import 'package:volt/core/extensions/navigation_extension.dart';
 import 'package:volt/core/shared_widgets/custom_elevated_button.dart';
 import 'package:volt/core/shared_widgets/speaking_robot.dart';
 import 'package:volt/core/theme/app_colors.dart';
-import 'package:volt/features/auth/presentation/widgets/auth_widgets/back_ghost_button.dart';
+import 'package:volt/core/shared_widgets/back_ghost_button.dart';
 import 'package:volt/features/auth/presentation/widgets/register_widgets/register_flow_view.dart';
 
 class RegisterBody extends StatelessWidget {

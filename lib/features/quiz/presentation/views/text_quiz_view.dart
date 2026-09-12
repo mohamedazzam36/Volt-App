@@ -86,7 +86,7 @@ class _TextQuizViewState extends State<TextQuizView> {
                     ),
                 child: SpeakingRobot(
                   message: QuizStrings.whatIsDiffVoltageCurrent,
-                  robotImagePath: Assets.images.voltActiveMode.path,
+                  robotImagePath: Assets.images.greenRobotThinking.path,
                   isMessageOneLine: true,
                   messageShiftingRatio: 0.5,
                   spaceAfterMessage: 4,

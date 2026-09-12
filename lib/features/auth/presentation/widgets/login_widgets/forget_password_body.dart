@@ -7,7 +7,7 @@ import 'package:volt/core/shared_widgets/custom_elevated_button.dart';
 import 'package:volt/core/theme/app_colors.dart';
 import 'package:volt/core/theme/app_styles.dart';
 import 'package:volt/features/auth/presentation/widgets/auth_widgets/auth_text_field.dart';
-import 'package:volt/features/auth/presentation/widgets/auth_widgets/back_ghost_button.dart';
+import 'package:volt/core/shared_widgets/back_ghost_button.dart';
 
 class ForgetPasswordBody extends StatelessWidget {
   final TextEditingController emailController;

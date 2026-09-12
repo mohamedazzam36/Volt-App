@@ -1,6 +1,6 @@
-
 import 'package:flutter/material.dart';
 import 'package:volt/core/constants/assets.gen.dart';
+
 import 'circle_image.dart';
 
 class FirstPageImage extends StatelessWidget {
@@ -27,8 +27,8 @@ class FirstPageImage extends StatelessWidget {
           children: [
             // MAIN IMAGE
             SizedBox(
-              width: width * 0.65,
-              height: height * 0.90,
+              width: width * 0.6,
+              height: height * 0.80,
               child: Image.asset(
                 imagePath,
                 fit: BoxFit.contain,

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:volt/core/extensions/ui_extension.dart';
-import 'package:volt/features/auth/presentation/widgets/auth_widgets/auth_footer_painter.dart';
+import 'package:volt/core/shared_widgets/app_clouds_background/backgrounds/waves_footer_painter.dart';
 
-class AuthFooter extends StatelessWidget {
-  const AuthFooter({
+class WavesFooter extends StatelessWidget {
+  const WavesFooter({
     super.key,
     required this.baseColor,
     this.topWaveColor,
@@ -21,7 +21,7 @@ class AuthFooter extends StatelessWidget {
         height: (context.height * .2).clamp(140, 270),
         width: double.infinity,
         child: CustomPaint(
-          painter: AuthFooterPainter(
+          painter: WavesFooterPainter(
             baseColor: baseColor,
             topWaveColor: topWaveColor ?? baseColor.withValues(alpha: 0.55),
             connectorColor: connectorColor,

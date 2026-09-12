@@ -1,12 +1,13 @@
 import 'package:volt/core/constants/app_strings.dart';
 import 'package:volt/core/constants/assets.gen.dart';
 import 'package:volt/core/theme/app_colors.dart';
+
 import 'onboarding_model.dart';
 
 abstract class OnboardingData {
   static final List<OnboardingModel> pages = [
     OnboardingModel(
-      image: Assets.images.onboarding1.path,
+      image: Assets.images.readingBookRobot.path,
       title: OnboardingStrings.title1,
       description: OnboardingStrings.subTitle1,
       backgroundColor: AppColors.surfaceDefault,
@@ -30,7 +31,7 @@ abstract class OnboardingData {
       backgroundColor: AppColors.surfaceDarkNavy,
       buttonColor: AppColors.brandSecondaryGreen,
       buttonText: CommonStrings.continueAction,
-      isDark: true, 
+      isDark: true,
     ),
     OnboardingModel(
       image: Assets.images.onboarding4.path,

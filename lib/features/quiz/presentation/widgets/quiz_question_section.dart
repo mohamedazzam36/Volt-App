@@ -28,12 +28,11 @@ class QuizQuestionSection extends StatelessWidget {
       style: messageStyle,
       child: SpeakingRobot(
         message: message,
-        robotImagePath: Assets.images.voltActiveMode.path,
+        robotImagePath: Assets.images.greenRobotThinking.path,
         isMessageOneLine: false,
         messageShiftingRatio: 0.5,
         spaceAfterMessage: 8,
         robotWidth: robotWidth,
-      
       ),
     );
   }

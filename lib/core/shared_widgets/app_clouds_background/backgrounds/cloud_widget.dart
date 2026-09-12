@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:volt/core/shared_widgets/app_clouds_background/backgrounds/cloud_painter.dart';
 import 'package:volt/core/theme/app_colors.dart';
-import 'package:volt/features/auth/presentation/widgets/auth_widgets/auth_header/cloud_painter.dart';
 
 class CloudWidget extends StatelessWidget {
   final double width;

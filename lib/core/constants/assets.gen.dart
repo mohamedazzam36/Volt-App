@@ -21,24 +21,8 @@ class $AssetsImagesGen {
   AssetGenImage get battery1 =>
       const AssetGenImage('assets/images/Battery 1.png');
 
-  /// File path: assets/images/ReadingBook.png
-  AssetGenImage get readingBook =>
-      const AssetGenImage('assets/images/ReadingBook.png');
-
   /// File path: assets/images/Vector.png
   AssetGenImage get vector => const AssetGenImage('assets/images/Vector.png');
-
-  /// File path: assets/images/VoltActiveMode.png
-  AssetGenImage get voltActiveMode =>
-      const AssetGenImage('assets/images/VoltActiveMode.png');
-
-  /// File path: assets/images/VoltCelebrating.png
-  AssetGenImage get voltCelebrating =>
-      const AssetGenImage('assets/images/VoltCelebrating.png');
-
-  /// File path: assets/images/award_icon.png
-  AssetGenImage get awardIcon =>
-      const AssetGenImage('assets/images/award_icon.png');
 
   /// File path: assets/images/auth_robot_dance.png
   AssetGenImage get authRobotDance =>
@@ -72,6 +56,10 @@ class $AssetsImagesGen {
   AssetGenImage get authRobotWorried =>
       const AssetGenImage('assets/images/auth_robot_worried.png');
 
+  /// File path: assets/images/award_icon.png
+  AssetGenImage get awardIcon =>
+      const AssetGenImage('assets/images/award_icon.png');
+
   /// File path: assets/images/book.png
   AssetGenImage get book => const AssetGenImage('assets/images/book.png');
 
@@ -79,28 +67,40 @@ class $AssetsImagesGen {
   AssetGenImage get chartIcon =>
       const AssetGenImage('assets/images/chart_icon.png');
 
-  /// File path: assets/images/led 1.png
-  AssetGenImage get led1 => const AssetGenImage('assets/images/led 1.png');
-
   /// File path: assets/images/check_email_robot.png
   AssetGenImage get checkEmailRobot =>
       const AssetGenImage('assets/images/check_email_robot.png');
-
-  /// File path: assets/images/forgot_password.png
-  AssetGenImage get forgotPassword =>
-      const AssetGenImage('assets/images/forgot_password.png');
 
   /// File path: assets/images/forgot_password_robot.png
   AssetGenImage get forgotPasswordRobot =>
       const AssetGenImage('assets/images/forgot_password_robot.png');
 
+  /// File path: assets/images/green_robot_celebrating.png
+  AssetGenImage get greenRobotCelebrating =>
+      const AssetGenImage('assets/images/green_robot_celebrating.png');
+
+  /// File path: assets/images/green_robot_making_like.png
+  AssetGenImage get greenRobotMakingLike =>
+      const AssetGenImage('assets/images/green_robot_making_like.png');
+
+  /// File path: assets/images/green_robot_pointing_in.png
+  AssetGenImage get greenRobotPointingIn =>
+      const AssetGenImage('assets/images/green_robot_pointing_in.png');
+
+  /// File path: assets/images/green_robot_standing_sad.png
+  AssetGenImage get greenRobotStandingSad =>
+      const AssetGenImage('assets/images/green_robot_standing_sad.png');
+
+  /// File path: assets/images/green_robot_thinking.png
+  AssetGenImage get greenRobotThinking =>
+      const AssetGenImage('assets/images/green_robot_thinking.png');
+
+  /// File path: assets/images/led 1.png
+  AssetGenImage get led1 => const AssetGenImage('assets/images/led 1.png');
+
   /// File path: assets/images/lets_recover_password_robot.png
   AssetGenImage get letsRecoverPasswordRobot =>
       const AssetGenImage('assets/images/lets_recover_password_robot.png');
-
-  /// File path: assets/images/onboarding1.png
-  AssetGenImage get onboarding1 =>
-      const AssetGenImage('assets/images/onboarding1.png');
 
   /// File path: assets/images/onboarding2.png
   AssetGenImage get onboarding2 =>
@@ -122,6 +122,10 @@ class $AssetsImagesGen {
   AssetGenImage get rasingLeftHandRobot =>
       const AssetGenImage('assets/images/rasing_left_hand_robot.png');
 
+  /// File path: assets/images/reading_book_robot.png
+  AssetGenImage get readingBookRobot =>
+      const AssetGenImage('assets/images/reading_book_robot.png');
+
   /// File path: assets/images/resistor 1.png
   AssetGenImage get resistor1 =>
       const AssetGenImage('assets/images/resistor 1.png');
@@ -129,14 +133,7 @@ class $AssetsImagesGen {
   /// List of all assets
   List<AssetGenImage> get values => [
     battery1,
-    readingBook,
     vector,
-    voltActiveMode,
-    voltCelebrating,
-    awardIcon,
-    book,
-    chartIcon,
-    led1,
     authRobotDance,
     authRobotDanceWithBackground,
     authRobotHappy,
@@ -145,17 +142,24 @@ class $AssetsImagesGen {
     authRobotSaysHi,
     authRobotThinking,
     authRobotWorried,
+    awardIcon,
     book,
+    chartIcon,
     checkEmailRobot,
-    forgotPassword,
     forgotPasswordRobot,
+    greenRobotCelebrating,
+    greenRobotMakingLike,
+    greenRobotPointingIn,
+    greenRobotStandingSad,
+    greenRobotThinking,
+    led1,
     letsRecoverPasswordRobot,
-    onboarding1,
     onboarding2,
     onboarding3,
     onboarding4,
     potentiometer1,
     rasingLeftHandRobot,
+    readingBookRobot,
     resistor1,
   ];
 }

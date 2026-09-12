@@ -29,7 +29,7 @@ class QuizSuccessView extends StatelessWidget {
               // الروبوت المتحدث مع رسالة النجاح
               SpeakingRobot(
                 message: message ?? QuizStrings.looksNotYourFirstTime,
-                robotImagePath: Assets.images.voltCelebrating.path,
+                robotImagePath: Assets.images.greenRobotCelebrating.path,
                 robotWidth: 270,
                 isMessageOneLine: false,
                 messageShiftingRatio: 0.5,
