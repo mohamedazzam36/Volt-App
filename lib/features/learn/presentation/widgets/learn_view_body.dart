@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:volt/core/constants/assets.gen.dart';
 import 'package:volt/core/shared_widgets/lesson_banner_button.dart';
 import 'package:volt/core/shared_widgets/top_stats_bar.dart';
-import 'package:volt/features/home/presentation/widgets/home_level_node.dart';
+import 'package:volt/core/theme/app_colors.dart';
 
-class HomeViewBody extends StatefulWidget {
-  const HomeViewBody({super.key});
+class LearnViewBody extends StatefulWidget {
+  const LearnViewBody({super.key});
 
   @override
-  State<HomeViewBody> createState() => _HomeViewBodyState();
+  State<LearnViewBody> createState() => _LearnViewBodyState();
 }
 
-class _HomeViewBodyState extends State<HomeViewBody> {
+class _LearnViewBodyState extends State<LearnViewBody> {
   final ScrollController _scrollController = ScrollController();
   double _scrollOffset = 0.0;
 
@@ -59,9 +59,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
               children: [
                 const SizedBox(height: 36),
                 const TopStatsBar(),
-                const SizedBox(height: 20),
-                LessonBannerButton(onTap: () {}),
-                const SizedBox(height: 20),
+                const SizedBox(height: 32),
                 Expanded(
                   child: CustomScrollView(
                     controller: _scrollController,
@@ -69,7 +67,13 @@ class _HomeViewBodyState extends State<HomeViewBody> {
                       SliverList(
                         delegate: SliverChildBuilderDelegate(
                           (context, index) {
-                            return LevelNode(index: index);
+                            return Padding(
+                              padding: const EdgeInsets.only(bottom: 12),
+                              child: LessonBannerButton(
+                                backgroundColor: index == 6 ? AppColors.brandSecondaryOrange : null,
+                                onTap: () {},
+                              ),
+                            );
                           },
                           childCount: 200,
                         ),
