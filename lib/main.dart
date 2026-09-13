@@ -6,7 +6,7 @@ import 'package:volt/volt_app.dart';
 void main() async {
   // debugRepaintRainbowEnabled = true;
   WidgetsFlutterBinding.ensureInitialized();
-  await dotenv.load();
+  await dotenv.load(fileName: 'env');
   await setupServiceLocator();
   runApp(const VoltApp());
 }

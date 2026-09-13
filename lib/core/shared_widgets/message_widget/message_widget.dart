@@ -34,6 +34,15 @@ class MessageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final messageStyle = AppStyles.semiBold12
+        .responsive(context)
+        .copyWith(
+          color: fontColor ?? const Color(0xFF132331),
+          fontFamily: 'Cairo',
+          fontSize: fontSize ?? 12,
+          height: 16 / 12,
+        );
+
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 12),
       constraints: BoxConstraints(maxWidth: maxWidth ?? 250),
@@ -61,12 +70,12 @@ class MessageWidget extends StatelessWidget {
               fit: BoxFit.scaleDown,
               child: Text(
                 message,
-                style: AppStyles.bold16.responsive(context),
+                style: messageStyle,
               ),
             )
           : Text(
               message,
-              style: AppStyles.bold16.responsive(context),
+              style: messageStyle,
             ),
     );
   }

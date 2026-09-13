@@ -1,5 +1,4 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:meta/meta.dart';
 import 'package:volt/features/auth/data/repos/auth_repo.dart';
 
 import '../../../../../core/models/user_model.dart';

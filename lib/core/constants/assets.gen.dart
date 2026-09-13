@@ -24,6 +24,14 @@ class $AssetsImagesGen {
   /// File path: assets/images/Vector.png
   AssetGenImage get vector => const AssetGenImage('assets/images/Vector.png');
 
+  /// File path: assets/images/Volt Worried.png
+  AssetGenImage get voltWorried =>
+      const AssetGenImage('assets/images/Volt Worried.png');
+
+  /// File path: assets/images/Volt looks down 1.png
+  AssetGenImage get voltLooksDown1 =>
+      const AssetGenImage('assets/images/Volt looks down 1.png');
+
   /// File path: assets/images/auth_robot_dance.png
   AssetGenImage get authRobotDance =>
       const AssetGenImage('assets/images/auth_robot_dance.png');
@@ -142,6 +150,8 @@ class $AssetsImagesGen {
   List<AssetGenImage> get values => [
     battery1,
     vector,
+    voltWorried,
+    voltLooksDown1,
     authRobotDance,
     authRobotDanceWithBackground,
     authRobotHappy,
@@ -238,12 +248,8 @@ class $AssetsSvgsGen {
 }
 
 abstract final class Assets {
-  static const String aEnv = '.env';
   static const $AssetsImagesGen images = $AssetsImagesGen();
   static const $AssetsSvgsGen svgs = $AssetsSvgsGen();
-
-  /// List of all assets
-  static List<String> get values => [aEnv];
 }
 
 class AssetGenImage {

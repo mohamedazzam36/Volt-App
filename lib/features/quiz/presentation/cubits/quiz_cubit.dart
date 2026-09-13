@@ -1,29 +1,40 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:volt/features/quiz/data/models/question_model.dart';
+
 import 'package:volt/features/quiz/data/repositories/quiz_repository.dart';
+
 import 'package:volt/features/quiz/presentation/cubits/quiz_state.dart';
 
 class QuizCubit extends Cubit<QuizState> {
   final QuizRepository repository;
+
   List<QuestionModel> _questions = [];
 
-  QuizCubit(this.repository) : super(QuizState());
+  QuizCubit(this.repository) : super(const QuizState());
 
   Future<void> loadQuestions() async {
     emit(state.copyWith(isLoading: true));
+
     try {
       _questions = await repository.getQuestions();
+
       if (_questions.isEmpty) {
         emit(state.copyWith(isLoading: false));
+
         return;
       }
 
       emit(
         QuizState(
           isLoading: false,
+
           question: _questions.first,
+
           currentQuestionIndex: 1,
+
           totalQuestions: _questions.length,
+
           lives: state.lives,
         ),
       );
@@ -34,11 +45,14 @@ class QuizCubit extends Cubit<QuizState> {
 
   Future<void> loadQuestion(String questionId) async {
     emit(state.copyWith(isLoading: true));
+
     try {
       final question = await repository.getQuestionById(questionId);
+
       emit(
         state.copyWith(
           isLoading: false,
+
           question: question,
         ),
       );
@@ -51,6 +65,7 @@ class QuizCubit extends Cubit<QuizState> {
     emit(
       state.copyWith(
         question: state.question,
+
         selectedOptionId: optionId,
       ),
     );
@@ -60,6 +75,7 @@ class QuizCubit extends Cubit<QuizState> {
     emit(
       state.copyWith(
         question: state.question,
+
         selectedBoolValue: val,
       ),
     );
@@ -69,6 +85,7 @@ class QuizCubit extends Cubit<QuizState> {
     emit(
       state.copyWith(
         question: state.question,
+
         textAnswer: text,
       ),
     );
@@ -82,8 +99,10 @@ class QuizCubit extends Cubit<QuizState> {
       case QuestionType.imageChoice:
       case QuestionType.wordChips:
         return state.selectedOptionId == state.question!.correctAnswer;
+
       case QuestionType.trueFalse:
         return state.selectedBoolValue == state.question!.correctAnswer;
+
       case QuestionType.fillInBlank:
         return state.textAnswer?.trim().toLowerCase() ==
             (state.question!.correctAnswer as String? ?? '').trim().toLowerCase();
@@ -95,42 +114,54 @@ class QuizCubit extends Cubit<QuizState> {
 
     if (_isCorrectAnswer()) {
       emit(state.copyWith(showSuccess: true));
+
       return;
     }
 
+    emit(
+      state.copyWith(
+        errorStage: QuizErrorStage.first,
+
+        lives: (state.lives - 1).clamp(0, state.lives),
+      ),
+    );
+
+    _showSecondError();
+  }
+
+  void continueToNextQuestion() {
+    if (!state.showSuccess && state.errorStage != QuizErrorStage.second) return;
+
     final nextQuestionIndex = state.currentQuestionIndex;
+
     if (nextQuestionIndex >= _questions.length) return;
 
     emit(
       QuizState(
         question: _questions[nextQuestionIndex],
+
         currentQuestionIndex: nextQuestionIndex + 1,
+
         totalQuestions: _questions.length,
+
         lives: state.lives,
       ),
     );
   }
 
-  void continueToNextQuestion() {
-    if (!state.showSuccess) return;
+  Future<void> _showSecondError() async {
+    await Future<void>.delayed(const Duration(seconds: 2));
 
-    final nextQuestionIndex = state.currentQuestionIndex;
-    if (nextQuestionIndex >= _questions.length) return;
+    if (isClosed || state.errorStage != QuizErrorStage.first) return;
 
-    emit(
-      QuizState(
-        question: _questions[nextQuestionIndex],
-        currentQuestionIndex: nextQuestionIndex + 1,
-        totalQuestions: _questions.length,
-        lives: state.lives,
-      ),
-    );
+    emit(state.copyWith(errorStage: QuizErrorStage.second));
   }
 
   void previousQuestion() {
     if (state.currentQuestionIndex <= 1) return;
 
     final previousQuestionIndex = state.currentQuestionIndex - 2;
+
     if (previousQuestionIndex < 0 || previousQuestionIndex >= _questions.length) return;
 
     emit(

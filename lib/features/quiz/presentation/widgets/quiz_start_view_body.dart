@@ -31,15 +31,25 @@ class _QuizStartViewBodyState extends State<QuizStartViewBody> {
       bottomBaseColor: AppColors.brandSecondaryOrange,
       bodyWidget: Column(
         children: [
-          isFirstStep
-              ? const GreenThinkingRobot(QuizStrings.startDialogue1)
-              : SpeakingRobot(
-                  message: QuizStrings.startDialogue2,
-                  robotImagePath: Assets.images.readingBookRobot.path,
-                  robotWidth: (context.width * 0.35).clamp(100.0, 200.0),
-                  messageShiftingRatio: .43,
-                  spaceAfterMessage: 6,
-                ),
+          // 👈 إضافة AnimatedSwitcher لتغيير شكل الروبوت بسلاسة
+          AnimatedSwitcher(
+            duration: const Duration(milliseconds: 350),
+            switchInCurve: Curves.easeOutCubic,
+            switchOutCurve: Curves.easeInCubic,
+            child: isFirstStep
+                ? const GreenThinkingRobot(
+                    QuizStrings.startDialogue1,
+                    key: ValueKey('robot-step-1'),
+                  )
+                : SpeakingRobot(
+                    key: const ValueKey('robot-step-2'),
+                    message: QuizStrings.startDialogue2,
+                    robotImagePath: Assets.images.readingBookRobot.path,
+                    robotWidth: (context.width * 0.35).clamp(100.0, 200.0),
+                    messageShiftingRatio: .43,
+                    spaceAfterMessage: 6,
+                  ),
+          ),
           const SizedBox(height: 54),
           CustomElevatedButton(
             text: CommonStrings.next,

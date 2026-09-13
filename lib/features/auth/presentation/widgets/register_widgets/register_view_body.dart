@@ -11,7 +11,7 @@ class RegisterViewBody extends StatelessWidget {
     return const AppCloudsBackgroundLayout(
       headerStartFromLeft: true,
       bottomBaseColor: AppColors.brandSecondaryOrange,
-      bodyWidget: const RegisterBody(),
+      bodyWidget: RegisterBody(),
     );
   }
 }
