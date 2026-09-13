@@ -10,7 +10,7 @@ void main() {
     expect(cubit.state.currentQuestionIndex, 1);
     expect(cubit.state.question?.id, '1');
 
-    cubit.updateTextAnswer('كولوم');
+    cubit.updateTextAnswer('الفرق في الجهد يدفع التيار للتدفق');
     cubit.submitAnswer();
 
     expect(cubit.state.showSuccess, isTrue);

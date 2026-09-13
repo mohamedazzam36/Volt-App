@@ -27,7 +27,7 @@ class QuizHeader extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: Row(
         children: [
-          // 1. زر العودة (يرجع للسؤال السابق إن وجد، أو ينفذ onBackPressed)
+          // 1. زر العودة
           IconButton(
             icon: const Icon(Icons.arrow_back, color: AppColors.textDisabled),
             onPressed: () {
@@ -42,35 +42,30 @@ class QuizHeader extends StatelessWidget {
           ),
           const SizedBox(width: 8),
 
-          // 2. شريط التقدم AnimatedProgress
+          // 2. شريط التقدم AnimatedProgress (ينمو من اليمين إلى اليسار)
           Expanded(
-            child: LayoutBuilder(
-              builder: (context, constraints) {
-                final double totalWidth = constraints.maxWidth;
-                final double progressWidth = totalWidth * progress;
-
-                return Container(
-                  height: 8,
-                  decoration: BoxDecoration(
-                    color: AppColors.borderDefault,
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: Stack(
-                    alignment: Alignment.centerLeft, // لتنمية الشريط بشكل صحيح في LTR/RTL
-                    children: [
-                      AnimatedContainer(
-                        duration: const Duration(milliseconds: 300),
-                        width: progressWidth,
-                        height: 8,
-                        decoration: BoxDecoration(
-                          color: AppColors.brandPrimary,
-                          borderRadius: BorderRadius.circular(8),
-                        ),
+            child: Container(
+              height: 8,
+              decoration: BoxDecoration(
+                color: AppColors.borderDefault,
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Stack(
+                alignment: Alignment.centerRight, // 👈 التغيير هنا لعكس اتجاه الشريط
+                children: [
+                  AnimatedFractionallySizedBox(
+                    duration: const Duration(milliseconds: 300),
+                    widthFactor: progress,
+                    heightFactor: 1.0,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: AppColors.brandPrimary,
+                        borderRadius: BorderRadius.circular(8),
                       ),
-                    ],
+                    ),
                   ),
-                );
-              },
+                ],
+              ),
             ),
           ),
           const SizedBox(width: 8),

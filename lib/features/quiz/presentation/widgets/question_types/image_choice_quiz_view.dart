@@ -17,14 +17,20 @@ class ImageChoiceQuizView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.sizeOf(context).width;
+
+    // حساب نسبة أبعاد الكارت بناءً على عرض الشاشة لضمان تجاوب الـ Grid
+    final childAspectRatio = screenWidth < 360 ? 1.0 : 1.12;
+
     return GridView.builder(
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+      padding: EdgeInsets.zero,
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
-        crossAxisSpacing: 12,
-        mainAxisSpacing: 12,
-        childAspectRatio: 1.15, // ضُبطت النسبة لتعطي ارتفاع متناسق للكروت
+        crossAxisSpacing: screenWidth * 0.03, // مسافة متجاوبة بين العواميد
+        mainAxisSpacing: screenWidth * 0.03,  // مسافة متجاوبة بين الصفوف
+        childAspectRatio: childAspectRatio,
       ),
       itemCount: options.length,
       itemBuilder: (context, index) {

@@ -8,7 +8,6 @@ class SpeakingRobot extends StatelessWidget {
   final String robotImagePath;
   final double? robotWidth;
 
-  ///من صفر لواحد , صفر يبقى ف اول الصوره 1 يعني اخر الصوره
   final double messageShiftingRatio;
   final double spaceAfterMessage;
   final bool isMessageOneLine;
