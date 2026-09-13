@@ -60,6 +60,10 @@ class $AssetsImagesGen {
   AssetGenImage get awardIcon =>
       const AssetGenImage('assets/images/award_icon.png');
 
+  /// File path: assets/images/blue_amazed_robot.png
+  AssetGenImage get blueAmazedRobot =>
+      const AssetGenImage('assets/images/blue_amazed_robot.png');
+
   /// File path: assets/images/book.png
   AssetGenImage get book => const AssetGenImage('assets/images/book.png');
 
@@ -94,6 +98,10 @@ class $AssetsImagesGen {
   /// File path: assets/images/green_robot_thinking.png
   AssetGenImage get greenRobotThinking =>
       const AssetGenImage('assets/images/green_robot_thinking.png');
+
+  /// File path: assets/images/home_background_image.png
+  AssetGenImage get homeBackgroundImage =>
+      const AssetGenImage('assets/images/home_background_image.png');
 
   /// File path: assets/images/led 1.png
   AssetGenImage get led1 => const AssetGenImage('assets/images/led 1.png');
@@ -143,6 +151,7 @@ class $AssetsImagesGen {
     authRobotThinking,
     authRobotWorried,
     awardIcon,
+    blueAmazedRobot,
     book,
     chartIcon,
     checkEmailRobot,
@@ -152,6 +161,7 @@ class $AssetsImagesGen {
     greenRobotPointingIn,
     greenRobotStandingSad,
     greenRobotThinking,
+    homeBackgroundImage,
     led1,
     letsRecoverPasswordRobot,
     onboarding2,
@@ -167,20 +177,64 @@ class $AssetsImagesGen {
 class $AssetsSvgsGen {
   const $AssetsSvgsGen();
 
-  /// File path: assets/svgs/auth_footer.svg
-  SvgGenImage get authFooter =>
-      const SvgGenImage('assets/svgs/auth_footer.svg');
+  /// File path: assets/svgs/challenages_nav_icon.svg
+  SvgGenImage get challenagesNavIcon =>
+      const SvgGenImage('assets/svgs/challenages_nav_icon.svg');
 
-  /// File path: assets/svgs/login_footer.svg
-  SvgGenImage get loginFooter =>
-      const SvgGenImage('assets/svgs/login_footer.svg');
+  /// File path: assets/svgs/games_nav_icon.svg
+  SvgGenImage get gamesNavIcon =>
+      const SvgGenImage('assets/svgs/games_nav_icon.svg');
 
-  /// File path: assets/svgs/register_footer.svg
-  SvgGenImage get registerFooter =>
-      const SvgGenImage('assets/svgs/register_footer.svg');
+  /// File path: assets/svgs/home_book_button_icon.svg
+  SvgGenImage get homeBookButtonIcon =>
+      const SvgGenImage('assets/svgs/home_book_button_icon.svg');
+
+  /// File path: assets/svgs/home_chest_disabled_button_icon.svg
+  SvgGenImage get homeChestDisabledButtonIcon =>
+      const SvgGenImage('assets/svgs/home_chest_disabled_button_icon.svg');
+
+  /// File path: assets/svgs/home_chest_enabled_button_icon.svg
+  SvgGenImage get homeChestEnabledButtonIcon =>
+      const SvgGenImage('assets/svgs/home_chest_enabled_button_icon.svg');
+
+  /// File path: assets/svgs/home_lock_button_icon.svg
+  SvgGenImage get homeLockButtonIcon =>
+      const SvgGenImage('assets/svgs/home_lock_button_icon.svg');
+
+  /// File path: assets/svgs/home_nav_icon.svg
+  SvgGenImage get homeNavIcon =>
+      const SvgGenImage('assets/svgs/home_nav_icon.svg');
+
+  /// File path: assets/svgs/home_star_button_icon.svg
+  SvgGenImage get homeStarButtonIcon =>
+      const SvgGenImage('assets/svgs/home_star_button_icon.svg');
+
+  /// File path: assets/svgs/learn_nav_icon.svg
+  SvgGenImage get learnNavIcon =>
+      const SvgGenImage('assets/svgs/learn_nav_icon.svg');
+
+  /// File path: assets/svgs/lesson_banner_button_book_icon.svg
+  SvgGenImage get lessonBannerButtonBookIcon =>
+      const SvgGenImage('assets/svgs/lesson_banner_button_book_icon.svg');
+
+  /// File path: assets/svgs/profile_nav_icon.svg
+  SvgGenImage get profileNavIcon =>
+      const SvgGenImage('assets/svgs/profile_nav_icon.svg');
 
   /// List of all assets
-  List<SvgGenImage> get values => [authFooter, loginFooter, registerFooter];
+  List<SvgGenImage> get values => [
+    challenagesNavIcon,
+    gamesNavIcon,
+    homeBookButtonIcon,
+    homeChestDisabledButtonIcon,
+    homeChestEnabledButtonIcon,
+    homeLockButtonIcon,
+    homeNavIcon,
+    homeStarButtonIcon,
+    learnNavIcon,
+    lessonBannerButtonBookIcon,
+    profileNavIcon,
+  ];
 }
 
 abstract final class Assets {

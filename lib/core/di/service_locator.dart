@@ -13,6 +13,7 @@ import 'package:volt/features/auth/data/repos/auth_repo_impl.dart';
 import 'package:volt/features/auth/presentation/cubits/auth_cubit/auth_cubit.dart';
 import 'package:volt/features/auth/presentation/cubits/login_cubit/login_cubit.dart';
 import 'package:volt/features/auth/presentation/cubits/register_cubit/register_cubit.dart';
+import 'package:volt/features/main_layout/presentation/cubits/main_layout_cubit/main_layout_cubit.dart';
 
 import '../network/api_service.dart';
 import '../network/auth_interceptor.dart';
@@ -23,6 +24,7 @@ final sl = GetIt.instance;
 Future<void> setupServiceLocator() async {
   await _initCore();
   _initAuthFeature();
+  _initHome();
 }
 
 Future<void> _initCore() async {
@@ -86,4 +88,8 @@ void _initAuthFeature() {
   sl.registerLazySingleton(() => AuthCubit(sl()));
   sl.registerFactory(() => LoginCubit(sl()));
   sl.registerFactory(() => RegisterCubit(sl()));
+}
+
+void _initHome() {
+  sl.registerFactory(() => MainLayoutCubit());
 }

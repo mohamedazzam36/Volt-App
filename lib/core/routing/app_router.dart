@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:volt/core/routing/routes.dart';
 import 'package:volt/features/auth/presentation/views/auth_view.dart';
 import 'package:volt/features/auth/presentation/views/login_view.dart';
 import 'package:volt/features/auth/presentation/views/register_view.dart';
+import 'package:volt/features/main_layout/presentation/cubits/main_layout_cubit/main_layout_cubit.dart';
+import 'package:volt/features/main_layout/presentation/views/main_layout_view.dart';
 import 'package:volt/features/onboarding/presentation/views/onboarding_view.dart';
 import 'package:volt/features/quiz/presentation/views/quiz_initial_view.dart';
 import 'package:volt/features/splash/presentation/views/splash_view.dart';
@@ -12,7 +15,7 @@ import '../storage/cache_helper.dart';
 import '../storage/pref_keys.dart';
 
 class AppRouter {
-  static const initialRoute = Routes.quiz;
+  static const initialRoute = Routes.mainLayout;
 
   static Route<dynamic>? onGenerateRoute(RouteSettings settings) {
     return switch (settings.name) {
@@ -41,6 +44,13 @@ class AppRouter {
       Routes.quiz => MaterialPageRoute(
         settings: settings,
         builder: (context) => const QuizInitialView(),
+      ),
+      Routes.mainLayout => MaterialPageRoute(
+        settings: settings,
+        builder: (context) => BlocProvider(
+          create: (context) => sl<MainLayoutCubit>(),
+          child: const MainLayoutView(),
+        ),
       ),
       _ => MaterialPageRoute(
         settings: settings,
