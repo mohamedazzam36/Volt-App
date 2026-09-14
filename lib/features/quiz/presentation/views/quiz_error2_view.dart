@@ -18,7 +18,7 @@ class QuizError2View extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor:AppColors.surfaceSubtle,
+      backgroundColor: AppColors.surfaceSubtle,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24.0),
@@ -29,7 +29,7 @@ class QuizError2View extends StatelessWidget {
               // الروبوت مع بالون الحوار
               SpeakingRobot(
                 message: message ?? QuizStrings.dontWorryNextTimeEasier,
-                robotImagePath: Assets.images.voltLooksDown1.path,
+                robotImagePath: Assets.images.greenRobotStandingSad.path,
                 isMessageOneLine: true,
                 messageShiftingRatio: 0.5,
                 spaceAfterMessage: 25,
@@ -40,13 +40,13 @@ class QuizError2View extends StatelessWidget {
               // زر المتابعة الأصفر (باستخدام CustomElevatedButton)
               CustomElevatedButton(
                 text: CommonStrings.continueAction,
-                backgroundColor:AppColors.brandSecondaryYellow, // اللون الأصفر البارز
+                backgroundColor: AppColors.brandSecondaryYellow, // اللون الأصفر البارز
                 textColor: AppColors.textOnBrand, // لون النص على الزر
                 width: double.infinity,
                 onTap: onContinue,
               ),
 
-             const Spacer(flex: 3),
+              const Spacer(flex: 3),
             ],
           ),
         ),

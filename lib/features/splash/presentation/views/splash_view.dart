@@ -46,7 +46,7 @@ class _SplashViewState extends State<SplashView> {
         if (!context.mounted) return;
 
         if (state is Authenticated) {
-          context.pushReplacementNamed(Routes.home);
+          context.pushReplacementNamed(Routes.mainLayout);
         } else if (state is UnAuthenticated) {
           if (widget.isOnboardingViewed) {
             context.pushReplacementNamed(Routes.auth);

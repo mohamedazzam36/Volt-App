@@ -147,7 +147,7 @@ class _LoginFlowViewState extends State<LoginFlowView> {
       child: BlocConsumer<LoginCubit, LoginState>(
         listener: (context, state) {
           if (state is LoginSuccess) {
-            context.pushNamedAndRemoveAll(Routes.home);
+            context.pushNamedAndRemoveAll(Routes.mainLayout);
           } else if (state is LoginError) {
             context.showSnackBar(state.errorMessage, type: SnackBarType.error);
           }

@@ -22,7 +22,7 @@ class QuizErrorScreen extends StatelessWidget {
           child: Center(
             child: SpeakingRobot(
               message: QuizStrings.ohNoError,
-              robotImagePath: Assets.images.voltWorried.path, // صورة الروبوت الحزين/القلق
+              robotImagePath: Assets.images.authRobotWorried.path, // صورة الروبوت الحزين/القلق
               isMessageOneLine: true,
               messageShiftingRatio: 0.5,
               spaceAfterMessage: 16,

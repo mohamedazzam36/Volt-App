@@ -6,5 +6,4 @@ abstract final class Routes {
   static const String register = "/register";
   static const String quiz = "/quiz";
   static const String mainLayout = "/main_layout";
-  static const String home = "/home";
 }
