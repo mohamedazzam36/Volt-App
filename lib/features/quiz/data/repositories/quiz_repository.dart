@@ -5,8 +5,6 @@ import 'package:volt/features/quiz/data/models/question_model.dart';
 
 class QuizRepository {
   Future<List<QuestionModel>> getQuestions() async {
-    await Future.delayed(const Duration(milliseconds: 400));
-
     return [
       // 1. سؤال كتابي
       QuestionModel(

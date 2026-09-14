@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:volt/core/constants/app_strings.dart';
-import 'package:volt/core/shared_widgets/custom_elevated_button.dart';
 import 'package:volt/core/theme/app_colors.dart';
 import 'package:volt/features/quiz/presentation/cubits/quiz_cubit.dart';
-import 'package:volt/features/quiz/presentation/widgets/question_types/true_false_quiz_view.dart';
+import 'package:volt/features/quiz/presentation/views/quiz_initial_view.dart';
 
 import '../../data/models/question_model.dart';
 import '../cubits/quiz_state.dart';
-import '../widgets/question_types/image_choice_quiz_view.dart';
-import '../widgets/question_types/text_choice_quiz_view.dart';
-import '../widgets/question_types/word_chips_quiz_view.dart';
+import '../widgets/question_types/quiz_question_body_section.dart';
+import '../widgets/quiz_action_button.dart';
 import '../widgets/quiz_header.dart';
 import '../widgets/quiz_question_section.dart';
-import '../widgets/quiz_text_field.dart';
+import 'quiz_error2_view.dart';
+import 'quiz_error_screen.dart';
 import 'success_view.dart';
 
 class QuizScreen extends StatefulWidget {
@@ -29,9 +28,11 @@ class _QuizScreenState extends State<QuizScreen> {
   @override
   void initState() {
     super.initState();
-    _answerController.addListener(() {
-      context.read<QuizCubit>().updateTextAnswer(_answerController.text);
-    });
+    _answerController.addListener(_onAnswerChanged);
+  }
+
+  void _onAnswerChanged() {
+    context.read<QuizCubit>().updateTextAnswer(_answerController.text);
   }
 
   @override
@@ -46,10 +47,8 @@ class _QuizScreenState extends State<QuizScreen> {
       backgroundColor: AppColors.surfaceDefault,
       body: SafeArea(
         child: BlocConsumer<QuizCubit, QuizState>(
-          listenWhen: (previous, current) => previous.question?.id != current.question?.id,
-          listener: (context, state) {
-            _answerController.clear();
-          },
+          listenWhen: (prev, curr) => prev.question?.id != curr.question?.id,
+          listener: (context, state) => _answerController.clear(),
           builder: (context, state) {
             if (state.isLoading) {
               return const Center(child: CircularProgressIndicator());
@@ -57,13 +56,49 @@ class _QuizScreenState extends State<QuizScreen> {
 
             if (state.showSuccess) {
               return QuizSuccessView(
-                message: 'أحسنت! الإجابة صحيحة',
-                onContinue: () => context.read<QuizCubit>().continueToNextQuestion(),
+                message: QuizStrings.successMessages[
+                  (state.currentQuestionIndex - 1).clamp(
+                    0,
+                    QuizStrings.successMessages.length - 1,
+                  )
+                ],
+                onContinue: () =>
+                    context.read<QuizCubit>().continueToNextQuestion(),
+              );
+            }
+
+            if (state.errorStage != QuizErrorStage.none) {
+              return AnimatedSwitcher(
+                duration: const Duration(milliseconds: 450),
+                switchInCurve: Curves.easeOutCubic,
+                switchOutCurve: Curves.easeInCubic,
+                transitionBuilder: (child, animation) {
+                  final slide = Tween<Offset>(
+                    begin: const Offset(0.08, 0),
+                    end: Offset.zero,
+                  ).animate(animation);
+
+                  return FadeTransition(
+                    opacity: animation,
+                    child: SlideTransition(position: slide, child: child),
+                  );
+                },
+                child: state.errorStage == QuizErrorStage.first
+                    ? const QuizErrorScreen(key: ValueKey('quiz-error-first'))
+                    : QuizError2View(
+                        key: const ValueKey('quiz-error-second'),
+                        onContinue: () =>
+                            context.read<QuizCubit>().continueToNextQuestion(),
+                      ),
               );
             }
 
             final question = state.question;
-            if (question == null) return const SizedBox();
+            if (question == null) return const SizedBox.shrink();
+
+            final hideSpacer = question.type == QuestionType.trueFalse ||
+                state.currentQuestionIndex == 3 ||
+                state.currentQuestionIndex == 4;
 
             return Padding(
               padding: const EdgeInsets.symmetric(
@@ -76,37 +111,45 @@ class _QuizScreenState extends State<QuizScreen> {
                     currentQuestionIndex: state.currentQuestionIndex,
                     totalQuestions: state.totalQuestions,
                     lives: state.lives,
-                    onBackPressed: () => Navigator.maybePop(context),
-                    onPreviousQuestion: () => context.read<QuizCubit>().previousQuestion(),
+                    onBackPressed: () {
+                      if (state.currentQuestionIndex == 1) {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => const QuizInitialView(),
+                          ),
+                        );
+                      } else {
+                        Navigator.maybePop(context);
+                      }
+                    },
+                    onPreviousQuestion: () =>
+                        context.read<QuizCubit>().previousQuestion(),
                   ),
 
                   const Spacer(flex: 1),
 
                   QuizQuestionSection(
                     message: question.title,
+                    currentQuestionIndex: state.currentQuestionIndex,
                   ),
 
-                  const Spacer(flex: 1),
+                  if (hideSpacer)
+                    const SizedBox.shrink()
+                  else
+                    const Spacer(flex: 1),
 
-                  _buildQuestionBody(context, state, question),
+                  QuizQuestionBodySection(
+                    question: question,
+                    state: state,
+                    answerController: _answerController,
+                  ),
 
                   const Spacer(flex: 2),
 
-                  CustomElevatedButton(
-                    text:
-                        question.type == QuestionType.trueFalse ||
-                            question.type == QuestionType.wordChips
-                        ? QuizStrings.checkAnswer
-                        : CommonStrings.sent,
-                    backgroundColor: state.isButtonEnabled
-                        ? AppColors.brandPrimary
-                        : AppColors.borderDefault,
-                    textColor: AppColors.textOnBrand,
-                    onTap: () {
-                      if (state.isButtonEnabled) {
-                        context.read<QuizCubit>().submitAnswer();
-                      }
-                    },
+                  QuizActionButton(
+                    question: question,
+                    state: state,
                   ),
 
                   const SizedBox(height: 6),
@@ -117,45 +160,5 @@ class _QuizScreenState extends State<QuizScreen> {
         ),
       ),
     );
-  }
-
-  Widget _buildQuestionBody(
-    BuildContext context,
-    QuizState state,
-    QuestionModel question,
-  ) {
-    switch (question.type) {
-      case QuestionType.imageChoice:
-        return ImageChoiceQuizView(
-          options: question.options,
-          selectedOptionId: state.selectedOptionId,
-          onOptionSelected: (id) => context.read<QuizCubit>().selectOption(id),
-        );
-
-      case QuestionType.mcq:
-        return TextChoiceQuizView(
-          options: question.options,
-          selectedOptionId: state.selectedOptionId,
-          onOptionSelected: (id) => context.read<QuizCubit>().selectOption(id),
-        );
-
-      case QuestionType.trueFalse:
-        return TrueFalseQuizView(
-          selectedValue: state.selectedBoolValue,
-          onValueSelected: (val) => context.read<QuizCubit>().selectBool(val),
-        );
-
-      case QuestionType.fillInBlank:
-        return QuizTextField(
-          controller: _answerController,
-        );
-
-      case QuestionType.wordChips:
-        return WordChipsQuizView(
-          options: question.options,
-          selectedOptionId: state.selectedOptionId,
-          onOptionSelected: (id) => context.read<QuizCubit>().selectOption(id),
-        );
-    }
   }
 }

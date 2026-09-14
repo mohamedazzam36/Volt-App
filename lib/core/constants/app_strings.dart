@@ -118,7 +118,7 @@ abstract final class QuizStrings {
 
   // نصوص وعناوين الأسئلة
   static const String whereIsResistor = 'أين المقاومة؟';
-  static const String whatIsCurrentUnit = 'ما هي الوحدة المستخدمة في قياس شدة التيار؟';
+  static const String whatIsCurrentUnit = 'ماالوحدة المستخدمة في قياس شدة التيار؟';
   static const String voltageIsMeasuredIn = 'يقاس الجهد الكهربائي بوحدة';
   static const String whatIsDiffVoltageCurrent = 'يا ترى ما هو الفرق بين الجهد والتيار؟';
   static const String resistorReducesCurrent = 'المقاومة تقلل من شدة التيار المار في الدائرة';
@@ -144,6 +144,14 @@ abstract final class QuizStrings {
   // نصوص الإجابة الصحيحة والنجاح
   static const String wellDoneCorrectAnswer = 'أحسنت! الإجابة صحيحة';
   static const String looksNotYourFirstTime = 'يبدو بأنها ليست مرتك الأولى في الالكترونيات!';
+  static const List<String> successMessages = [
+    'إجابة ممتازة! بداية قوية جدًا!',
+    'رائع! أنت تحرز تقدمًا مذهلًا!',
+    'أحسنت! يبدو أنك تفهم الإلكترونيات جيدًا!',
+    'ممتاز! إجابة صحيحة أخرى تضاف إلى رصيدك!',
+    'رائع جدًا! لم يتبقَ الكثير لإكمال التحدي!',
+    'أحسنت! يبدو بأنها ليست مرتك الأولى في الإلكترونيات!',
+  ];
 
   // نصوص الإجابة الخاطئة والـ Bottom Sheet
   static const String ohNoError = 'يا الهى خطأ !!!';

@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:volt/core/theme/app_colors.dart';
 
 import '../../../../../core/constants/app_strings.dart';
+import '../../../../../core/extensions/text_style_extension.dart';
+import '../../../../../core/theme/app_colors.dart';
+import '../../../../../core/theme/app_styles.dart';
+
+/// ويدجت عرض أسئلة صح أم خطأ (True / False Quiz View)
 
 class TrueFalseQuizView extends StatelessWidget {
   final bool? selectedValue;
@@ -15,12 +19,14 @@ class TrueFalseQuizView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.sizeOf(context).width;
+
     return Row(
-      textDirection: TextDirection.rtl,
       children: [
-        // خيار صح (يمين)
+        // خيار صح
         Expanded(
           child: _buildChoiceCard(
+            context: context,
             label: QuizStrings.trueOption,
             isSelected: selectedValue == true,
             activeColor: AppColors.accentGreen,
@@ -30,10 +36,11 @@ class TrueFalseQuizView extends StatelessWidget {
             onTap: () => onValueSelected(true),
           ),
         ),
-        const SizedBox(width: 12),
-        // خيار خطأ (شمال)
+        SizedBox(width: screenWidth * 0.03),
+        // خيار خطأ
         Expanded(
           child: _buildChoiceCard(
+            context: context,
             label: QuizStrings.falseOption,
             isSelected: selectedValue == false,
             activeColor: AppColors.accentRed,
@@ -47,7 +54,9 @@ class TrueFalseQuizView extends StatelessWidget {
     );
   }
 
+  /// بناء كارت الاختيار بخلفية 3D متجاوبة
   Widget _buildChoiceCard({
+    required BuildContext context,
     required String label,
     required bool isSelected,
     required Color activeColor,
@@ -58,14 +67,17 @@ class TrueFalseQuizView extends StatelessWidget {
   }) {
     return GestureDetector(
       onTap: onTap,
-      child: Container(
-        height: 78,
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 150),
+        constraints: const BoxConstraints(minHeight: 76),
         decoration: BoxDecoration(
           color: isSelected ? bottomShadowColor : activeColor.withAlpha(50),
           borderRadius: BorderRadius.circular(16),
         ),
         child: Container(
-          margin: EdgeInsets.only(bottom: isSelected ? 5.0 : 0.0), // تأثير ارتفاع الـ 3D
+          // إنشاء تأثير الـ 3D عبر إزاحة المرجن عند التحديد
+          margin: EdgeInsets.only(bottom: isSelected ? 4.0 : 0.0),
+          padding: const EdgeInsets.symmetric(vertical: 12),
           decoration: BoxDecoration(
             color: backgroundColor,
             borderRadius: BorderRadius.circular(16),
@@ -76,8 +88,9 @@ class TrueFalseQuizView extends StatelessWidget {
           ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
             children: [
-              // الدائرة الملونة بالأيقونة
+              // دائرة الأيقونة
               Container(
                 width: 24,
                 height: 24,
@@ -91,15 +104,15 @@ class TrueFalseQuizView extends StatelessWidget {
                   size: 16,
                 ),
               ),
-              const SizedBox(height: 4),
-              // النص
+              const SizedBox(height: 6),
+              // نص الخيار
               Text(
                 label,
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  color: activeColor,
-                ),
+                style: AppStyles.bold12
+                    .responsive(context)
+                    .copyWith(
+                      color: activeColor,
+                    ),
               ),
             ],
           ),
