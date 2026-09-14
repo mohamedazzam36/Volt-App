@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:volt/features/challenges/presentation/views/challenges_view.dart';
+import 'package:volt/features/games/presentation/views/games_view.dart';
 import 'package:volt/features/home/presentation/views/home_view.dart';
 import 'package:volt/features/learn/presentation/views/learn_view.dart';
 import 'package:volt/features/main_layout/presentation/cubits/main_layout_cubit/main_layout_cubit.dart';
 import 'package:volt/features/main_layout/presentation/widgets/main_nav_bar.dart';
+import 'package:volt/features/profile/presentation/views/profile_view.dart';
 
 class MainLayoutView extends StatelessWidget {
   const MainLayoutView({super.key});
@@ -11,9 +14,9 @@ class MainLayoutView extends StatelessWidget {
   final List<Widget> _screens = const [
     HomeView(),
     LearnView(),
-    Center(child: Text("Simulator")),
-    Center(child: Text("Games")),
-    Center(child: Text("Profile")),
+    ChallengesView(),
+    GamesView(),
+    ProfileView(),
   ];
 
   @override

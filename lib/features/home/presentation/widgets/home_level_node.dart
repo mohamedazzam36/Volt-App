@@ -15,7 +15,7 @@ class LevelNode extends StatelessWidget {
   Widget build(BuildContext context) {
     double alignX = math.sin(index * 0.5 + 1.4) * 0.4;
 
-    bool isUnlocked = index <= 1;
+    bool isUnlocked = index <= 3;
     bool isChest = index == 3 || index == 8 || index == 13;
 
     bool hasRobot = index == 1 || index == 4 || index == 8 || index == 15 || index == 19;

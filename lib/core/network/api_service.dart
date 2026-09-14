@@ -1,25 +1,9 @@
 import 'package:dio/dio.dart';
 
-import '../env/app_env.dart';
-
 class ApiService {
   final Dio _dio;
 
-  ApiService([Dio? dio])
-    : _dio =
-          dio ??
-          Dio(
-            BaseOptions(
-              baseUrl: AppEnv.baseUrl,
-              connectTimeout: const Duration(seconds: 30),
-              receiveTimeout: const Duration(seconds: 30),
-              sendTimeout: const Duration(seconds: 30),
-              headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-              },
-            ),
-          );
+  ApiService(this._dio);
 
   // GET Request
   Future<dynamic> get(

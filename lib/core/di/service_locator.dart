@@ -3,8 +3,11 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
+import 'package:http_cache_hive_store/http_cache_hive_store.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:volt/core/network/cache_interceptor_helper.dart';
 import 'package:volt/core/storage/cache_helper.dart';
 import 'package:volt/features/auth/data/data_sources/auth_local_data_source.dart';
 import 'package:volt/features/auth/data/data_sources/auth_remote_data_source.dart';
@@ -17,6 +20,7 @@ import 'package:volt/features/main_layout/presentation/cubits/main_layout_cubit/
 
 import '../network/api_service.dart';
 import '../network/auth_interceptor.dart';
+import '../network/network_cache_manager.dart';
 import '../storage/secure_storage_helper.dart';
 
 final sl = GetIt.instance;
@@ -34,10 +38,15 @@ Future<void> _initCore() async {
 
   // 1. Storage
   const secureStorage = FlutterSecureStorage(
-    // aOptions: AndroidOptions(resetOnError: true),
+    aOptions: AndroidOptions(resetOnError: true),
     iOptions: IOSOptions(accessibility: KeychainAccessibility.first_unlock),
   );
   sl.registerLazySingleton(() => SecureStorageHelper(secureStorage));
+
+  final cacheDir = await getApplicationDocumentsDirectory();
+  final cacheStore = HiveCacheStore(cacheDir.path);
+  sl.registerLazySingleton(() => cacheStore);
+  sl.registerLazySingleton(() => NetworkCacheManager(sl()));
 
   // 2. Dio Setup
   final dio = Dio(
@@ -61,6 +70,8 @@ Future<void> _initCore() async {
         sl<AuthCubit>().logout();
       },
     ),
+    CacheInterceptorHelper.getCacheInterceptor(hiveCacheStore: sl()),
+
     if (kDebugMode)
       PrettyDioLogger(
         requestHeader: true,
