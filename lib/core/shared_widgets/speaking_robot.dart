@@ -10,6 +10,7 @@ class SpeakingRobot extends StatelessWidget {
 
   final double messageShiftingRatio;
   final double spaceAfterMessage;
+  final double messageHorizontalOffset;
   final bool isMessageOneLine;
 
   const SpeakingRobot({
@@ -20,6 +21,7 @@ class SpeakingRobot extends StatelessWidget {
     this.messageShiftingRatio = 0.5,
     this.isMessageOneLine = true,
     this.spaceAfterMessage = 10,
+    this.messageHorizontalOffset = 56.0,
   });
 
   @override
@@ -32,18 +34,20 @@ class SpeakingRobot extends StatelessWidget {
       spacing: spaceAfterMessage,
       children: [
         Transform.translate(
-          offset: Offset((messageShiftingRatio - 0.5) * robotFinalWidth, 0),
+          offset: Offset((messageShiftingRatio - 0.5) * robotFinalWidth + 12, 0),
           child: MessageWidget(
             message,
-            // maxWidth: robotFinalWidth * 1.5,
             isOneLine: isMessageOneLine,
           ),
         ),
 
-        Image.asset(
-          robotImagePath,
-          width: robotFinalWidth,
-          fit: BoxFit.contain,
+        Transform.translate(
+          offset: Offset(-messageHorizontalOffset, 0),
+          child: Image.asset(
+            robotImagePath,
+            width: robotFinalWidth,
+            fit: BoxFit.contain,
+          ),
         ),
       ],
     );

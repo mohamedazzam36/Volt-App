@@ -17,6 +17,10 @@ import 'package:vector_graphics/vector_graphics.dart' as _vg;
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  /// File path: assets/images/backgroundLevel1.png
+  AssetGenImage get backgroundLevel1 =>
+      const AssetGenImage('assets/images/backgroundLevel1.png');
+
   /// File path: assets/images/Battery 1.png
   AssetGenImage get battery1 =>
       const AssetGenImage('assets/images/Battery 1.png');
@@ -140,6 +144,7 @@ class $AssetsImagesGen {
 
   /// List of all assets
   List<AssetGenImage> get values => [
+    backgroundLevel1,
     battery1,
     vector,
     authRobotDance,
@@ -407,3 +412,4 @@ class SvgGenImage {
 
   String get keyName => _assetName;
 }
+
