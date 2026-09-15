@@ -13,6 +13,7 @@ class QuizState {
   final int currentQuestionIndex;
   final int totalQuestions;
   final int lives;
+  final bool isFinished;
 
   const QuizState({
     this.isLoading = false,
@@ -25,6 +26,7 @@ class QuizState {
     this.currentQuestionIndex = 1,
     this.totalQuestions = 6,
     this.lives = 5,
+    this.isFinished = false,
   });
 
   bool get isButtonEnabled {
@@ -52,6 +54,7 @@ class QuizState {
     int? currentQuestionIndex,
     int? totalQuestions,
     int? lives,
+    bool? isFinished,
   }) {
     return QuizState(
       isLoading: isLoading ?? this.isLoading,
@@ -64,6 +67,7 @@ class QuizState {
       currentQuestionIndex: currentQuestionIndex ?? this.currentQuestionIndex,
       totalQuestions: totalQuestions ?? this.totalQuestions,
       lives: lives ?? this.lives,
+      isFinished: isFinished ?? this.isFinished,
     );
   }
 

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:volt/core/constants/app_strings.dart';
 import 'package:volt/core/theme/app_colors.dart';
+import 'package:volt/core/routing/routes.dart';
 import 'package:volt/features/quiz/presentation/cubits/quiz_cubit.dart';
 import 'package:volt/features/quiz/presentation/views/quiz_initial_view.dart';
 
@@ -47,8 +48,13 @@ class _QuizScreenState extends State<QuizScreen> {
       backgroundColor: AppColors.surfaceDefault,
       body: SafeArea(
         child: BlocConsumer<QuizCubit, QuizState>(
-          listenWhen: (prev, curr) => prev.question?.id != curr.question?.id,
-          listener: (context, state) => _answerController.clear(),
+          listenWhen: (prev, curr) => prev.question?.id != curr.question?.id || curr.isFinished,
+          listener: (context, state) {
+            _answerController.clear();
+            if (state.isFinished) {
+              Navigator.pushNamedAndRemoveUntil(context, Routes.mainLayout, (route) => false);
+            }
+          },
           builder: (context, state) {
             if (state.isLoading) {
               return const Center(child: CircularProgressIndicator());

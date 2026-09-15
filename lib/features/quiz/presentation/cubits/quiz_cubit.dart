@@ -134,16 +134,16 @@ class QuizCubit extends Cubit<QuizState> {
 
     final nextQuestionIndex = state.currentQuestionIndex;
 
-    if (nextQuestionIndex >= _questions.length) return;
+    if (nextQuestionIndex >= _questions.length) {
+      emit(state.copyWith(isFinished: true, showSuccess: false, errorStage: QuizErrorStage.none));
+      return;
+    }
 
     emit(
       QuizState(
         question: _questions[nextQuestionIndex],
-
         currentQuestionIndex: nextQuestionIndex + 1,
-
         totalQuestions: _questions.length,
-
         lives: state.lives,
       ),
     );

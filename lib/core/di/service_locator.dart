@@ -7,7 +7,10 @@ import 'package:http_cache_hive_store/http_cache_hive_store.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:volt/core/extensions/navigation_extension.dart';
 import 'package:volt/core/network/cache_interceptor_helper.dart';
+import 'package:volt/core/network/response_unwrapper_interceptor.dart';
+import 'package:volt/core/routing/routes.dart';
 import 'package:volt/core/storage/cache_helper.dart';
 import 'package:volt/features/auth/data/data_sources/auth_local_data_source.dart';
 import 'package:volt/features/auth/data/data_sources/auth_remote_data_source.dart';
@@ -16,7 +19,17 @@ import 'package:volt/features/auth/data/repos/auth_repo_impl.dart';
 import 'package:volt/features/auth/presentation/cubits/auth_cubit/auth_cubit.dart';
 import 'package:volt/features/auth/presentation/cubits/login_cubit/login_cubit.dart';
 import 'package:volt/features/auth/presentation/cubits/register_cubit/register_cubit.dart';
+import 'package:volt/features/home/data/data_sources/home_remote_data_source.dart';
+import 'package:volt/features/home/data/repos/home_repo.dart';
+import 'package:volt/features/home/data/repos/home_repo_impl.dart';
+import 'package:volt/features/home/presentation/cubits/home_cubit.dart';
+import 'package:volt/features/lessons/data/data_sources/lessons_remote_data_source.dart';
+import 'package:volt/features/lessons/data/repos/lessons_repo.dart';
+import 'package:volt/features/lessons/data/repos/lessons_repo_impl.dart';
+import 'package:volt/features/lessons/presentation1/cubits/lesson_content_cubit/lesson_content_cubit.dart';
+import 'package:volt/features/lessons/presentation1/cubits/lesson_content_cubit/lesson_quiz_cubit/lesson_quiz_cubit.dart';
 import 'package:volt/features/main_layout/presentation/cubits/main_layout_cubit/main_layout_cubit.dart';
+import 'package:volt/volt_app.dart';
 
 import '../network/api_service.dart';
 import '../network/auth_interceptor.dart';
@@ -29,6 +42,7 @@ Future<void> setupServiceLocator() async {
   await _initCore();
   _initAuthFeature();
   _initHome();
+  _initLessonFeature();
 }
 
 Future<void> _initCore() async {
@@ -67,10 +81,12 @@ Future<void> _initCore() async {
       dio: dio,
       secureStorageHelper: sl(),
       onUnauthorized: () {
+        navigatorKey.currentContext?.pushNamedAndRemoveAll(Routes.auth);
         sl<AuthCubit>().logout();
       },
     ),
     CacheInterceptorHelper.getCacheInterceptor(hiveCacheStore: sl()),
+    ResponseUnwrapperInterceptor(),
 
     if (kDebugMode)
       PrettyDioLogger(
@@ -102,5 +118,15 @@ void _initAuthFeature() {
 }
 
 void _initHome() {
+  sl.registerLazySingleton<HomeRemoteDataSource>(() => HomeRemoteDataSourceImpl(sl()));
+  sl.registerLazySingleton<HomeRepo>(() => HomeRepoImpl(sl()));
+  sl.registerFactory(() => HomeCubit(sl()));
   sl.registerFactory(() => MainLayoutCubit());
+}
+
+void _initLessonFeature() {
+  sl.registerLazySingleton<LessonsRemoteDataSource>(() => LessonsRemoteDataSourceImpl(sl()));
+  sl.registerLazySingleton<LessonsRepo>(() => LessonsRepoImpl(sl()));
+  sl.registerFactory(() => LessonContentCubit(sl()));
+  sl.registerFactory(() => LessonQuizCubit(sl(), sl()));
 }

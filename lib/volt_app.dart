@@ -6,6 +6,8 @@ import 'package:volt/core/routing/app_router.dart';
 import 'package:volt/core/theme/app_theme.dart';
 import 'package:volt/features/auth/presentation/cubits/auth_cubit/auth_cubit.dart';
 
+final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+
 class VoltApp extends StatelessWidget {
   const VoltApp({super.key});
 
