@@ -34,7 +34,7 @@ class LessonQuizRetryArgs {
 }
 
 class AppRouter {
-  static const initialRoute = Routes.register;
+  static const initialRoute = Routes.splash;
 
   static Route<dynamic>? onGenerateRoute(RouteSettings settings) {
     return switch (settings.name) {

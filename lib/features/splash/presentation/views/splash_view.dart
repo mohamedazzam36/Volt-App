@@ -11,6 +11,8 @@ import 'package:volt/core/theme/app_styles.dart';
 import 'package:volt/features/auth/presentation/cubits/auth_cubit/auth_cubit.dart';
 import 'package:volt/core/utils/assets_precache_service.dart';
 
+import 'package:flutter_native_splash/flutter_native_splash.dart';
+
 import '../widgets/loading_bar.dart';
 
 class SplashView extends StatefulWidget {
@@ -37,8 +39,10 @@ class _SplashViewState extends State<SplashView> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     if (!_precached) {
-      AssetsPrecacheService.precacheAll(context);
       _precached = true;
+      AssetsPrecacheService.precacheAll(context).then((_) {
+        FlutterNativeSplash.remove();
+      });
     }
   }
 
