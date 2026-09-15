@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
-
+import 'package:volt/core/constants/assets.gen.dart';
+import 'package:volt/core/shared_widgets/custom_elevated_button.dart';
+import 'package:volt/core/theme/app_colors.dart';
+import 'package:volt/features/lessons/presentation/widgets/semi_circle_progress.dart';
+import 'package:volt/features/lessons/presentation/widgets/stat_card_widget.dart';
+import 'package:volt/features/lessons/presentation/widgets/xp_card_widget.dart';
 
 class LessonResultsView extends StatelessWidget {
   final String robotImagePath;
-  final double percentage; 
+  final double percentage;
   final int correctAnswers;
   final int incorrectAnswers;
   final int xpGained;
@@ -32,9 +37,9 @@ class LessonResultsView extends StatelessWidget {
       body: Container(
         width: double.infinity,
         height: double.infinity,
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/images/backgroundLevel1.path'), // أو استخدام Assets.images... لو متوفرة عندك
+            image: AssetImage(Assets.images.backgroundLevel1.path),
             fit: BoxFit.cover,
           ),
         ),
@@ -47,182 +52,82 @@ class LessonResultsView extends StatelessWidget {
             ),
             child: Column(
               children: [
-                // 1. مؤشر النسبة المئوية الدائري العلوي
-                SizedBox(
-                  width: screenWidth * 0.35,
-                  height: screenWidth * 0.35,
-                  child: Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      CircularProgressIndicator(
-                        value: percentage / 100,
-                        strokeWidth: 10,
-                        backgroundColor: Colors.grey.shade300,
-                        valueColor: const AlwaysStoppedAnimation<Color>(Color(0xFF4CAF50)),
-                      ),
-                      Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          const Text(
-                            "المجموع",
-                            style: TextStyle(fontSize: 12, color: Colors.grey, fontWeight: FontWeight.bold),
-                          ),
-                          Text(
-                            "%${percentage.toStringAsFixed(1)}",
-                            style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.black87),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
+                SizedBox(height: screenHeight * 0.01),
+                SemiCircleProgressWidget(
+                  percentage: percentage,
+                  size: screenWidth * 0.5,
+                  progressColor: AppColors.statusSuccess,
                 ),
-
                 SizedBox(height: screenHeight * 0.025),
-
-                // 2. كروت الإجابات الصحيحة والخاطئة
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    _buildStatCard(
+                    StatCardWidget(
                       value: correctAnswers.toString(),
-                      label: "اجابات صحيحة",
-                      valueColor: const Color(0xFF2E7D32),
-                      width: screenWidth * 0.38,
+                      label: 'اجابات صحيحة',
+                      valueColor: AppColors.statusSuccess,
+                      width: screenWidth * 0.41,
                     ),
                     SizedBox(width: screenWidth * 0.04),
-                    _buildStatCard(
+                    StatCardWidget(
                       value: incorrectAnswers.toString(),
-                      label: "اجابات خاطئة",
-                      valueColor: const Color(0xFFD32F2F),
-                      width: screenWidth * 0.38,
+                      label: 'اجابات خاطئة',
+                      valueColor: AppColors.statusError,
+                      width: screenWidth * 0.41,
                     ),
                   ],
                 ),
-
-                SizedBox(height: screenHeight * 0.03),
-
-                // 3. الروبوت ماسك الكأس + كارت الـ XP
+                SizedBox(height: screenHeight * 0.025),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
+                    XpCardWidget(
+                      xpValue: xpGained,
+                      textColor: AppColors.textSuccess,
+                    ),
+                    SizedBox(width: screenWidth * 0.04),
                     Image.asset(
-                      robotImagePath,
-                      height: screenWidth * 0.32,
+                      Assets.images.onboarding2.path,
+                      height: screenWidth * 0.7,
                       fit: BoxFit.contain,
                     ),
-                    SizedBox(width: screenWidth * 0.03),
-                    Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(20),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withOpacity(0.05),
-                            blurRadius: 5,
-                            offset: const Offset(0, 2),
-                          ),
-                        ],
-                      ),
-                      child: Text(
-                        "+$xpGained XP",
-                        style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF4CAF50),
-                          fontSize: 14,
-                        ),
-                      ),
-                    ),
                   ],
                 ),
-
-                SizedBox(height: screenHeight * 0.04),
-
-                // 4. أزرار التحكم (أعد المحاولة ومتابعة)
+                SizedBox(height: screenHeight * 0.03),
                 Row(
                   children: [
                     Expanded(
-                      child: SizedBox(
-                        height: 48,
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color(0xFF4CAF50),
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
-                          ),
-                          onPressed: onRetryPressed,
-                          child: const Text("اعد المحاولة", style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.bold)),
-                        ),
+                      child: CustomElevatedButton(
+                        width: double.infinity,
+                        backgroundColor: AppColors.brandPrimary,
+                        onTap: onContinuePressed,
+                        text: 'متابعة',
                       ),
                     ),
                     SizedBox(width: screenWidth * 0.04),
                     Expanded(
-                      child: SizedBox(
-                        height: 48,
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color(0xFF2196F3),
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
-                          ),
-                          onPressed: onContinuePressed,
-                          child: const Text("متابعة", style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.bold)),
-                        ),
+                      child: CustomElevatedButton(
+                        width: double.infinity,
+                        backgroundColor: AppColors.statusSuccess,
+                        onTap: onRetryPressed,
+                        text: 'اعد المحاولة',
                       ),
                     ),
                   ],
                 ),
-
                 SizedBox(height: screenHeight * 0.015),
-
-                // 5. زر عرض إجابات الأسئلة المقالية السفلي
-                SizedBox(
+                CustomElevatedButton(
                   width: double.infinity,
-                  height: 48,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFF2E7D32),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
-                    ),
-                    onPressed: onEssayAnswersPressed,
-                    child: const Text("عرض اجابات الاسئلة المقالية", style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.bold)),
-                  ),
+                  backgroundColor: AppColors.statusSuccess,
+                  onTap: onEssayAnswersPressed,
+                  text: 'عرض اجابات الاسئلة المقالية',
                 ),
-                
                 SizedBox(height: screenHeight * 0.02),
               ],
             ),
           ),
         ),
-      ),
-    );
-  }
-
-  Widget _buildStatCard({required String value, required String label, required Color valueColor, required double width}) {
-    return Container(
-      width: width,
-      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(16),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.04),
-            blurRadius: 6,
-            offset: const Offset(0, 3),
-          ),
-        ],
-      ),
-      child: Column(
-        children: [
-          Text(
-            value,
-            style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold, color: valueColor),
-          ),
-          const SizedBox(height: 4),
-          Text(
-            label,
-            style: const TextStyle(fontSize: 12, color: Colors.grey, fontWeight: FontWeight.w600),
-          ),
-        ],
       ),
     );
   }

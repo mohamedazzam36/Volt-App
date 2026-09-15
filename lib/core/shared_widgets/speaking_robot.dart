@@ -34,7 +34,10 @@ class SpeakingRobot extends StatelessWidget {
       spacing: spaceAfterMessage,
       children: [
         Transform.translate(
-          offset: Offset((messageShiftingRatio - 0.5) * robotFinalWidth + 12, 0),
+          offset: Offset(
+            (messageShiftingRatio - 0.5) * robotFinalWidth + messageHorizontalOffset,
+            0,
+          ),
           child: MessageWidget(
             message,
             isOneLine: isMessageOneLine,
@@ -42,7 +45,7 @@ class SpeakingRobot extends StatelessWidget {
         ),
 
         Transform.translate(
-          offset: Offset(-messageHorizontalOffset, 0),
+          offset: Offset(-messageHorizontalOffset * 0.5, 0),
           child: Image.asset(
             robotImagePath,
             width: robotFinalWidth,

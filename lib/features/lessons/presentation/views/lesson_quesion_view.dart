@@ -42,13 +42,12 @@ class _LessonQuestionViewState extends State<LessonQuestionView> {
         curve: Curves.easeInOut,
       );
     } else {
-      Navigator.pushReplacement(
-        context,
+      final navigator = Navigator.of(context);
+      navigator.pushReplacement(
         MaterialPageRoute(
           builder: (_) => LessonEndView(
             onShowResultsPressed: () {
-              Navigator.pushReplacement(
-                context,
+              navigator.pushReplacement(
                 MaterialPageRoute(
                   builder: (_) => LessonResultsView(
                     robotImagePath: Assets.images.greenRobotCelebrating.path,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:volt/core/theme/app_colors.dart';
 
 class LessonHelpButton extends StatefulWidget {
   final VoidCallback onTap;
@@ -35,13 +36,13 @@ class _LessonHelpButtonState extends State<LessonHelpButton> {
         // لما يضغط بننزل الزرار لتحت شوية ونقلل الظل عشان يبان إنه اتضغط للداخل
         margin: EdgeInsets.only(top: _isPressed ? 4 : 0),
         decoration: BoxDecoration(
-          color: const Color(0xFF00B0FF), // اللون السماوي الأساسي
+          color: AppColors.brandPrimary,
           borderRadius: BorderRadius.circular(16),
           boxShadow: [
             BoxShadow(
-              color: const Color(0xFF0091EA), // ظل سفلي داكن
+              color: AppColors.brandPrimaryPressed,
               // لما يضغط بيختفي الظل السفلي أو يقل عشان يبان إنه استقر في الأرض
-              offset: Offset(0, _isPressed ? 0 : 4), 
+              offset: Offset(0, _isPressed ? 0 : 4),
               blurRadius: 0,
               spreadRadius: 0,
             ),
@@ -51,7 +52,7 @@ class _LessonHelpButtonState extends State<LessonHelpButton> {
         child: Text(
           widget.text,
           style: const TextStyle(
-            color: Colors.white,
+            color: AppColors.textOnBrand,
             fontSize: 18,
             fontWeight: FontWeight.bold,
           ),

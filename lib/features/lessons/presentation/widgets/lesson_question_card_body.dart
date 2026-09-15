@@ -37,15 +37,17 @@ class LessonQuestionCardBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bool hasImage = item.contentImagePath != null && item.contentImagePath!.isNotEmpty;
+    final bool isMultipleChoice = item.questionType == LessonQuestionType.multipleChoice;
+    final bool isTrueFalse = item.questionType == LessonQuestionType.trueFalse;
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
 
     // قيم ريسبونسيف متجاوبة بناءً على ارتفاع وعرض الشاشة
-    final double responsiveTopOffset = screenHeight * 0.025; 
+    final double responsiveTopOffset = screenHeight * 0.025;
 
     return Padding(
       padding: EdgeInsets.symmetric(
-        horizontal: screenWidth * 0.05, 
+        horizontal: screenWidth * 0.05,
         vertical: screenHeight * 0.015,
       ),
       child: Column(
@@ -58,7 +60,7 @@ class LessonQuestionCardBody extends StatelessWidget {
                 Expanded(
                   flex: 2,
                   child: Transform.translate(
-                    offset: Offset(0, responsiveTopOffset + (screenHeight * 0.005)), 
+                    offset: Offset(0, responsiveTopOffset + (screenHeight * 0.1)),
                     child: Align(
                       alignment: Alignment.center,
                       child: Image.asset(
@@ -74,21 +76,31 @@ class LessonQuestionCardBody extends StatelessWidget {
               Expanded(
                 flex: 3,
                 child: Transform.translate(
-                  offset: Offset(0, responsiveTopOffset), 
-                  child: SpeakingRobot(
-                    message: item.message,
-                    robotImagePath: robotImagePath,
-                    isMessageOneLine: item.isOneLine,
-                    spaceAfterMessage: 12,
-                    robotWidth: screenWidth * 0.26,
-                    messageShiftingRatio: messageShiftingRatio,
+                  offset: Offset(0, responsiveTopOffset),
+                  child: Transform.translate(
+                    offset: Offset(
+                      0,
+                      isMultipleChoice
+                          ? screenWidth * 0.13
+                          : isTrueFalse
+                          ? screenHeight * 0.015
+                          : 0,
+                    ),
+                    child: SpeakingRobot(
+                      message: item.message,
+                      robotImagePath: robotImagePath,
+                      isMessageOneLine: item.isOneLine,
+                      spaceAfterMessage: 12,
+                      robotWidth: screenWidth * 0.26,
+                      messageShiftingRatio: messageShiftingRatio,
+                    ),
                   ),
                 ),
               ),
             ],
           ),
 
-          SizedBox(height: screenHeight * 0.03), 
+          SizedBox(height: screenHeight * 0.03),
 
           // منطقة خيارات الأسئلة وزر المساعدة
           if (item.questionType != LessonQuestionType.none) ...[
@@ -163,7 +175,7 @@ class LessonQuestionCardBody extends StatelessWidget {
         );
         return QuizTextField(controller: textController);
 
-        default:
+      default:
         return const SizedBox.shrink();
     }
   }

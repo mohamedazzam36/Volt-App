@@ -37,18 +37,19 @@ class LessonEndView extends StatelessWidget {
               children: [
                 // Spacer علوي مرن بنسبة أكبر شوية لضبط المنتصف البصري
                 const Spacer(flex: 4),
-                
+
                 // الروبوت في النص تماماً مع إزاحة بسيطة جداً لتعويض مساحة فقاعة الكلام لو وجدت
-                Transform.translate(
-                  offset: Offset(0, -screenHeight * 0.08),
-                  child: Center(
+                Center(
+                  child: Transform.translate(
+                    offset: Offset(0, -screenHeight * 0.02),
                     child: SpeakingRobot(
                       message: "وصلنا لنهاية الدرس",
                       robotImagePath: Assets.images.greenRobotCelebrating.path,
                       isMessageOneLine: true,
                       spaceAfterMessage: 16,
-                      robotWidth: screenWidth * 0.58, 
-                      messageShiftingRatio: .3,
+                      robotWidth: screenWidth * 0.58,
+                      messageShiftingRatio: 0.5,
+                      messageHorizontalOffset: 0,
                     ),
                   ),
                 ),
@@ -62,7 +63,7 @@ class LessonEndView extends StatelessWidget {
                   onTap: onShowResultsPressed,
                   backgroundColor: AppColors.brandSecondaryGreen,
                 ),
-                
+
                 // Spacer سفلي عشان يوازن الشاشة
                 const Spacer(flex: 3),
               ],
