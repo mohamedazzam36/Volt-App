@@ -16,7 +16,6 @@ class WavesFooterPainter extends CustomPainter {
     final w = size.width;
     final h = size.height;
 
-    // 1. الطبقة المتوسطة (Middle Wave)
     final midPaint = Paint()..color = topWaveColor;
     final midPath = Path()
       ..moveTo(0, h * 0.18)
@@ -27,7 +26,6 @@ class WavesFooterPainter extends CustomPainter {
       ..close();
     canvas.drawPath(midPath, midPaint);
 
-    // 2. الطبقة السفلية الأساسية (Base Wave)
     final basePaint = Paint()..color = baseColor;
     final basePath = Path()
       ..moveTo(0, h * 0.42)
@@ -38,7 +36,6 @@ class WavesFooterPainter extends CustomPainter {
       ..close();
     canvas.drawPath(basePath, basePaint);
 
-    // 3. الخطوط والـ Ellipses (Connectors)
     final linePaint = Paint()
       ..color = connectorColor
       ..strokeWidth = 2.7
@@ -49,11 +46,9 @@ class WavesFooterPainter extends CustomPainter {
       ..color = connectorColor
       ..style = PaintingStyle.fill;
 
-    // أبعاد الشكل البيضاوي
     const ellipseWidth = 12.0;
     const ellipseHeight = 11.0;
 
-    // الخط الأيسر (نزل من 0.67/0.58 إلى 0.77/0.68)
     final leftPath = Path()
       ..moveTo(0, h * 0.77)
       ..lineTo(w * 0.06, h * 0.77)
@@ -69,7 +64,6 @@ class WavesFooterPainter extends CustomPainter {
       dotPaint,
     );
 
-    // الخط الأيمن (نزل من 0.72/0.63 إلى 0.82/0.73)
     final rightPath = Path()
       ..moveTo(w, h * 0.82)
       ..lineTo(w * 0.94, h * 0.82)

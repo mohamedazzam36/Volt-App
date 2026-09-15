@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:volt/core/theme/app_colors.dart';
 
 class PasswordStrengthIndicator extends StatelessWidget {
-  final int strength; // من 0 لـ 5
+  final int strength;
 
   const PasswordStrengthIndicator({super.key, required this.strength});
 
@@ -17,13 +17,11 @@ class PasswordStrengthIndicator extends StatelessWidget {
           height: 42,
           margin: const EdgeInsets.only(right: 8),
           decoration: BoxDecoration(
-            // استبدال خلفية البرتقالي الفاتح أو الرمادي الفاتح
             color: isActive
                 ? AppColors.brandSecondaryOrange.withValues(alpha: 0.15)
                 : AppColors.surfaceSubtle,
             borderRadius: BorderRadius.circular(10),
             border: Border.all(
-              // بوردر البرتقالي في الـ Active وشفاف في العادي
               color: isActive
                   ? AppColors.brandSecondaryOrange.withValues(alpha: 0.5)
                   : Colors.transparent,

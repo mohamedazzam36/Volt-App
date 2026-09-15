@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class StarPainter extends CustomPainter {
   final Color color;
-  final double spikesSharpness; // نسبة حدة الأطراف (0.1 حاد جداً، 0.5 أعرض)
+  final double spikesSharpness;
 
   const StarPainter({
     this.color = const Color(0xFFFFD54F),
@@ -21,7 +21,6 @@ class StarPainter extends CustomPainter {
     final r = size.width / 2;
     final innerR = r * spikesSharpness;
 
-    // رسم النجمة الرباعية (Sparkle) بـ Bezier curves لانحناءات ناعمة
     path.moveTo(cx, cy - r);
     path.quadraticBezierTo(cx, cy, cx + innerR, cy - innerR);
     path.lineTo(cx + r, cy);

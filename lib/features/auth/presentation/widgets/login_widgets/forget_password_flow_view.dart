@@ -23,7 +23,7 @@ class ForgetPasswordFlowView extends StatefulWidget {
 }
 
 class _ForgetPasswordFlowViewState extends State<ForgetPasswordFlowView> {
-  int _currentStep = 0; // 0: Forget, 1: CheckEmail, 2: VerifyOtp, 3: ResetPassword
+  int _currentStep = 0;
 
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
@@ -108,13 +108,13 @@ class _ForgetPasswordFlowViewState extends State<ForgetPasswordFlowView> {
   Color _getBackgroundColor() {
     switch (_currentStep) {
       case 0:
-        return AppColors.surfaceOrangeSoft; // Coral
+        return AppColors.surfaceOrangeSoft;
       case 1:
-        return const Color(0xffEFEAFE); // Light Purple
+        return const Color(0xffEFEAFE);
       case 2:
-        return AppColors.surfaceDefault; // White
+        return AppColors.surfaceDefault;
       case 3:
-        return AppColors.surfaceGreenSoft; // Light Green
+        return AppColors.surfaceGreenSoft;
       default:
         return AppColors.surfaceDefault;
     }

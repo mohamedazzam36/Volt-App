@@ -1,12 +1,20 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 import 'package:volt/core/constants/assets.gen.dart';
 import 'package:volt/core/theme/app_colors.dart';
 
 class LessonBannerButton extends StatefulWidget {
   final VoidCallback onTap;
   final Color? backgroundColor;
+  final String levelName;
+  final String lessonName;
 
-  const LessonBannerButton({super.key, required this.onTap, this.backgroundColor});
+  const LessonBannerButton({
+    super.key,
+    required this.onTap,
+    required this.levelName,
+    required this.lessonName,
+    this.backgroundColor,
+  });
 
   @override
   State<LessonBannerButton> createState() => _LessonBannerButtonState();
@@ -54,22 +62,22 @@ class _LessonBannerButtonState extends State<LessonBannerButton> {
                 const SizedBox(width: 15),
                 Container(width: 2, height: 80, color: Colors.black12),
                 const SizedBox(width: 15),
-                const Expanded(
+                Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        "كوكب الكهرباء",
-                        style: TextStyle(
+                        widget.levelName,
+                        style: const TextStyle(
                           color: Colors.white,
                           fontSize: 22,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                       Text(
-                        "ما هي الكهرباء",
-                        style: TextStyle(color: Colors.white70, fontSize: 14),
+                        widget.lessonName,
+                        style: const TextStyle(color: Colors.white70, fontSize: 14),
                       ),
                     ],
                   ),

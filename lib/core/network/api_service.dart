@@ -5,7 +5,6 @@ class ApiService {
 
   ApiService(this._dio);
 
-  // GET Request
   Future<dynamic> get(
     String endpoint, {
     Map<String, dynamic>? queryParameters,
@@ -19,7 +18,6 @@ class ApiService {
     return response.data;
   }
 
-  // POST Request
   Future<dynamic> post(
     String endpoint, {
 
@@ -36,7 +34,6 @@ class ApiService {
     return response.data;
   }
 
-  // PUT Request
   Future<dynamic> put(
     String endpoint, {
     dynamic data,
@@ -52,7 +49,6 @@ class ApiService {
     return response.data;
   }
 
-  // DELETE Request
   Future<dynamic> delete(
     String endpoint, {
     dynamic data,

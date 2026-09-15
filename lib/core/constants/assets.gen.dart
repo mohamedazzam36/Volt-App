@@ -17,131 +17,156 @@ import 'package:vector_graphics/vector_graphics.dart' as _vg;
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
-  /// File path: assets/images/Battery 1.png
+  /// File path: assets/images/Battery 1.webp
   AssetGenImage get battery1 =>
-      const AssetGenImage('assets/images/Battery 1.png');
+      const AssetGenImage('assets/images/Battery 1.webp');
 
-  /// File path: assets/images/Vector.png
-  AssetGenImage get vector => const AssetGenImage('assets/images/Vector.png');
+  /// File path: assets/images/Vector.webp
+  AssetGenImage get vector => const AssetGenImage('assets/images/Vector.webp');
 
-  /// File path: assets/images/auth_robot_dance.png
+  /// File path: assets/images/app_logo.png
+  AssetGenImage get appLogo =>
+      const AssetGenImage('assets/images/app_logo.png');
+
+  /// File path: assets/images/auth_robot_dance.webp
   AssetGenImage get authRobotDance =>
-      const AssetGenImage('assets/images/auth_robot_dance.png');
+      const AssetGenImage('assets/images/auth_robot_dance.webp');
 
-  /// File path: assets/images/auth_robot_dance_with_background.png
-  AssetGenImage get authRobotDanceWithBackground =>
-      const AssetGenImage('assets/images/auth_robot_dance_with_background.png');
+  /// File path: assets/images/auth_robot_dance_with_background.webp
+  AssetGenImage get authRobotDanceWithBackground => const AssetGenImage(
+    'assets/images/auth_robot_dance_with_background.webp',
+  );
 
-  /// File path: assets/images/auth_robot_happy.png
+  /// File path: assets/images/auth_robot_happy.webp
   AssetGenImage get authRobotHappy =>
-      const AssetGenImage('assets/images/auth_robot_happy.png');
+      const AssetGenImage('assets/images/auth_robot_happy.webp');
 
-  /// File path: assets/images/auth_robot_hiding_his_eyes.png
+  /// File path: assets/images/auth_robot_hiding_his_eyes.webp
   AssetGenImage get authRobotHidingHisEyes =>
-      const AssetGenImage('assets/images/auth_robot_hiding_his_eyes.png');
+      const AssetGenImage('assets/images/auth_robot_hiding_his_eyes.webp');
 
-  /// File path: assets/images/auth_robot_opening_the_door.png
+  /// File path: assets/images/auth_robot_opening_the_door.webp
   AssetGenImage get authRobotOpeningTheDoor =>
-      const AssetGenImage('assets/images/auth_robot_opening_the_door.png');
+      const AssetGenImage('assets/images/auth_robot_opening_the_door.webp');
 
-  /// File path: assets/images/auth_robot_says_hi.png
+  /// File path: assets/images/auth_robot_says_hi.webp
   AssetGenImage get authRobotSaysHi =>
-      const AssetGenImage('assets/images/auth_robot_says_hi.png');
+      const AssetGenImage('assets/images/auth_robot_says_hi.webp');
 
-  /// File path: assets/images/auth_robot_thinking.png
+  /// File path: assets/images/auth_robot_thinking.webp
   AssetGenImage get authRobotThinking =>
-      const AssetGenImage('assets/images/auth_robot_thinking.png');
+      const AssetGenImage('assets/images/auth_robot_thinking.webp');
 
-  /// File path: assets/images/auth_robot_worried.png
+  /// File path: assets/images/auth_robot_worried.webp
   AssetGenImage get authRobotWorried =>
-      const AssetGenImage('assets/images/auth_robot_worried.png');
+      const AssetGenImage('assets/images/auth_robot_worried.webp');
 
-  /// File path: assets/images/award_icon.png
+  /// File path: assets/images/award_icon.webp
   AssetGenImage get awardIcon =>
-      const AssetGenImage('assets/images/award_icon.png');
+      const AssetGenImage('assets/images/award_icon.webp');
 
-  /// File path: assets/images/blue_amazed_robot.png
+  /// File path: assets/images/blue_amazed_robot.webp
   AssetGenImage get blueAmazedRobot =>
-      const AssetGenImage('assets/images/blue_amazed_robot.png');
+      const AssetGenImage('assets/images/blue_amazed_robot.webp');
 
-  /// File path: assets/images/book.png
-  AssetGenImage get book => const AssetGenImage('assets/images/book.png');
+  /// File path: assets/images/book.webp
+  AssetGenImage get book => const AssetGenImage('assets/images/book.webp');
 
-  /// File path: assets/images/chart_icon.png
+  /// File path: assets/images/car.webp
+  AssetGenImage get car => const AssetGenImage('assets/images/car.webp');
+
+  /// File path: assets/images/chart_icon.webp
   AssetGenImage get chartIcon =>
-      const AssetGenImage('assets/images/chart_icon.png');
+      const AssetGenImage('assets/images/chart_icon.webp');
 
-  /// File path: assets/images/check_email_robot.png
+  /// File path: assets/images/check_email_robot.webp
   AssetGenImage get checkEmailRobot =>
-      const AssetGenImage('assets/images/check_email_robot.png');
+      const AssetGenImage('assets/images/check_email_robot.webp');
 
-  /// File path: assets/images/forgot_password_robot.png
+  /// File path: assets/images/electrons.webp
+  AssetGenImage get electrons =>
+      const AssetGenImage('assets/images/electrons.webp');
+
+  /// File path: assets/images/forgot_password_robot.webp
   AssetGenImage get forgotPasswordRobot =>
-      const AssetGenImage('assets/images/forgot_password_robot.png');
+      const AssetGenImage('assets/images/forgot_password_robot.webp');
 
-  /// File path: assets/images/green_robot_celebrating.png
+  /// File path: assets/images/green_robot_celebrating.webp
   AssetGenImage get greenRobotCelebrating =>
-      const AssetGenImage('assets/images/green_robot_celebrating.png');
+      const AssetGenImage('assets/images/green_robot_celebrating.webp');
 
-  /// File path: assets/images/green_robot_making_like.png
+  /// File path: assets/images/green_robot_making_like.webp
   AssetGenImage get greenRobotMakingLike =>
-      const AssetGenImage('assets/images/green_robot_making_like.png');
+      const AssetGenImage('assets/images/green_robot_making_like.webp');
 
-  /// File path: assets/images/green_robot_pointing_in.png
+  /// File path: assets/images/green_robot_pointing_in.webp
   AssetGenImage get greenRobotPointingIn =>
-      const AssetGenImage('assets/images/green_robot_pointing_in.png');
+      const AssetGenImage('assets/images/green_robot_pointing_in.webp');
 
-  /// File path: assets/images/green_robot_standing_sad.png
+  /// File path: assets/images/green_robot_standing_sad.webp
   AssetGenImage get greenRobotStandingSad =>
-      const AssetGenImage('assets/images/green_robot_standing_sad.png');
+      const AssetGenImage('assets/images/green_robot_standing_sad.webp');
 
-  /// File path: assets/images/green_robot_thinking.png
+  /// File path: assets/images/green_robot_thinking.webp
   AssetGenImage get greenRobotThinking =>
-      const AssetGenImage('assets/images/green_robot_thinking.png');
+      const AssetGenImage('assets/images/green_robot_thinking.webp');
 
-  /// File path: assets/images/home_background_image.png
+  /// File path: assets/images/home_background_image.webp
   AssetGenImage get homeBackgroundImage =>
-      const AssetGenImage('assets/images/home_background_image.png');
+      const AssetGenImage('assets/images/home_background_image.webp');
 
-  /// File path: assets/images/led 1.png
-  AssetGenImage get led1 => const AssetGenImage('assets/images/led 1.png');
+  /// File path: assets/images/led 1.webp
+  AssetGenImage get led1 => const AssetGenImage('assets/images/led 1.webp');
 
-  /// File path: assets/images/lets_recover_password_robot.png
+  /// File path: assets/images/lessons_background_image1.webp
+  AssetGenImage get lessonsBackgroundImage1 =>
+      const AssetGenImage('assets/images/lessons_background_image1.webp');
+
+  /// File path: assets/images/lessons_background_image2.webp
+  AssetGenImage get lessonsBackgroundImage2 =>
+      const AssetGenImage('assets/images/lessons_background_image2.webp');
+
+  /// File path: assets/images/lessons_background_image3.webp
+  AssetGenImage get lessonsBackgroundImage3 =>
+      const AssetGenImage('assets/images/lessons_background_image3.webp');
+
+  /// File path: assets/images/lets_recover_password_robot.webp
   AssetGenImage get letsRecoverPasswordRobot =>
-      const AssetGenImage('assets/images/lets_recover_password_robot.png');
+      const AssetGenImage('assets/images/lets_recover_password_robot.webp');
 
-  /// File path: assets/images/onboarding2.png
+  /// File path: assets/images/onboarding2.webp
   AssetGenImage get onboarding2 =>
-      const AssetGenImage('assets/images/onboarding2.png');
+      const AssetGenImage('assets/images/onboarding2.webp');
 
-  /// File path: assets/images/onboarding3.png
+  /// File path: assets/images/onboarding3.webp
   AssetGenImage get onboarding3 =>
-      const AssetGenImage('assets/images/onboarding3.png');
+      const AssetGenImage('assets/images/onboarding3.webp');
 
-  /// File path: assets/images/onboarding4.png
+  /// File path: assets/images/onboarding4.webp
   AssetGenImage get onboarding4 =>
-      const AssetGenImage('assets/images/onboarding4.png');
+      const AssetGenImage('assets/images/onboarding4.webp');
 
-  /// File path: assets/images/potentiometer 1.png
+  /// File path: assets/images/potentiometer 1.webp
   AssetGenImage get potentiometer1 =>
-      const AssetGenImage('assets/images/potentiometer 1.png');
+      const AssetGenImage('assets/images/potentiometer 1.webp');
 
-  /// File path: assets/images/rasing_left_hand_robot.png
+  /// File path: assets/images/rasing_left_hand_robot.webp
   AssetGenImage get rasingLeftHandRobot =>
-      const AssetGenImage('assets/images/rasing_left_hand_robot.png');
+      const AssetGenImage('assets/images/rasing_left_hand_robot.webp');
 
-  /// File path: assets/images/reading_book_robot.png
+  /// File path: assets/images/reading_book_robot.webp
   AssetGenImage get readingBookRobot =>
-      const AssetGenImage('assets/images/reading_book_robot.png');
+      const AssetGenImage('assets/images/reading_book_robot.webp');
 
-  /// File path: assets/images/resistor 1.png
+  /// File path: assets/images/resistor 1.webp
   AssetGenImage get resistor1 =>
-      const AssetGenImage('assets/images/resistor 1.png');
+      const AssetGenImage('assets/images/resistor 1.webp');
 
   /// List of all assets
   List<AssetGenImage> get values => [
     battery1,
     vector,
+    appLogo,
     authRobotDance,
     authRobotDanceWithBackground,
     authRobotHappy,
@@ -153,8 +178,10 @@ class $AssetsImagesGen {
     awardIcon,
     blueAmazedRobot,
     book,
+    car,
     chartIcon,
     checkEmailRobot,
+    electrons,
     forgotPasswordRobot,
     greenRobotCelebrating,
     greenRobotMakingLike,
@@ -163,6 +190,9 @@ class $AssetsImagesGen {
     greenRobotThinking,
     homeBackgroundImage,
     led1,
+    lessonsBackgroundImage1,
+    lessonsBackgroundImage2,
+    lessonsBackgroundImage3,
     letsRecoverPasswordRobot,
     onboarding2,
     onboarding3,

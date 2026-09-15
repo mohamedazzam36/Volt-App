@@ -47,7 +47,7 @@ class ResetPasswordBody extends StatelessWidget {
         const SizedBox(height: 24),
         CustomElevatedButton(
           text: AuthStrings.resetPasswordButton,
-          backgroundColor: AppColors.brandSecondaryGreen, // Green color
+          backgroundColor: AppColors.brandSecondaryGreen,
           textColor: AppColors.textOnBrand,
           width: double.infinity,
           onTap: passwordController.text.isNotEmpty && !isLoading ? onSubmit : () {},

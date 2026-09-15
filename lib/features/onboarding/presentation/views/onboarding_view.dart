@@ -63,9 +63,6 @@ class _OnboardingViewState extends State<OnboardingView> {
       body: SafeArea(
         child: Column(
           children: [
-            // ========================================================
-            // HEADER
-            // ========================================================
             Padding(
               padding: const EdgeInsetsDirectional.only(end: 16.0, top: 16.0),
               child: Align(
@@ -109,10 +106,6 @@ class _OnboardingViewState extends State<OnboardingView> {
 
                     child: Column(
                       children: [
-                        // ==================================================
-                        // IMAGE
-                        // ==================================================
-
                         SizedBox(
                           height: contentHeight * 0.68,
                           width: double.infinity,
@@ -127,9 +120,6 @@ class _OnboardingViewState extends State<OnboardingView> {
                                 ),
                         ),
 
-                        // ==================================================
-                        // TITLE
-                        // ==================================================
                         SizedBox(
                           height: contentHeight * 0.13,
                           width: double.infinity,
@@ -152,9 +142,6 @@ class _OnboardingViewState extends State<OnboardingView> {
                           ),
                         ),
 
-                        // ==================================================
-                        // DESCRIPTION
-                        // ==================================================
                         SizedBox(
                           height: contentHeight * 0.04,
                           width: double.infinity,
@@ -184,9 +171,6 @@ class _OnboardingViewState extends State<OnboardingView> {
               ),
             ),
 
-            // ============================================================
-            // INDICATOR
-            // ============================================================
             SizedBox(
               height: 8,
               child: Center(
@@ -205,9 +189,6 @@ class _OnboardingViewState extends State<OnboardingView> {
               backgroundColor: currentPage.buttonColor,
             ),
 
-            // ============================================================
-            // BOTTOM SPACE
-            // ============================================================
             const Spacer(),
           ],
         ),

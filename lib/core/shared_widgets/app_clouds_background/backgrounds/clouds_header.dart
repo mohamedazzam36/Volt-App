@@ -66,7 +66,6 @@ class _CloudsHeaderState extends State<CloudsHeader> with SingleTickerProviderSt
       ),
     );
 
-    // النجوم: ببطء متفرقين من 0.35 لـ 1.0
     _star1Scale = Tween<double>(begin: 0, end: 1).animate(
       CurvedAnimation(
         parent: _ctrl,
@@ -108,17 +107,14 @@ class _CloudsHeaderState extends State<CloudsHeader> with SingleTickerProviderSt
   Widget build(BuildContext context) {
     final w = context.width;
 
-    // أحجام السحب (مع clamp يتطابق مع CloudWidget)
     final cloud1W = (w * 0.32).clamp(60.0, 220.0);
     final cloud2W = (w * 0.27).clamp(60.0, 220.0);
     final cloud3W = (w * 0.30).clamp(60.0, 220.0);
 
-    // ارتفاع منطقة السحب = ارتفاع أكبر سحابة (العرض ÷ 1.6) + أكبر top offset
     const cloudAspect = 1.6;
     const maxTopOffset = 18.0;
     final cloudAreaH = (cloud1W / cloudAspect + maxTopOffset).clamp(80.0, 160.0);
 
-    // الارتفاع الكلي = السحب + فاصل + صف النجوم
     const starRowH = 48.0;
     const gap = 8.0;
     final totalH = cloudAreaH + gap + starRowH;
@@ -128,7 +124,6 @@ class _CloudsHeaderState extends State<CloudsHeader> with SingleTickerProviderSt
       height: totalH,
       child: Column(
         children: [
-          // ─── منطقة السحب (ارتفاع محسوب من حجم السحابة الفعلي) ───
           SizedBox(
             height: cloudAreaH,
             child: Stack(
@@ -161,34 +156,32 @@ class _CloudsHeaderState extends State<CloudsHeader> with SingleTickerProviderSt
 
           const SizedBox(height: gap),
 
-          // ─── النجوم مبعثرة (Stack بمواضع متفاوتة في X و Y) ───
           SizedBox(
             width: double.infinity,
             height: starRowH,
             child: Stack(
               children: [
-                // صغيرة — يسار، ترتفع فوق
                 AnimatedStar(
                   scale: _star2Scale,
                   size: (w * 0.04).clamp(12, 20),
                   left: w * 0.05,
                   top: 6,
                 ),
-                // كبيرة — وسط يسار، تنزل تحت
+
                 AnimatedStar(
                   scale: _star1Scale,
                   size: (w * 0.075).clamp(16, 32),
                   left: w * 0.37,
                   top: 18,
                 ),
-                // متوسطة — وسط يمين، ترتفع فوق
+
                 AnimatedStar(
                   scale: _star3Scale,
                   size: (w * 0.05).clamp(14, 24),
                   left: w * 0.60,
                   top: 4,
                 ),
-                // صغيرة — يمين، وسط
+
                 AnimatedStar(
                   scale: _star4Scale,
                   size: (w * 0.032).clamp(10, 18),

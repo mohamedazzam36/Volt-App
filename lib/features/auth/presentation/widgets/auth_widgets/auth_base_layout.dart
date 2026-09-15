@@ -45,12 +45,10 @@ class AuthBaseLayout extends StatelessWidget {
                 ),
               ),
 
-              // الـ Body اللي هيتغير حسب الشاشة
               SliverToBoxAdapter(
                 child: child,
               ),
 
-              // الفوتر الثابت في آخر الشاشة
               if (showFooter) ...[
                 const SliverToBoxAdapter(child: SizedBox(height: 12)),
                 const SliverFillRemaining(

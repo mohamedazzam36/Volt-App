@@ -1,6 +1,5 @@
 part of 'login_cubit.dart';
 
-
 sealed class LoginState {}
 
 final class LoginInitial extends LoginState {}
@@ -17,7 +16,6 @@ final class LoginError extends LoginState {
   LoginError({required this.errorMessage});
 }
 
-// Forget Password States
 final class ForgetPasswordLoading extends LoginState {}
 
 final class ForgetPasswordSuccess extends LoginState {}
@@ -27,7 +25,6 @@ final class ForgetPasswordError extends LoginState {
   ForgetPasswordError({required this.errorMessage});
 }
 
-// Verify OTP States
 final class VerifyOtpLoading extends LoginState {}
 
 final class VerifyOtpSuccess extends LoginState {
@@ -40,7 +37,6 @@ final class VerifyOtpError extends LoginState {
   VerifyOtpError({required this.errorMessage});
 }
 
-// Reset Password States
 final class ResetPasswordLoading extends LoginState {}
 
 final class ResetPasswordSuccess extends LoginState {}

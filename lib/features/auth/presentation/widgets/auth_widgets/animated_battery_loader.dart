@@ -10,7 +10,7 @@ class AnimatedBatteryLoader extends StatefulWidget {
   const AnimatedBatteryLoader({
     super.key,
     required this.onLoadComplete,
-    // كل 500 مللي ثانية هيشحن شرطة
+
     this.stepDuration = const Duration(milliseconds: 500),
   });
 
@@ -49,12 +49,10 @@ class _AnimatedBatteryLoaderState extends State<AnimatedBatteryLoader> {
 
   @override
   Widget build(BuildContext context) {
-    // شيلنا الـ Directionality عشان الـ Widget تاخد اتجاه التطبيق الأساسي
     return Row(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        // جسم البطارية
         Container(
           padding: const EdgeInsets.all(4.0),
           decoration: BoxDecoration(
@@ -71,8 +69,7 @@ class _AnimatedBatteryLoaderState extends State<AnimatedBatteryLoader> {
                   return AnimatedContainer(
                     duration: const Duration(milliseconds: 300),
                     curve: Curves.easeOutBack,
-                    // استخدمنا EdgeInsetsDirectional بدل EdgeInsets العادية
-                    // كدا الـ end هيبقى على الشمال لو عربي، وعلى اليمين لو إنجليزي
+
                     margin: EdgeInsetsDirectional.only(
                       end: index == _maxLevel - 1 ? 0 : 4.0,
                     ),
@@ -95,14 +92,13 @@ class _AnimatedBatteryLoaderState extends State<AnimatedBatteryLoader> {
             },
           ),
         ),
-        // رأس البطارية (الطرف الموجب)
+
         Container(
           width: 6,
           height: 18,
           decoration: const BoxDecoration(
             color: AppColors.textPrimary,
-            // استخدمنا BorderRadiusDirectional بدل BorderRadius.only
-            // كدا التدوير هيتعمل في "النهاية" (اللي هي الشمال في حالة العربي)
+
             borderRadius: BorderRadiusDirectional.horizontal(
               end: Radius.circular(4),
             ),

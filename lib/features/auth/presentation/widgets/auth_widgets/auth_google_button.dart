@@ -37,7 +37,7 @@ class AuthGoogleButton extends StatelessWidget {
             ),
             const SizedBox(width: 12),
             Text(
-              'G', // الأيقونة ملهاش علاقة بالـ Strings
+              'G',
               style: AppStyles.bold20
                   .responsive(context)
                   .copyWith(

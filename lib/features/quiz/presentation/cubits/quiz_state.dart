@@ -1,9 +1,8 @@
-import 'package:equatable/equatable.dart';
 import '../../data/models/question_model.dart';
 
 enum QuizErrorStage { none, first, second }
 
-class QuizState extends Equatable {
+class QuizState {
   final bool isLoading;
   final QuestionModel? question;
   final String? selectedOptionId;
@@ -68,17 +67,4 @@ class QuizState extends Equatable {
     );
   }
 
-  @override
-  List<Object?> get props => [
-        isLoading,
-        question,
-        selectedOptionId,
-        selectedBoolValue,
-        textAnswer,
-        showSuccess,
-        errorStage,
-        currentQuestionIndex,
-        totalQuestions,
-        lives,
-      ];
 }

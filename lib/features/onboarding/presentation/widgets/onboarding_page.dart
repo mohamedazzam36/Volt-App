@@ -21,14 +21,12 @@ class OnboardingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-   
     final isDark = item.isDark;
 
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
       child: Column(
         children: [
-          // IMAGE SECTION
           SizedBox(
             height: contentHeight * 0.68,
             width: double.infinity,
@@ -40,7 +38,6 @@ class OnboardingPage extends StatelessWidget {
                   ),
           ),
 
-          // TITLE SECTION
           SizedBox(
             height: contentHeight * 0.13,
             child: Center(
@@ -56,7 +53,6 @@ class OnboardingPage extends StatelessWidget {
             ),
           ),
 
-          // DESCRIPTION SECTION
           SizedBox(
             height: contentHeight * 0.04,
             child: Center(

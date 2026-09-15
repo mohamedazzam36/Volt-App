@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 
-// أنواع أشكال السحاب المتاحة
 enum CloudShape { flatBottom, rounded, puffy }
-
-// ==================== كود السحابة ====================
 
 class CloudPainter extends CustomPainter {
   final CloudShape shape;
@@ -47,11 +44,10 @@ class CloudPainter extends CustomPainter {
         break;
 
       case CloudShape.puffy:
-        // 1. الشكل البيضاوي الأساسي (كبير ومفرود واخد أغلب المساحة من تحت)
         path.addOval(
           Rect.fromLTWH(0, h * 0.2, w * 0.85, h * 0.8),
         );
-        // 2. الشكل البيضاوي الثانوي (أصغر ومترحل يمين وفوق سنة وداخل فيه بنعومة)
+
         path.addOval(
           Rect.fromLTWH(w * 0.35, h * 0.3, w * 0.65, h * 0.6),
         );

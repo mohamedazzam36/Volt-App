@@ -35,7 +35,7 @@ class CheckEmailBody extends StatelessWidget {
         const SizedBox(height: 60),
         CustomElevatedButton(
           text: CommonStrings.next,
-          backgroundColor: AppColors.brandSecondaryPurple, // Purple/blue background
+          backgroundColor: AppColors.brandSecondaryPurple,
           onTap: onNext,
         ),
         const SizedBox(height: 16),

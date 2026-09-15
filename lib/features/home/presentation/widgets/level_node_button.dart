@@ -15,17 +15,17 @@ class LevelNodeButton extends StatefulWidget {
     this.progress,
     this.onTap,
     this.backgroundColor = Colors.blue,
-    this.shadowColor = const Color(0xFF1976D2), // Blue.shade700
+    this.shadowColor = const Color(0xFF1976D2),
   }) : isLocked = false;
 
   const LevelNodeButton.locked({
     super.key,
     this.onTap,
-    required this.iconPath, // الأفضل تحط مسار لأيقونة قفل (Lock SVG) هنا وقت الاستدعاء
+    required this.iconPath,
   }) : isLocked = true,
        progress = null,
-       backgroundColor = const Color(0xFFE0E0E0), // Grey.shade300
-       shadowColor = const Color(0xFFBDBDBD); // Grey.shade400
+       backgroundColor = const Color(0xFFE0E0E0),
+       shadowColor = const Color(0xFFBDBDBD);
 
   @override
   State<LevelNodeButton> createState() => _LevelNodeButtonState();
@@ -58,7 +58,6 @@ class _LevelNodeButtonState extends State<LevelNodeButton> {
           child: Stack(
             alignment: Alignment.center,
             children: [
-              // 1. البروجرس الخارجي
               if (showProgress)
                 SizedBox(
                   width: 90,
@@ -72,7 +71,6 @@ class _LevelNodeButtonState extends State<LevelNodeButton> {
                   ),
                 ),
 
-              // 2. الزرار الدائري الـ 3D بدون Stack داخلي
               SizedBox(
                 width: 72,
                 height: 72,
@@ -85,7 +83,7 @@ class _LevelNodeButtonState extends State<LevelNodeButton> {
                     alignment: const Alignment(0, 0.1),
                     child: AnimatedContainer(
                       duration: const Duration(milliseconds: 100),
-                      // نعوض المساحة اللي تحت بمارجن فوق عشان الزرار ميكبرش
+
                       margin: EdgeInsets.only(
                         bottom: bottomBorder,
                       ),

@@ -62,7 +62,7 @@ class ForgetPasswordBody extends StatelessWidget {
         const SizedBox(height: 24),
         CustomElevatedButton(
           text: AuthStrings.useVerificationCode,
-          backgroundColor: AppColors.brandSecondaryOrange, // Use coral/orange color
+          backgroundColor: AppColors.brandSecondaryOrange,
           textColor: AppColors.textOnBrand,
           width: double.infinity,
           onTap: !isLoading ? onSubmit : () {},

@@ -18,7 +18,7 @@ class RegisterFlowView extends StatefulWidget {
 }
 
 class _RegisterFlowViewState extends State<RegisterFlowView> {
-  int _currentStep = 0; // 0: Email, 1: Password, 2: Name...
+  int _currentStep = 0;
   int _selectedAge = 10;
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
@@ -44,21 +44,20 @@ class _RegisterFlowViewState extends State<RegisterFlowView> {
         _currentStep--;
       });
     } else {
-      context.pop(); // لو في أول خطوة وداس رجوع، يخرج بره خالص
+      context.pop();
     }
   }
 
-  // 1. الميثود دي بره الـ build خالص
   Widget _getCurrentStep() {
     switch (_currentStep) {
       case 0:
         return RegisterEmailInputBody(
-          emailController: _emailController, // 3. باصينا الكنترولر للودجت
+          emailController: _emailController,
           onNextStep: _nextStep,
         );
       case 1:
         return RegisterPasswordInputBody(
-          passwordController: _passwordController, // 3. باصينا الكنترولر للودجت
+          passwordController: _passwordController,
           onNextStep: _nextStep,
         );
       case 2:
@@ -69,7 +68,7 @@ class _RegisterFlowViewState extends State<RegisterFlowView> {
       case 3:
         return RegisterAgeInputBody(
           onAgeSelected: (age) {
-            _selectedAge = age; // 2. بنحفظ العمر لما يدوس التالي
+            _selectedAge = age;
           },
           onNextStep: () {
             context.push(
@@ -117,7 +116,7 @@ class _RegisterFlowViewState extends State<RegisterFlowView> {
               ),
             );
           },
-          // 2. بتنادي عليها هنا بسطر واحد في منتهى الشياكة
+
           child: _getCurrentStep(),
         ),
       ),

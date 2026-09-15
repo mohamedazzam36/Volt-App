@@ -25,7 +25,6 @@ class FirstPageImage extends StatelessWidget {
           clipBehavior: Clip.none,
           alignment: Alignment.center,
           children: [
-            // MAIN IMAGE
             SizedBox(
               width: width * 0.6,
               height: height * 0.80,
@@ -35,7 +34,6 @@ class FirstPageImage extends StatelessWidget {
               ),
             ),
 
-            // TOP LEFT (Chart Icon)
             Positioned(
               left: width * 0.04,
               top: height * 0.10,
@@ -46,18 +44,16 @@ class FirstPageImage extends StatelessWidget {
               ),
             ),
 
-            // TOP RIGHT (Zap Icon)
             Positioned(
               right: width * 0.04,
               top: height * 0.12,
               child: CircleImage(
-                assetPath: Assets.images.vector.path, // أو أيقونة الكهرباء/الصاعقة
+                assetPath: Assets.images.vector.path,
                 size: circleSize,
                 iconSize: iconSize,
               ),
             ),
 
-            // BOTTOM LEFT (Book Icon)
             Positioned(
               left: width * 0.04,
               bottom: height * 0.22,
@@ -69,12 +65,11 @@ class FirstPageImage extends StatelessWidget {
               ),
             ),
 
-            // BOTTOM RIGHT (Ribbon/Badge Icon)
             Positioned(
               right: width * 0.04,
               bottom: height * 0.20,
               child: CircleImage(
-                assetPath: Assets.images.awardIcon.path, // أيقونة الميدالية/الشارة
+                assetPath: Assets.images.awardIcon.path,
                 size: circleSize,
                 iconSize: iconSize,
               ),

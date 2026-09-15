@@ -5,8 +5,6 @@ import 'package:volt/core/theme/app_colors.dart';
 import 'package:volt/core/theme/app_styles.dart';
 import 'package:volt/features/auth/presentation/widgets/auth_widgets/custom_error_text.dart';
 
-// متنساش تعمل import للـ CustomErrorText لو حطيتها في فايل تاني
-
 class AuthTextField extends StatefulWidget {
   final TextEditingController? controller;
   final String labelText;
@@ -17,10 +15,9 @@ class AuthTextField extends StatefulWidget {
   final void Function(String)? onChanged;
   final TextInputType keyboardType;
   final String? Function(String?)? validator;
-  final bool? obscureText; // عشان نجبره ياخد حالة الإخفاء من بره لو حبينا
+  final bool? obscureText;
   final VoidCallback? onVisibilityToggle;
 
-  // 1. الديفولت كونستراكتور
   const AuthTextField({
     super.key,
     this.controller,
@@ -36,8 +33,6 @@ class AuthTextField extends StatefulWidget {
     this.onVisibilityToggle,
   });
 
-  // 2. Named Constructor للإيميل
-  // 2. Named Constructor للإيميل
   const AuthTextField.email({
     super.key,
     this.controller,
@@ -52,7 +47,6 @@ class AuthTextField extends StatefulWidget {
   }) : isPassword = false,
        keyboardType = TextInputType.emailAddress;
 
-  // 3. Named Constructor للباسورد
   const AuthTextField.password({
     super.key,
     this.controller,
@@ -67,7 +61,6 @@ class AuthTextField extends StatefulWidget {
        isValid = false,
        keyboardType = TextInputType.visiblePassword;
 
-  // 4. Named Constructor للاسم
   const AuthTextField.name({
     super.key,
     this.controller,

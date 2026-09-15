@@ -8,7 +8,7 @@ import 'package:volt/features/auth/presentation/widgets/auth_widgets/auth_button
 import 'package:volt/features/auth/presentation/widgets/auth_widgets/auth_hiding_eyes_robot.dart';
 import 'package:volt/features/auth/presentation/widgets/auth_widgets/auth_text_field.dart';
 import 'package:volt/features/auth/presentation/widgets/auth_widgets/auth_thinking_robot.dart';
-import 'package:volt/features/auth/presentation/widgets/register_widgets/password_strength_indicator.dart'; // الفايل اللي عملناه قبل كده
+import 'package:volt/features/auth/presentation/widgets/register_widgets/password_strength_indicator.dart';
 
 class RegisterPasswordInputBody extends StatefulWidget {
   const RegisterPasswordInputBody({

@@ -17,8 +17,7 @@ class LoadingBar extends StatefulWidget {
   State<LoadingBar> createState() => _LoadingBarState();
 }
 
-class _LoadingBarState extends State<LoadingBar>
-    with SingleTickerProviderStateMixin {
+class _LoadingBarState extends State<LoadingBar> with SingleTickerProviderStateMixin {
   late final AnimationController _controller;
   late final Animation<double> _animation;
 
@@ -46,8 +45,7 @@ class _LoadingBarState extends State<LoadingBar>
 
   @override
   Widget build(BuildContext context) {
-    final double responsiveWidth =
-        MediaQuery.sizeOf(context).width * widget.widthRatio;
+    final double responsiveWidth = MediaQuery.sizeOf(context).width * widget.widthRatio;
 
     return Container(
       width: responsiveWidth,

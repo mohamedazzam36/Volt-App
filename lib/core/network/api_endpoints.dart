@@ -1,5 +1,4 @@
 abstract final class ApiEndpoints {
-  // ================= Auth =================
   static const String guest = 'api/auth/guest';
   static const String register = 'api/auth/register';
   static const String login = 'api/auth/login';
@@ -10,32 +9,29 @@ abstract final class ApiEndpoints {
   static const String verifyResetOtp = 'api/auth/verify-reset-otp';
   static const String resetPassword = 'api/auth/reset-password';
 
-  // ================= Users =================
   static const String userMe = 'api/users/me';
 
-  // // ================= Content Types =================
-  // static const String contentTypes = 'content/content-types';
+  static const String publishedLessons = 'api/content/lessons/published';
 
-  // // ================= Levels =================
-  // static const String levels = 'content/levels';
-  // static const String swapLevelsOrder = 'content/levels/swap-order';
+  static String lessonProgress(int lessonId) => 'api/content/lessons/$lessonId/progress';
 
-  // static String levelDetails(String id) => 'content/levels/$id';
-  // static String levelLessons(String levelId) => 'content/levels/$levelId/lessons';
+  static String lessonDetails(int lessonId) => 'api/content/lessons/$lessonId';
 
-  // // ================= Lessons =================
-  // static const String lessons = 'content/lessons';
-  // static const String swapLessonsOrder = 'content/lessons/swap-order';
+  static String quizForLesson(int lessonId, {String lang = 'ar'}) =>
+      'api/quizzes/for-lesson/$lessonId?language=$lang';
 
-  // static String lessonDetails(String id) => 'content/lessons/$id';
-  // static String publishLesson(String id) => 'content/lessons/$id/publish';
-  // static String lessonContents(String lessonId) => 'content/lessons/$lessonId/contents';
+  static String startQuizAttempt(int quizId, {int? previousAttemptId, String lang = 'ar'}) {
+    String url = 'api/quiz-attempts?quizId=$quizId&language=$lang';
+    if (previousAttemptId != null) {
+      url += '&previousAttemptId=$previousAttemptId';
+    }
+    return url;
+  }
 
-  // // ================= Contents =================
-  // static const String swapContentsOrder = 'content/contents/swap-order';
+  static String submitAttempt(int attemptId, {String lang = 'ar'}) =>
+      'api/quiz-attempts/$attemptId/submit?language=$lang';
 
-  // static String contentDetails(String contentId) => 'content/contents/$contentId';
+  static const String placement = 'api/placement';
 
-  // // ================= Media =================
-  // static const String uploadMediaImages = 'content/media/images';
+  static String placementStart({String lang = 'ar'}) => 'api/placement/start?language=$lang';
 }

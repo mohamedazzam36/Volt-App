@@ -7,7 +7,7 @@ class OnboardingModel {
   final Color backgroundColor;
   final Color buttonColor;
   final String buttonText;
-  final bool isDark; // ممتازة جداً لو حابب تتحكم في لون النصوص أو حالة الـ Status Bar
+  final bool isDark;
 
   const OnboardingModel({
     required this.image,

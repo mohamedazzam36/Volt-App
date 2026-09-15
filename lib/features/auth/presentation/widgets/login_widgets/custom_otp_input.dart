@@ -53,7 +53,7 @@ class _CustomOtpInputState extends State<CustomOtpInput> {
         _focusNodes[index + 1].requestFocus();
       } else {
         _focusNodes[index].unfocus();
-        // Trigger onCompleted
+
         if (widget.onCompleted != null) {
           final otp = _controllers.map((e) => e.text).join();
           if (otp.length == widget.length) {

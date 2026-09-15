@@ -7,7 +7,7 @@ class ResetTokenModel {
   });
 
   factory ResetTokenModel.fromJson(Map<String, dynamic> json) => ResetTokenModel(
-    resetToken: json["data"]["resetToken"],
-    resetTokenExpiresAt: DateTime.parse(json["data"]["resetTokenExpiresAt"]),
+    resetToken: json["resetToken"],
+    resetTokenExpiresAt: DateTime.parse(json["resetTokenExpiresAt"]),
   );
 }

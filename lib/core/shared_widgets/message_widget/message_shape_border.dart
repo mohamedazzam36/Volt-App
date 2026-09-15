@@ -4,10 +4,10 @@ import 'package:volt/core/theme/app_colors.dart';
 class MessageShapeBorder extends ShapeBorder {
   final double arrowWidth;
   final double arrowHeight;
-  final double borderRadius; // بيطبق على الرسالة الكبيرة فقط
+  final double borderRadius;
   final Color borderColor;
   final double borderWidth;
-  final double thresholdHeight; // الحد الفاصل بين سطرين وأكتر (افتراضياً 65)
+  final double thresholdHeight;
 
   const MessageShapeBorder({
     this.arrowWidth = 20.0,
@@ -29,7 +29,6 @@ class MessageShapeBorder extends ShapeBorder {
   Path getOuterPath(Rect rect, {TextDirection? textDirection}) {
     final double bodyHeight = rect.height - arrowHeight;
 
-    // تحديد شكل المسار بناءً على الارتفاع
     if (bodyHeight <= thresholdHeight) {
       return _buildShortMessagePath(rect);
     } else {
@@ -37,10 +36,9 @@ class MessageShapeBorder extends ShapeBorder {
     }
   }
 
-  // 1. مسار الرسائل الصغيرة (سطر أو سطرين - كبسولة بأجناب دائرية كاملة)
   Path _buildShortMessagePath(Rect rect) {
     final double bodyBottom = rect.bottom - arrowHeight;
-    final double r = (bodyBottom - rect.top) / 2; // نص المسافة الرأسية بالظبط
+    final double r = (bodyBottom - rect.top) / 2;
     final double centerX = rect.center.dx;
 
     return Path()
@@ -55,7 +53,6 @@ class MessageShapeBorder extends ShapeBorder {
       ..close();
   }
 
-  // 2. مسار الرسائل الكبيرة (أكتر من سطرين - مستطيل بحواف ناعمة وخطوط رأسية)
   Path _buildLongMessagePath(Rect rect) {
     final double r = borderRadius;
     final double bodyBottom = rect.bottom - arrowHeight;

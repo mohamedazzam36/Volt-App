@@ -1,6 +1,3 @@
-// -------------------------------------------------------------
-// 2. Layout Extensions
-// -------------------------------------------------------------
 import 'package:flutter/material.dart';
 
 extension LayoutHelper on BuildContext {

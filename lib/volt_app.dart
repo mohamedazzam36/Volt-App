@@ -18,6 +18,7 @@ class VoltApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
+        navigatorKey: navigatorKey,
         debugShowCheckedModeBanner: false,
         onGenerateInitialRoutes: (initialRoute) => [
           AppRouter.onGenerateRoute(RouteSettings(name: initialRoute))!,

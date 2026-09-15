@@ -21,7 +21,7 @@ class SurpriseMeWidget extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(
-            AuthStrings.surpriseMe, // بدال 'فاجئنى'
+            AuthStrings.surpriseMe,
             style: TextStyle(
               fontSize: 12,
               fontWeight: FontWeight.w600,

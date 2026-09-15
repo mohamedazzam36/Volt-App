@@ -35,7 +35,7 @@ class SpeakingRobot extends StatelessWidget {
           offset: Offset((messageShiftingRatio - 0.5) * robotFinalWidth, 0),
           child: MessageWidget(
             message,
-            // maxWidth: robotFinalWidth * 1.5,
+
             isOneLine: isMessageOneLine,
           ),
         ),

@@ -21,7 +21,6 @@ class OnboardingFooter extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        // PAGE INDICATOR
         SizedBox(
           height: 8,
           child: Center(
@@ -35,7 +34,6 @@ class OnboardingFooter extends StatelessWidget {
 
         const SizedBox(height: 8),
 
-        // MAIN BUTTON
         CustomElevatedButton(
           onTap: onNext,
           text: currentPage.buttonText,

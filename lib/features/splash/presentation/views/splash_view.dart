@@ -9,6 +9,7 @@ import 'package:volt/core/shared_widgets/speaking_robot.dart';
 import 'package:volt/core/theme/app_colors.dart';
 import 'package:volt/core/theme/app_styles.dart';
 import 'package:volt/features/auth/presentation/cubits/auth_cubit/auth_cubit.dart';
+import 'package:volt/core/utils/assets_precache_service.dart';
 
 import '../widgets/loading_bar.dart';
 
@@ -22,6 +23,7 @@ class SplashView extends StatefulWidget {
 
 class _SplashViewState extends State<SplashView> {
   late final DateTime _startTime;
+  bool _precached = false;
 
   @override
   void initState() {
@@ -29,6 +31,15 @@ class _SplashViewState extends State<SplashView> {
     _startTime = DateTime.now();
 
     context.read<AuthCubit>().checkAuthStatus();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (!_precached) {
+      AssetsPrecacheService.precacheAll(context);
+      _precached = true;
+    }
   }
 
   @override

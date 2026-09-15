@@ -79,8 +79,7 @@ class AuthRepoImpl implements AuthRepo {
       if (token == null || token.isEmpty) {
         return Left(UnknownFailure('No token found'));
       }
-      // final result = await _remoteDataSource.getProfile();
-      //TODO handle this
+
       return const Right(
         UserModel(
           age: 1,

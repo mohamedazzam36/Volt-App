@@ -64,26 +64,48 @@ class AuthInterceptor extends Interceptor {
   Future<bool> _refreshToken() async {
     try {
       final refreshToken = await _secureStorageHelper.getRefreshToken();
-      if (refreshToken == null) {
+      if (refreshToken == null || refreshToken.isEmpty) {
         return false;
       }
-      final tokenDio = Dio(BaseOptions(baseUrl: _dio.options.baseUrl));
+
+      final tokenDio = Dio(
+        BaseOptions(
+          baseUrl: _dio.options.baseUrl,
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+          },
+        ),
+      );
 
       final response = await tokenDio.post(
         ApiEndpoints.refresh,
-        data: {'refresh_token': refreshToken},
+        data: {'refreshToken': refreshToken},
       );
 
       if (response.statusCode == 200) {
-        final newAccessToken = response.data['data']['access_token'];
-        final newRefreshToken = response.data['data']['refresh_token'];
+        final responseData = response.data;
+        final dataBody = responseData is Map && responseData['success'] == true
+            ? responseData['data']
+            : responseData;
+
+        final newAccessToken = dataBody['accessToken'];
+        final newRefreshToken = dataBody['refreshToken'];
+
+        if (newAccessToken == null) return false;
 
         await _secureStorageHelper.saveAccessToken(newAccessToken);
-        await _secureStorageHelper.saveRefreshToken(newRefreshToken);
+        if (newRefreshToken != null) {
+          await _secureStorageHelper.saveRefreshToken(newRefreshToken);
+        }
         return true;
       }
       return false;
-    } catch (_) {
+    } catch (e, st) {
+      assert(() {
+        print('[AuthInterceptor] _refreshToken failed: $e\n$st');
+        return true;
+      }());
       return false;
     }
   }

@@ -7,10 +7,10 @@ import 'package:volt/core/theme/app_styles.dart';
 class MessageWidget extends StatelessWidget {
   final double arrowWidth;
   final double arrowHeight;
-  final double borderRadius; // بيطبق على الرسالة الكبيرة فقط
+  final double borderRadius;
   final Color borderColor;
   final double borderWidth;
-  final double thresholdHeight; // الحد الفاصل بين سطرين وأكتر (افتراضياً 65)
+  final double thresholdHeight;
   final String message;
   final double? fontSize;
   final double? maxWidth;

@@ -100,15 +100,11 @@ class _AuthFinishLoadingViewState extends State<AuthFinishLoadingView> {
   }
 }
 
-// ---------------------------------------------------------
-// ويدجت صغيرة لرسم النجمة الصفراء (Sparkle) اللي في الخلفية
-// ---------------------------------------------------------
 class _BackgroundSparkle extends StatelessWidget {
   const _BackgroundSparkle();
 
   @override
   Widget build(BuildContext context) {
-    // بنرسم مربع صغير ونلفه بزاوية 45 درجة عشان يدينا شكل الماسة/النجمة
     return const Icon(
       Icons.bolt,
       color: AppColors.accentYellow,

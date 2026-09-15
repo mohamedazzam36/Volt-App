@@ -27,11 +27,11 @@ abstract final class AppValidators {
 
     int score = 0;
 
-    if (password.length >= 8) score++; // 1. الطول 8 أحرف على الأقل
-    if (RegExp(r'[a-z]').hasMatch(password)) score++; // 2. حرف صغير
-    if (RegExp(r'[A-Z]').hasMatch(password)) score++; // 3. حرف كبير
-    if (RegExp(r'[0-9]').hasMatch(password)) score++; // 4. رقم
-    if (RegExp(r'[!@#\$&*~%^()_+=<>?]').hasMatch(password)) score++; // 5. رمز خاص
+    if (password.length >= 8) score++;
+    if (RegExp(r'[a-z]').hasMatch(password)) score++;
+    if (RegExp(r'[A-Z]').hasMatch(password)) score++;
+    if (RegExp(r'[0-9]').hasMatch(password)) score++;
+    if (RegExp(r'[!@#\$&*~%^()_+=<>?]').hasMatch(password)) score++;
 
     return score;
   }
@@ -43,7 +43,6 @@ abstract final class AppValidators {
       return AuthStrings.emptyNameError;
     }
 
-    // يتأكد إن الاسم على الأقل حرفين
     if (text.length < 2) {
       return AuthStrings.shortNameError;
     }
