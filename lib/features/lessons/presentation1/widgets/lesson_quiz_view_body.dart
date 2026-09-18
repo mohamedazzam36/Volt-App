@@ -10,7 +10,7 @@ import 'package:volt/core/shared_widgets/quiz_widgets/true_false_question_widget
 import 'package:volt/core/shared_widgets/speaking_robot.dart';
 import 'package:volt/core/theme/app_colors.dart';
 import 'package:volt/core/theme/app_styles.dart';
-import 'package:volt/features/lessons/presentation1/cubits/lesson_content_cubit/lesson_quiz_cubit/lesson_quiz_cubit.dart';
+import 'package:volt/features/lessons/presentation1/cubits/lesson_quiz_cubit/lesson_quiz_cubit.dart';
 
 class LessonQuizViewBody extends StatelessWidget {
   const LessonQuizViewBody({super.key});
@@ -84,7 +84,7 @@ class _QuizQuestionBody extends StatelessWidget {
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Icon(Icons.lightbulb_rounded, color: AppColors.brandPrimary, size: 20),
+                    const Icon(Icons.lightbulb_rounded, color: AppColors.brandPrimary, size: 20),
                     const SizedBox(width: 8),
                     Expanded(
                       child: Text(

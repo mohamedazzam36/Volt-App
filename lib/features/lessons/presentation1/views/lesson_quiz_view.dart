@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:volt/core/constants/assets.gen.dart';
 import 'package:volt/core/extensions/snack_bar_extension.dart';
 import 'package:volt/core/routing/routes.dart';
-import 'package:volt/features/lessons/presentation1/cubits/lesson_content_cubit/lesson_quiz_cubit/lesson_quiz_cubit.dart';
+import 'package:volt/features/lessons/presentation1/cubits/lesson_quiz_cubit/lesson_quiz_cubit.dart';
 import 'package:volt/features/lessons/presentation1/widgets/lesson_quiz_app_bar.dart';
 import 'package:volt/features/lessons/presentation1/widgets/lesson_quiz_view_body.dart';
 

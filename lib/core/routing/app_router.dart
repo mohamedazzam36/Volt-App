@@ -1,13 +1,11 @@
 ﻿import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../models/quiz_attempt/quiz_question_for_attempt_model.dart';
-import './routes.dart';
 import 'package:volt/features/auth/presentation/views/auth_view.dart';
 import 'package:volt/features/auth/presentation/views/login_view.dart';
 import 'package:volt/features/auth/presentation/views/register_view.dart';
 import 'package:volt/features/home/presentation/cubits/home_cubit.dart';
 import 'package:volt/features/lessons/presentation1/cubits/lesson_content_cubit/lesson_content_cubit.dart';
-import 'package:volt/features/lessons/presentation1/cubits/lesson_content_cubit/lesson_quiz_cubit/lesson_quiz_cubit.dart';
+import 'package:volt/features/lessons/presentation1/cubits/lesson_quiz_cubit/lesson_quiz_cubit.dart';
 import 'package:volt/features/lessons/presentation1/views/lesson_content_view.dart';
 import 'package:volt/features/lessons/presentation1/views/lesson_quiz_result_view.dart';
 import 'package:volt/features/lessons/presentation1/views/lesson_quiz_view.dart';
@@ -18,8 +16,10 @@ import 'package:volt/features/quiz/presentation/views/quiz_initial_view.dart';
 import 'package:volt/features/splash/presentation/views/splash_view.dart';
 
 import '../di/service_locator.dart';
+import '../models/quiz_attempt/quiz_question_for_attempt_model.dart';
 import '../storage/cache_helper.dart';
 import '../storage/pref_keys.dart';
+import './routes.dart';
 
 class LessonQuizRetryArgs {
   final List<QuizQuestionForAttemptModel> retryQuestions;
