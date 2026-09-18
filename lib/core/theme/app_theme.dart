@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:volt/core/constants/fonts.gen.dart';
+﻿import 'package:flutter/material.dart';
+import '../constants/fonts.gen.dart';
 
 import 'app_colors.dart';
 

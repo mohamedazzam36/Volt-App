@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:volt/core/constants/app_strings.dart';
 import 'package:volt/core/constants/assets.gen.dart';
 import 'package:volt/core/extensions/navigation_extension.dart';
@@ -8,10 +9,8 @@ import 'package:volt/core/routing/routes.dart';
 import 'package:volt/core/shared_widgets/speaking_robot.dart';
 import 'package:volt/core/theme/app_colors.dart';
 import 'package:volt/core/theme/app_styles.dart';
-import 'package:volt/features/auth/presentation/cubits/auth_cubit/auth_cubit.dart';
 import 'package:volt/core/utils/assets_precache_service.dart';
-
-import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:volt/features/auth/presentation/cubits/auth_cubit/auth_cubit.dart';
 
 import '../widgets/loading_bar.dart';
 

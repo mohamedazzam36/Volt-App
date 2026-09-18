@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:volt/core/constants/assets.gen.dart';
+import '../constants/assets.gen.dart';
 
 class AssetsPrecacheService {
   static Future<void> precacheAll(BuildContext context) async {

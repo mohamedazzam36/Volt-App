@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:volt/core/extensions/ui_extension.dart';
-import 'package:volt/core/shared_widgets/app_clouds_background/backgrounds/clouds_header.dart';
-import 'package:volt/core/shared_widgets/app_clouds_background/backgrounds/waves_footer.dart';
+﻿import 'package:flutter/material.dart';
+import '../../../extensions/ui_extension.dart';
+import './clouds_header.dart';
+import './waves_footer.dart';
 
 class AppCloudsBackgroundLayout extends StatelessWidget {
   const AppCloudsBackgroundLayout({

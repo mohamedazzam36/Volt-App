@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:volt/core/extensions/ui_extension.dart';
-import 'package:volt/core/shared_widgets/app_clouds_background/backgrounds/animated_cloud.dart';
-import 'package:volt/core/shared_widgets/app_clouds_background/backgrounds/animated_star.dart';
+﻿import 'package:flutter/material.dart';
+import '../../../extensions/ui_extension.dart';
+import './animated_cloud.dart';
+import './animated_star.dart';
 
 class CloudsHeader extends StatefulWidget {
   final bool startFromLeft;

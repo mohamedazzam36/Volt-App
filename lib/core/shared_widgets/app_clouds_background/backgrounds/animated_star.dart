@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:volt/core/shared_widgets/app_clouds_background/backgrounds/star_widget.dart';
+﻿import 'package:flutter/material.dart';
+import './star_widget.dart';
 
 class AnimatedStar extends StatelessWidget {
   const AnimatedStar({

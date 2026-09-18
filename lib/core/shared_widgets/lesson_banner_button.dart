@@ -1,6 +1,6 @@
 ﻿import 'package:flutter/material.dart';
-import 'package:volt/core/constants/assets.gen.dart';
-import 'package:volt/core/theme/app_colors.dart';
+import '../constants/assets.gen.dart';
+import '../theme/app_colors.dart';
 
 class LessonBannerButton extends StatefulWidget {
   final VoidCallback onTap;

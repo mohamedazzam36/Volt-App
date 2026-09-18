@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:volt/core/shared_widgets/app_clouds_background/backgrounds/star_painter.dart';
+﻿import 'package:flutter/material.dart';
+import './star_painter.dart';
 
 class StarWidget extends StatelessWidget {
   final double size;

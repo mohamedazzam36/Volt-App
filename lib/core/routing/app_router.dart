@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:volt/core/models/quiz_attempt/quiz_question_for_attempt_model.dart';
-import 'package:volt/core/routing/routes.dart';
+import '../models/quiz_attempt/quiz_question_for_attempt_model.dart';
+import './routes.dart';
 import 'package:volt/features/auth/presentation/views/auth_view.dart';
 import 'package:volt/features/auth/presentation/views/login_view.dart';
 import 'package:volt/features/auth/presentation/views/register_view.dart';

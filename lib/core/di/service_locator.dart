@@ -1,15 +1,13 @@
-import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
+﻿import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http_cache_hive_store/http_cache_hive_store.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:volt/core/extensions/navigation_extension.dart';
-import 'package:volt/core/network/cache_interceptor_helper.dart';
-import 'package:volt/core/network/response_unwrapper_interceptor.dart';
+import 'package:volt/core/network/interceptors/cache_interceptor_helper.dart';
+import 'package:volt/core/network/interceptors/response_unwrapper_interceptor.dart';
 import 'package:volt/core/routing/routes.dart';
 import 'package:volt/core/storage/cache_helper.dart';
 import 'package:volt/features/auth/data/data_sources/auth_local_data_source.dart';
@@ -32,7 +30,9 @@ import 'package:volt/features/main_layout/presentation/cubits/main_layout_cubit/
 import 'package:volt/volt_app.dart';
 
 import '../network/api_service.dart';
-import '../network/auth_interceptor.dart';
+import '../network/interceptors/auth_interceptor.dart';
+import '../network/interceptors/cache_debug_interceptor.dart';
+import '../network/interceptors/cache_header_injector_interceptor.dart';
 import '../network/network_cache_manager.dart';
 import '../storage/secure_storage_helper.dart';
 
@@ -85,19 +85,22 @@ Future<void> _initCore() async {
         sl<AuthCubit>().logout();
       },
     ),
+    CacheHeaderInjectorInterceptor(),
     CacheInterceptorHelper.getCacheInterceptor(hiveCacheStore: sl()),
+    CacheDebugInterceptor(),
+
     ResponseUnwrapperInterceptor(),
 
-    if (kDebugMode)
-      PrettyDioLogger(
-        requestHeader: true,
-        requestBody: true,
-        responseBody: true,
-        responseHeader: false,
-        error: true,
-        compact: true,
-        maxWidth: 90,
-      ),
+    // if (kDebugMode)
+    //   PrettyDioLogger(
+    //     requestHeader: true,
+    //     requestBody: true,
+    //     responseBody: true,
+    //     responseHeader: false,
+    //     error: true,
+    //     compact: true,
+    //     maxWidth: 90,
+    //   ),
   ]);
 
   sl.registerLazySingleton(() => dio);

@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
-import 'package:volt/core/extensions/ui_extension.dart';
-import 'package:volt/core/shared_widgets/app_clouds_background/backgrounds/waves_footer_painter.dart';
+﻿import 'package:flutter/material.dart';
+import '../../../extensions/ui_extension.dart';
+import './waves_footer_painter.dart';
 
 class WavesFooter extends StatelessWidget {
   const WavesFooter({

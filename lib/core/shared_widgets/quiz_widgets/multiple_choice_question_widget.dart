@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
-import 'package:volt/core/extensions/text_style_extension.dart';
-import 'package:volt/core/models/quiz_attempt/quiz_answer_option_model.dart';
-import 'package:volt/core/theme/app_colors.dart';
-import 'package:volt/core/theme/app_styles.dart';
+﻿import 'package:flutter/material.dart';
+import '../../extensions/text_style_extension.dart';
+import '../../models/quiz_attempt/quiz_answer_option_model.dart';
+import '../../theme/app_colors.dart';
+import '../../theme/app_styles.dart';
 
 class MultipleChoiceQuestionWidget extends StatelessWidget {
   final List<QuizAnswerOptionModel> options;

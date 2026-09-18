@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
-import 'package:volt/core/extensions/text_style_extension.dart';
-import 'package:volt/core/shared_widgets/message_widget/message_shape_border.dart';
-import 'package:volt/core/theme/app_colors.dart';
-import 'package:volt/core/theme/app_styles.dart';
+﻿import 'package:flutter/material.dart';
+import '../../extensions/text_style_extension.dart';
+import './message_shape_border.dart';
+import '../../theme/app_colors.dart';
+import '../../theme/app_styles.dart';
 
 class MessageWidget extends StatelessWidget {
   final double arrowWidth;

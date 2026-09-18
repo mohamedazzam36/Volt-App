@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
-import 'package:volt/core/constants/app_strings.dart';
-import 'package:volt/core/extensions/navigation_extension.dart';
-import 'package:volt/core/extensions/text_style_extension.dart';
-import 'package:volt/core/theme/app_colors.dart';
-import 'package:volt/core/theme/app_styles.dart';
+﻿import 'package:flutter/material.dart';
+import '../constants/app_strings.dart';
+import '../extensions/navigation_extension.dart';
+import '../extensions/text_style_extension.dart';
+import '../theme/app_colors.dart';
+import '../theme/app_styles.dart';
 
 class BackGhostButton extends StatelessWidget {
   final String? text;
