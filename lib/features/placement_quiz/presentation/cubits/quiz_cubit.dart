@@ -1,10 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import 'package:volt/features/quiz/data/models/question_model.dart';
-
-import 'package:volt/features/quiz/data/repositories/quiz_repository.dart';
-
-import 'package:volt/features/quiz/presentation/cubits/quiz_state.dart';
+import 'package:volt/features/placement_quiz/data/models/question_model.dart';
+import 'package:volt/features/placement_quiz/data/repositories/quiz_repository.dart';
+import 'package:volt/features/placement_quiz/presentation/cubits/quiz_state.dart';
 
 class QuizCubit extends Cubit<QuizState> {
   final QuizRepository repository;

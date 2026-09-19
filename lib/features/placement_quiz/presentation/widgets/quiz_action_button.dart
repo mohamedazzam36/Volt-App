@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:volt/core/constants/app_strings.dart';
 import 'package:volt/core/shared_widgets/custom_elevated_button.dart';
 import 'package:volt/core/theme/app_colors.dart';
-import 'package:volt/features/quiz/data/models/question_model.dart';
+import 'package:volt/features/placement_quiz/data/models/question_model.dart';
 
 import '../cubits/quiz_cubit.dart';
 import '../cubits/quiz_state.dart';

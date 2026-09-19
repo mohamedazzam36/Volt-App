@@ -4,8 +4,8 @@ import 'package:volt/core/constants/app_strings.dart';
 import 'package:volt/core/extensions/navigation_extension.dart';
 import 'package:volt/core/routing/routes.dart';
 import 'package:volt/core/theme/app_colors.dart';
-import 'package:volt/features/quiz/presentation/cubits/quiz_cubit.dart';
-import 'package:volt/features/quiz/presentation/views/quiz_initial_view.dart';
+import 'package:volt/features/placement_quiz/presentation/cubits/quiz_cubit.dart';
+import 'package:volt/features/placement_quiz/presentation/views/quiz_initial_view.dart';
 
 import '../../data/models/question_model.dart';
 import '../cubits/quiz_state.dart';

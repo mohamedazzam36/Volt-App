@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:volt/core/extensions/navigation_extension.dart';
 import 'package:volt/core/theme/app_colors.dart';
-import 'package:volt/features/lessons/presentation1/cubits/lesson_content_cubit/lesson_content_cubit.dart';
+import 'package:volt/features/lessons/presentation/cubits/lesson_content_cubit/lesson_content_cubit.dart';
 
 class LessonContentAppBar extends StatefulWidget implements PreferredSizeWidget {
   final VoidCallback? onBackTap;

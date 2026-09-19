@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:volt/features/quiz/data/repositories/quiz_repository.dart';
-import 'package:volt/features/quiz/presentation/cubits/quiz_cubit.dart';
+import 'package:volt/features/placement_quiz/data/repositories/quiz_repository.dart';
+import 'package:volt/features/placement_quiz/presentation/cubits/quiz_cubit.dart';
 
 void main() {
   test('previousQuestion returns to the previous question', () async {

@@ -9,10 +9,10 @@ import 'package:volt/core/shared_widgets/back_ghost_button.dart';
 import 'package:volt/core/shared_widgets/custom_elevated_button.dart';
 import 'package:volt/core/shared_widgets/speaking_robot.dart';
 import 'package:volt/core/theme/app_colors.dart';
-import 'package:volt/features/quiz/data/repositories/quiz_repository.dart';
-import 'package:volt/features/quiz/presentation/cubits/quiz_cubit.dart';
-import 'package:volt/features/quiz/presentation/views/quiz_screen.dart';
-import 'package:volt/features/quiz/presentation/widgets/green_thinking_robot.dart';
+import 'package:volt/features/placement_quiz/data/repositories/quiz_repository.dart';
+import 'package:volt/features/placement_quiz/presentation/cubits/quiz_cubit.dart';
+import 'package:volt/features/placement_quiz/presentation/views/quiz_screen.dart';
+import 'package:volt/features/placement_quiz/presentation/widgets/green_thinking_robot.dart';
 
 class QuizStartViewBody extends StatefulWidget {
   const QuizStartViewBody({super.key});

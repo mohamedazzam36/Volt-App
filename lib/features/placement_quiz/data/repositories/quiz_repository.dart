@@ -1,7 +1,7 @@
 import 'package:volt/core/constants/app_strings.dart';
 import 'package:volt/core/constants/assets.gen.dart';
-import 'package:volt/features/quiz/data/models/option_model.dart';
-import 'package:volt/features/quiz/data/models/question_model.dart';
+import 'package:volt/features/placement_quiz/data/models/option_model.dart';
+import 'package:volt/features/placement_quiz/data/models/question_model.dart';
 
 class QuizRepository {
   Future<List<QuestionModel>> getQuestions() async {

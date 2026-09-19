@@ -24,8 +24,8 @@ import 'package:volt/features/home/presentation/cubits/home_cubit.dart';
 import 'package:volt/features/lessons/data/data_sources/lessons_remote_data_source.dart';
 import 'package:volt/features/lessons/data/repos/lessons_repo.dart';
 import 'package:volt/features/lessons/data/repos/lessons_repo_impl.dart';
-import 'package:volt/features/lessons/presentation1/cubits/lesson_content_cubit/lesson_content_cubit.dart';
-import 'package:volt/features/lessons/presentation1/cubits/lesson_quiz_cubit/lesson_quiz_cubit.dart';
+import 'package:volt/features/lessons/presentation/cubits/lesson_content_cubit/lesson_content_cubit.dart';
+import 'package:volt/features/lessons/presentation/cubits/lesson_quiz_cubit/lesson_quiz_cubit.dart';
 import 'package:volt/features/main_layout/presentation/cubits/main_layout_cubit/main_layout_cubit.dart';
 import 'package:volt/volt_app.dart';
 

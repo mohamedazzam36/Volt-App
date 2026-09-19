@@ -5,42 +5,17 @@ import 'package:volt/core/constants/app_strings.dart';
 import 'package:volt/core/constants/assets.gen.dart';
 import 'package:volt/core/enums/app_enums.dart';
 import 'package:volt/core/shared_widgets/custom_elevated_button.dart';
-import 'package:volt/core/shared_widgets/quiz_widgets/essay_question_widget.dart';
-import 'package:volt/core/shared_widgets/quiz_widgets/multiple_choice_question_widget.dart';
-import 'package:volt/core/shared_widgets/quiz_widgets/true_false_question_widget.dart';
 import 'package:volt/core/shared_widgets/speaking_robot.dart';
 import 'package:volt/core/theme/app_colors.dart';
 import 'package:volt/core/theme/app_styles.dart';
-import 'package:volt/features/lessons/presentation1/cubits/lesson_quiz_cubit/lesson_quiz_cubit.dart';
+import 'package:volt/features/lessons/presentation/cubits/lesson_quiz_cubit/lesson_quiz_cubit.dart';
+import 'package:volt/features/lessons/presentation/widgets/lesson_quiz/help_button.dart';
+import 'package:volt/features/lessons/presentation/widgets/lesson_quiz/quiz_answer_widget.dart';
 
-class LessonQuizViewBody extends StatelessWidget {
-  const LessonQuizViewBody({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<LessonQuizCubit, LessonQuizState>(
-      builder: (context, state) => switch (state) {
-        LessonQuizLoading() => const Center(child: CircularProgressIndicator()),
-        LessonQuizError() => Center(
-          child: Text(
-            state.message,
-            style: AppStyles.semiBold14.copyWith(color: AppColors.statusError),
-            textAlign: TextAlign.center,
-          ),
-        ),
-        LessonQuizQuestion() => _QuizQuestionBody(state: state),
-        _ => const Center(
-          child: CircularProgressIndicator(),
-        ),
-      },
-    );
-  }
-}
-
-class _QuizQuestionBody extends StatelessWidget {
+class QuizQuestionBody extends StatelessWidget {
   final LessonQuizQuestion state;
 
-  const _QuizQuestionBody({required this.state});
+  const QuizQuestionBody({super.key, required this.state});
 
   @override
   Widget build(BuildContext context) {
@@ -119,7 +94,11 @@ class _QuizQuestionBody extends StatelessWidget {
         const SliverToBoxAdapter(child: SizedBox(height: 24)),
 
         SliverToBoxAdapter(
-          child: _buildAnswerWidget(context, cubit, question.questionType),
+          child: QuizAnswerWidget(
+            type: question.questionType,
+            state: state,
+            cubit: cubit,
+          ),
         ),
 
         const SliverToBoxAdapter(child: SizedBox(height: 16)),
@@ -128,7 +107,7 @@ class _QuizQuestionBody extends StatelessWidget {
           SliverToBoxAdapter(
             child: Align(
               alignment: AlignmentDirectional.centerEnd,
-              child: _HelpButton(
+              child: HelpButton(
                 onTap: () {},
               ),
             ),
@@ -158,78 +137,10 @@ class _QuizQuestionBody extends StatelessWidget {
     );
   }
 
-  Widget _buildAnswerWidget(
-    BuildContext context,
-    LessonQuizCubit cubit,
-    QuestionType type,
-  ) {
-    return switch (type) {
-      QuestionType.trueFalse => TrueFalseQuestionWidget(
-        options: state.question.options ?? [],
-        selectedOptionId: state.selectedOptionId,
-        onSelect: cubit.selectAnswer,
-      ),
-      QuestionType.multipleChoice => MultipleChoiceQuestionWidget(
-        options: state.question.options ?? [],
-        selectedOptionId: state.selectedOptionId,
-        onSelect: cubit.selectAnswer,
-      ),
-      QuestionType.essay => EssayQuestionWidget(
-        essayText: state.essayText,
-        onChanged: cubit.updateEssay,
-        onSubmit: state.essayText.trim().isNotEmpty ? cubit.nextQuestion : null,
-      ),
-      _ => const SizedBox.shrink(),
-    };
-  }
-
   bool _canProceed(QuestionType type) {
     return switch (type) {
       QuestionType.trueFalse || QuestionType.multipleChoice => state.selectedOptionId != null,
       _ => false,
     };
-  }
-}
-
-class _HelpButton extends StatefulWidget {
-  final VoidCallback onTap;
-
-  const _HelpButton({required this.onTap});
-
-  @override
-  State<_HelpButton> createState() => _HelpButtonState();
-}
-
-class _HelpButtonState extends State<_HelpButton> {
-  double _bottom = 3;
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTapDown: (_) => setState(() => _bottom = 0),
-      onTapUp: (_) {
-        setState(() => _bottom = 3);
-        widget.onTap();
-      },
-      onTapCancel: () => setState(() => _bottom = 3),
-      child: Container(
-        decoration: BoxDecoration(
-          color: AppColors.brandPrimary.withAlpha(80),
-          borderRadius: BorderRadius.circular(30),
-        ),
-        child: Container(
-          margin: EdgeInsets.only(bottom: _bottom),
-          padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 10),
-          decoration: BoxDecoration(
-            color: AppColors.brandPrimary,
-            borderRadius: BorderRadius.circular(30),
-          ),
-          child: Text(
-            LessonStrings.help,
-            style: AppStyles.bold14.copyWith(color: AppColors.textOnBrand),
-          ),
-        ),
-      ),
-    );
   }
 }
