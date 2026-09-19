@@ -6,16 +6,14 @@ import 'package:volt/core/models/quiz_attempt_result/quiz_attempt_result_model.d
 import 'package:volt/core/models/submit_attempt/quiz_attempt_essay_answer_model.dart';
 import 'package:volt/core/models/submit_attempt/quiz_attempt_mistake_model.dart';
 import 'package:volt/core/models/submit_attempt/submit_quiz_attempt_model.dart';
-import 'package:volt/core/network/network_cache_manager.dart';
 import 'package:volt/features/lessons/data/repos/lessons_repo.dart';
 
 part 'lesson_quiz_state.dart';
 
 class LessonQuizCubit extends Cubit<LessonQuizState> {
-  LessonQuizCubit(this._lessonsRepo, this._cacheManager) : super(LessonQuizInitial());
+  LessonQuizCubit(this._lessonsRepo) : super(LessonQuizInitial());
 
   final LessonsRepo _lessonsRepo;
-  final NetworkCacheManager _cacheManager;
 
   QuizAttemptModel? _attemptModel;
   int _currentIndex = 0;
@@ -149,7 +147,7 @@ class LessonQuizCubit extends Cubit<LessonQuizState> {
     result.fold(
       (failure) => emit(LessonQuizError(message: failure.errMessage)),
       (resultModel) async {
-        await _cacheManager.clearHomeCache();
+        await _lessonsRepo.clearHomeCache();
         emit(LessonQuizSubmitted(result: resultModel));
       },
     );

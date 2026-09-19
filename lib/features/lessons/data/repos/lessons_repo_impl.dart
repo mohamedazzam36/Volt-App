@@ -6,14 +6,16 @@ import 'package:volt/core/models/quiz_attempt/quiz_attempt_model.dart';
 import 'package:volt/core/models/quiz_attempt_result/quiz_attempt_result_model.dart';
 import 'package:volt/core/models/submit_attempt/submit_quiz_attempt_model.dart';
 import 'package:volt/features/lessons/data/data_sources/lessons_remote_data_source.dart';
+import 'package:volt/features/lessons/data/data_sources/lessons_local_data_source.dart';
 import 'package:volt/features/lessons/data/models/lesson_detail/lesson_content_model.dart';
 import 'package:volt/features/lessons/data/models/lesson_quiz_model.dart';
 import 'package:volt/features/lessons/data/repos/lessons_repo.dart';
 
 class LessonsRepoImpl implements LessonsRepo {
   final LessonsRemoteDataSource _lessonsRemoteDataSource;
+  final LessonsLocalDataSource _lessonsLocalDataSource;
 
-  LessonsRepoImpl(this._lessonsRemoteDataSource);
+  LessonsRepoImpl(this._lessonsRemoteDataSource, this._lessonsLocalDataSource);
 
   @override
   Future<Either<Failure, List<LessonContentModel>>> getLessonContents({required int id}) async {
@@ -76,6 +78,16 @@ class LessonsRepoImpl implements LessonsRepo {
       return right(result);
     } on DioException catch (e) {
       return left(ApiFailure.fromDioException(e));
+    } catch (e) {
+      return left(UnknownFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> clearHomeCache() async {
+    try {
+      await _lessonsLocalDataSource.clearHomeCache();
+      return right(null);
     } catch (e) {
       return left(UnknownFailure(e.toString()));
     }

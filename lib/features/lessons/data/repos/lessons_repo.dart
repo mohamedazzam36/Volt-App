@@ -15,4 +15,5 @@ abstract class LessonsRepo {
     required int attemptId,
     required SubmitQuizAttemptModel body,
   });
+  Future<Either<Failure, void>> clearHomeCache();
 }

@@ -1,4 +1,4 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:volt/features/auth/presentation/views/auth_view.dart';
 import 'package:volt/features/auth/presentation/views/login_view.dart';
@@ -16,22 +16,9 @@ import 'package:volt/features/placement_quiz/presentation/views/quiz_initial_vie
 import 'package:volt/features/splash/presentation/views/splash_view.dart';
 
 import '../di/service_locator.dart';
-import '../models/quiz_attempt/quiz_question_for_attempt_model.dart';
 import '../storage/cache_helper.dart';
 import '../storage/pref_keys.dart';
 import './routes.dart';
-
-class LessonQuizRetryArgs {
-  final List<QuizQuestionForAttemptModel> retryQuestions;
-  final int attemptId;
-  final int retryAttemptNumber;
-
-  const LessonQuizRetryArgs({
-    required this.retryQuestions,
-    required this.attemptId,
-    required this.retryAttemptNumber,
-  });
-}
 
 class AppRouter {
   static const initialRoute = Routes.splash;

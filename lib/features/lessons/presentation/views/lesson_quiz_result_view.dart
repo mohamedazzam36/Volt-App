@@ -4,11 +4,11 @@ import 'package:volt/core/constants/assets.gen.dart';
 import 'package:volt/core/extensions/navigation_extension.dart';
 import 'package:volt/core/extensions/text_style_extension.dart';
 import 'package:volt/core/models/quiz_attempt_result/quiz_attempt_result_model.dart';
-import 'package:volt/core/routing/app_router.dart';
 import 'package:volt/core/routing/routes.dart';
+import 'package:volt/core/shared_widgets/custom_elevated_button.dart';
 import 'package:volt/core/theme/app_colors.dart';
 import 'package:volt/core/theme/app_styles.dart';
-import 'package:volt/features/lessons/presentation/widgets/lesson_quiz_result/action_button.dart';
+import 'package:volt/features/lessons/presentation/views/lesson_quiz_view.dart';
 import 'package:volt/features/lessons/presentation/widgets/lesson_quiz_result/score_gauge.dart';
 import 'package:volt/features/lessons/presentation/widgets/lesson_quiz_result/stat_card.dart';
 
@@ -143,9 +143,10 @@ class LessonQuizResultView extends StatelessWidget {
                   children: [
                     if (canRetry) ...[
                       Expanded(
-                        child: ActionButton(
-                          label: LessonStrings.retryQuiz,
+                        child: CustomElevatedButton(
+                          text: LessonStrings.retryQuiz,
                           backgroundColor: const Color(0xFF5C9E54),
+                          width: double.infinity,
                           onTap: () {
                             context.pushReplacementNamed(
                               Routes.lessonQuizRetry,
@@ -161,9 +162,10 @@ class LessonQuizResultView extends StatelessWidget {
                       const SizedBox(width: 16),
                     ],
                     Expanded(
-                      child: ActionButton(
-                        label: CommonStrings.continueAction,
+                      child: CustomElevatedButton(
+                        text: CommonStrings.continueAction,
                         backgroundColor: const Color(0xFF55A6F8),
+                        width: double.infinity,
                         onTap: () {
                           context.pushNamedAndRemoveAll(
                             Routes.mainLayout,
@@ -176,9 +178,10 @@ class LessonQuizResultView extends StatelessWidget {
 
                 if (result.essayResults?.isNotEmpty == true) ...[
                   const SizedBox(height: 16),
-                  ActionButton(
-                    label: LessonStrings.showEssayAnswers,
+                  CustomElevatedButton(
+                    text: LessonStrings.showEssayAnswers,
                     backgroundColor: const Color(0xFF5C9E54),
+                    width: double.infinity,
                     onTap: () {},
                   ),
                 ],

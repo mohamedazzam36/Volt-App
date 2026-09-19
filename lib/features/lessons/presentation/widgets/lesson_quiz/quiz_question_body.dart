@@ -9,7 +9,6 @@ import 'package:volt/core/shared_widgets/speaking_robot.dart';
 import 'package:volt/core/theme/app_colors.dart';
 import 'package:volt/core/theme/app_styles.dart';
 import 'package:volt/features/lessons/presentation/cubits/lesson_quiz_cubit/lesson_quiz_cubit.dart';
-import 'package:volt/features/lessons/presentation/widgets/lesson_quiz/help_button.dart';
 import 'package:volt/features/lessons/presentation/widgets/lesson_quiz/quiz_answer_widget.dart';
 
 class QuizQuestionBody extends StatelessWidget {
@@ -107,7 +106,9 @@ class QuizQuestionBody extends StatelessWidget {
           SliverToBoxAdapter(
             child: Align(
               alignment: AlignmentDirectional.centerEnd,
-              child: HelpButton(
+              child: CustomElevatedButton(
+                text: LessonStrings.help,
+                width: 150,
                 onTap: () {},
               ),
             ),

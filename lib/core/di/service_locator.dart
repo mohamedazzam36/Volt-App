@@ -1,4 +1,4 @@
-﻿import 'package:dio/dio.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
@@ -22,6 +22,7 @@ import 'package:volt/features/home/data/repos/home_repo.dart';
 import 'package:volt/features/home/data/repos/home_repo_impl.dart';
 import 'package:volt/features/home/presentation/cubits/home_cubit.dart';
 import 'package:volt/features/lessons/data/data_sources/lessons_remote_data_source.dart';
+import 'package:volt/features/lessons/data/data_sources/lessons_local_data_source.dart';
 import 'package:volt/features/lessons/data/repos/lessons_repo.dart';
 import 'package:volt/features/lessons/data/repos/lessons_repo_impl.dart';
 import 'package:volt/features/lessons/presentation/cubits/lesson_content_cubit/lesson_content_cubit.dart';
@@ -129,7 +130,8 @@ void _initHome() {
 
 void _initLessonFeature() {
   sl.registerLazySingleton<LessonsRemoteDataSource>(() => LessonsRemoteDataSourceImpl(sl()));
-  sl.registerLazySingleton<LessonsRepo>(() => LessonsRepoImpl(sl()));
+  sl.registerLazySingleton<LessonsLocalDataSource>(() => LessonsLocalDataSourceImpl(sl()));
+  sl.registerLazySingleton<LessonsRepo>(() => LessonsRepoImpl(sl(), sl()));
   sl.registerFactory(() => LessonContentCubit(sl()));
-  sl.registerFactory(() => LessonQuizCubit(sl(), sl()));
+  sl.registerFactory(() => LessonQuizCubit(sl()));
 }
