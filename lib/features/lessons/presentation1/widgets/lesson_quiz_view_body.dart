@@ -66,6 +66,7 @@ class _QuizQuestionBody extends StatelessWidget {
             message: question.questionText ?? LessonStrings.questionUnavailable,
             robotImagePath: Assets.images.authRobotThinking.path,
             robotWidth: 130,
+            messageShiftingRatio: 0.65,
             isMessageOneLine: false,
             spaceAfterMessage: 12,
           ),
@@ -164,13 +165,14 @@ class _QuizQuestionBody extends StatelessWidget {
   ) {
     return switch (type) {
       QuestionType.trueFalse => TrueFalseQuestionWidget(
-        selectedValue: state.selectedBool,
-        onSelect: cubit.selectBool,
+        options: state.question.options ?? [],
+        selectedOptionId: state.selectedOptionId,
+        onSelect: cubit.selectAnswer,
       ),
       QuestionType.multipleChoice => MultipleChoiceQuestionWidget(
         options: state.question.options ?? [],
         selectedOptionId: state.selectedOptionId,
-        onSelect: cubit.selectOption,
+        onSelect: cubit.selectAnswer,
       ),
       QuestionType.essay => EssayQuestionWidget(
         essayText: state.essayText,
@@ -183,8 +185,7 @@ class _QuizQuestionBody extends StatelessWidget {
 
   bool _canProceed(QuestionType type) {
     return switch (type) {
-      QuestionType.trueFalse => state.selectedBool != null,
-      QuestionType.multipleChoice => state.selectedOptionId != null,
+      QuestionType.trueFalse || QuestionType.multipleChoice => state.selectedOptionId != null,
       _ => false,
     };
   }

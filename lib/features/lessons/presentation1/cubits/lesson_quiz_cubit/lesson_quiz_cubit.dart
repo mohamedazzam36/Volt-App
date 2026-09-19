@@ -96,17 +96,10 @@ class LessonQuizCubit extends Cubit<LessonQuizState> {
 
   bool get isFirstQuestion => _currentIndex == 0;
 
-  void selectOption(int optionId) {
+  void selectAnswer(int optionId) {
     final current = state;
     if (current is LessonQuizQuestion) {
-      emit(current.copyWith(selectedOptionId: optionId, clearBool: true));
-    }
-  }
-
-  void selectBool(bool value) {
-    final current = state;
-    if (current is LessonQuizQuestion) {
-      emit(current.copyWith(selectedBool: value, clearOptionId: true));
+      emit(current.copyWith(selectedOptionId: optionId, clearOptionId: false));
     }
   }
 
@@ -171,43 +164,9 @@ class LessonQuizCubit extends Cubit<LessonQuizState> {
 
     switch (question.questionType) {
       case QuestionType.multipleChoice:
+      case QuestionType.trueFalse:
         if (current.selectedOptionId != null) {
           _selectedOptions[qId] = current.selectedOptionId!;
-        }
-
-      case QuestionType.trueFalse:
-        final selectedBool = current.selectedBool;
-        if (selectedBool != null) {
-          final options = question.options ?? [];
-
-          final trueKeywords = ['true', 'صح', 'صواب', 'نعم'];
-          final falseKeywords = ['false', 'خطأ', 'لا'];
-
-          int? matchedId;
-
-          for (final opt in options) {
-            final text = (opt.optionText ?? '').toLowerCase().trim();
-            if (selectedBool) {
-              if (trueKeywords.any((k) => text.contains(k))) {
-                matchedId = opt.optionId;
-                break;
-              }
-            } else {
-              if (falseKeywords.any((k) => text.contains(k))) {
-                matchedId = opt.optionId;
-                break;
-              }
-            }
-          }
-
-          if (matchedId == null && options.isNotEmpty) {
-            final sorted = [...options]..sort((a, b) => a.displayOrder.compareTo(b.displayOrder));
-            matchedId = selectedBool ? sorted.first.optionId : sorted.last.optionId;
-          }
-
-          if (matchedId != null) {
-            _selectedOptions[qId] = matchedId;
-          }
         }
 
       case QuestionType.essay:

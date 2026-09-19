@@ -23,8 +23,6 @@ final class LessonQuizQuestion extends LessonQuizState {
 
   final int? selectedOptionId;
 
-  final bool? selectedBool;
-
   final String essayText;
 
   const LessonQuizQuestion({
@@ -33,7 +31,6 @@ final class LessonQuizQuestion extends LessonQuizState {
     required this.totalQuestions,
     required this.progress,
     this.selectedOptionId,
-    this.selectedBool,
     this.essayText = '',
   });
 
@@ -43,10 +40,8 @@ final class LessonQuizQuestion extends LessonQuizState {
     int? totalQuestions,
     double? progress,
     int? selectedOptionId,
-    bool? selectedBool,
     String? essayText,
     bool clearOptionId = false,
-    bool clearBool = false,
   }) {
     return LessonQuizQuestion(
       question: question ?? this.question,
@@ -54,7 +49,6 @@ final class LessonQuizQuestion extends LessonQuizState {
       totalQuestions: totalQuestions ?? this.totalQuestions,
       progress: progress ?? this.progress,
       selectedOptionId: clearOptionId ? null : (selectedOptionId ?? this.selectedOptionId),
-      selectedBool: clearBool ? null : (selectedBool ?? this.selectedBool),
       essayText: essayText ?? this.essayText,
     );
   }

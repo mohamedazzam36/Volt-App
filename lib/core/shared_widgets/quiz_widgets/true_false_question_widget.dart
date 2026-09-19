@@ -1,38 +1,38 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
+
 import '../../extensions/text_style_extension.dart';
+import '../../models/quiz_attempt/quiz_answer_option_model.dart';
 import '../../theme/app_colors.dart';
 import '../../theme/app_styles.dart';
 
 class TrueFalseQuestionWidget extends StatelessWidget {
-  final bool? selectedValue;
-  final ValueChanged<bool> onSelect;
+  final List<QuizAnswerOptionModel> options;
+  final int? selectedOptionId;
+  final ValueChanged<int> onSelect;
 
   const TrueFalseQuestionWidget({
     super.key,
-    required this.selectedValue,
+    required this.options,
+    required this.selectedOptionId,
     required this.onSelect,
   });
 
   @override
   Widget build(BuildContext context) {
+    final sorted = [...options]..sort((a, b) => a.displayOrder.compareTo(b.displayOrder));
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       spacing: 16,
       children: [
-        _TrueFalseButton(
-          label: 'خطأ',
-          icon: Icons.close_rounded,
-          isTrue: false,
-          isSelected: selectedValue == false,
-          onTap: () => onSelect(false),
-        ),
-        _TrueFalseButton(
-          label: 'صح',
-          icon: Icons.check_rounded,
-          isTrue: true,
-          isSelected: selectedValue == true,
-          onTap: () => onSelect(true),
-        ),
+        for (int i = 0; i < sorted.length; i++)
+          _TrueFalseButton(
+            label: sorted[i].optionText ?? '',
+            icon: i == 0 ? Icons.check_rounded : Icons.close_rounded,
+            isTrue: i == 0,
+            isSelected: selectedOptionId == sorted[i].optionId,
+            onTap: () => onSelect(sorted[i].optionId),
+          ),
       ],
     );
   }
