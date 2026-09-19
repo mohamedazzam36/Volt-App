@@ -53,7 +53,7 @@ class NavBarItem extends StatelessWidget {
                 child: Container(
                   padding: const EdgeInsets.all(2),
                   decoration: const BoxDecoration(
-                    color: Colors.white,
+                    color: AppColors.surfaceDefault,
                     shape: BoxShape.circle,
                   ),
                   child: Icon(

@@ -82,7 +82,7 @@ class _AnimatedBatteryLoaderState extends State<AnimatedBatteryLoader> {
                     child: isFilled
                         ? const Icon(
                             Icons.bolt,
-                            color: Colors.white,
+                            color: AppColors.iconOnBrand,
                             size: 24,
                           )
                         : null,

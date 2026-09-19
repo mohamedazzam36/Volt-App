@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:volt/core/constants/app_strings.dart';
-import 'package:volt/core/theme/app_colors.dart';
+import 'package:volt/core/extensions/navigation_extension.dart';
 import 'package:volt/core/routing/routes.dart';
+import 'package:volt/core/theme/app_colors.dart';
 import 'package:volt/features/quiz/presentation/cubits/quiz_cubit.dart';
 import 'package:volt/features/quiz/presentation/views/quiz_initial_view.dart';
 
@@ -52,7 +53,7 @@ class _QuizScreenState extends State<QuizScreen> {
           listener: (context, state) {
             _answerController.clear();
             if (state.isFinished) {
-              Navigator.pushNamedAndRemoveUntil(context, Routes.mainLayout, (route) => false);
+              context.pushNamedAndRemoveAll(Routes.mainLayout);
             }
           },
           builder: (context, state) {
@@ -119,14 +120,9 @@ class _QuizScreenState extends State<QuizScreen> {
                     lives: state.lives,
                     onBackPressed: () {
                       if (state.currentQuestionIndex == 1) {
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                            builder: (_) => const QuizInitialView(),
-                          ),
-                        );
+                        context.pushReplacement(const QuizInitialView());
                       } else {
-                        Navigator.maybePop(context);
+                        context.maybePop();
                       }
                     },
                     onPreviousQuestion: () =>

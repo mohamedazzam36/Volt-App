@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:volt/core/extensions/navigation_extension.dart';
 import 'package:volt/core/theme/app_colors.dart';
 import 'package:volt/features/lessons/presentation1/cubits/lesson_content_cubit/lesson_content_cubit.dart';
 
@@ -45,7 +46,7 @@ class _LessonContentAppBarState extends State<LessonContentAppBar> {
                   color: AppColors.iconPrimary,
                   size: 16,
                 ),
-                onPressed: widget.onBackTap ?? () => Navigator.of(context).maybePop(),
+                onPressed: widget.onBackTap ?? () => context.pop(),
                 splashRadius: 22,
                 padding: EdgeInsets.zero,
                 constraints: const BoxConstraints(minWidth: 40, minHeight: 40),

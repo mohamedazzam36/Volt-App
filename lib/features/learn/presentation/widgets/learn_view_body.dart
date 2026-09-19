@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:volt/core/constants/app_strings.dart';
 import 'package:volt/core/constants/assets.gen.dart';
 import 'package:volt/core/enums/app_enums.dart';
+import 'package:volt/core/extensions/navigation_extension.dart';
 import 'package:volt/core/routing/routes.dart';
 import 'package:volt/core/shared_widgets/lesson_banner_button.dart';
 import 'package:volt/core/shared_widgets/top_stats_bar.dart';
@@ -14,7 +16,7 @@ class LearnViewBody extends StatelessWidget {
 
   Color _colorForLesson(LessonHomeModel lesson) {
     return switch (lesson.lessonStatus) {
-      LessonStatus.completed => const Color(0xFF4CAF50),
+      LessonStatus.completed => AppColors.brandSecondaryGreen,
       LessonStatus.inProgress => AppColors.brandPrimary,
       _ => const Color(0xFFB0BEC5),
     };
@@ -23,7 +25,7 @@ class LearnViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF4F6FB),
+      backgroundColor: AppColors.surfaceBackgroundScaffold,
       body: Stack(
         children: [
           Container(
@@ -47,7 +49,7 @@ class LearnViewBody extends StatelessWidget {
                     builder: (context, state) {
                       return switch (state) {
                         HomeLoading() => const Center(
-                            child: CircularProgressIndicator(color: Colors.white),
+                            child: CircularProgressIndicator(color: AppColors.textOnBrand),
                           ),
                         HomeError(:final message) => Center(
                             child: Column(
@@ -55,7 +57,7 @@ class LearnViewBody extends StatelessWidget {
                               children: [
                                 Text(
                                   message,
-                                  style: const TextStyle(color: Colors.white),
+                                  style: const TextStyle(color: AppColors.textOnBrand),
                                   textAlign: TextAlign.center,
                                 ),
                                 const SizedBox(height: 12),
@@ -63,8 +65,8 @@ class LearnViewBody extends StatelessWidget {
                                   onPressed: () =>
                                       context.read<HomeCubit>().getPublishedLessons(),
                                   child: const Text(
-                                    'إعادة المحاولة',
-                                    style: TextStyle(color: Colors.white),
+                                    CommonStrings.retry,
+                                    style: TextStyle(color: AppColors.textOnBrand),
                                   ),
                                 ),
                               ],
@@ -91,7 +93,7 @@ class LearnViewBody extends StatelessWidget {
                                               : () {
                                                   final isChest = lesson.lessonType == LessonType.finalLevelQuiz || 
                                                                   lesson.lessonType == LessonType.finalLevelQuizLower;
-                                                  Navigator.of(context).pushNamed(
+                                                  context.pushNamed(
                                                     isChest ? Routes.lessonQuiz : Routes.lessonContent,
                                                     arguments: lesson.lessonId,
                                                   );
@@ -109,7 +111,7 @@ class LearnViewBody extends StatelessWidget {
                             ],
                           ),
                         _ => const Center(
-                            child: CircularProgressIndicator(color: Colors.white),
+                            child: CircularProgressIndicator(color: AppColors.textOnBrand),
                           ),
                       };
                     },

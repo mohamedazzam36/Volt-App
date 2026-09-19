@@ -1,7 +1,9 @@
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
+import 'package:volt/core/constants/app_strings.dart';
 import 'package:volt/core/constants/assets.gen.dart';
+import 'package:volt/core/extensions/navigation_extension.dart';
 import 'package:volt/core/extensions/text_style_extension.dart';
 import 'package:volt/core/models/quiz_attempt_result/quiz_attempt_result_model.dart';
 import 'package:volt/core/routing/app_router.dart';
@@ -46,7 +48,7 @@ class LessonQuizResultView extends StatelessWidget {
                 Align(
                   alignment: Alignment.topLeft,
                   child: Text(
-                    'Results', // تم تعديلها بناءً على التصميم الجديد
+                    LessonStrings.results, // تم تعديلها بناءً على التصميم الجديد
                     style: AppStyles.bold20
                         .responsive(context)
                         .copyWith(
@@ -66,15 +68,15 @@ class LessonQuizResultView extends StatelessWidget {
                     Expanded(
                       child: _StatCard(
                         value: result.correctAnswers.toString(),
-                        label: 'اجابات صحيحة',
-                        color: const Color(0xFF4CAF50), // لون أخضر للتصميم
+                        label: LessonStrings.correctAnswers,
+                        color: AppColors.brandSecondaryGreen, // لون أخضر للتصميم
                       ),
                     ),
                     const SizedBox(width: 16),
                     Expanded(
                       child: _StatCard(
                         value: result.wrongAnswers.toString(),
-                        label: 'اجابات خاطئة',
+                        label: LessonStrings.wrongAnswers,
                         color: const Color(0xFFE53935), // لون أحمر للتصميم
                       ),
                     ),
@@ -99,11 +101,11 @@ class LessonQuizResultView extends StatelessWidget {
                       child: Container(
                         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
                         decoration: BoxDecoration(
-                          color: Colors.white,
+                          color: AppColors.surfaceDefault,
                           borderRadius: BorderRadius.circular(20),
                           boxShadow: [
                             BoxShadow(
-                              color: Colors.black.withValues(alpha: 0.05),
+                              color: AppColors.black.withValues(alpha: 0.05),
                               blurRadius: 10,
                               offset: const Offset(0, 4),
                             ),
@@ -113,7 +115,7 @@ class LessonQuizResultView extends StatelessWidget {
                           '+${result.earnedPoints} XP',
                           style: AppStyles.bold14
                               .responsive(context)
-                              .copyWith(color: const Color(0xFF4CAF50)),
+                              .copyWith(color: AppColors.brandSecondaryGreen),
                         ),
                       ),
                     ),
@@ -125,7 +127,7 @@ class LessonQuizResultView extends StatelessWidget {
                     padding: const EdgeInsets.only(top: 12),
                     child: Text(
                       retryAttemptNumber >= _maxRetries
-                          ? 'استنفذت محاولات إعادة الاختبار'
+                          ? LessonStrings.retriesExhausted
                           : 'المحاولة ${retryAttemptNumber + 1} من $_maxRetries',
                       style: AppStyles.medium12
                           .responsive(context)
@@ -145,10 +147,10 @@ class LessonQuizResultView extends StatelessWidget {
                     if (canRetry) ...[
                       Expanded(
                         child: _ActionButton(
-                          label: 'اعد المحاولة',
+                          label: LessonStrings.retryQuiz,
                           backgroundColor: const Color(0xFF5C9E54), // أخضر
                           onTap: () {
-                            Navigator.of(context).pushReplacementNamed(
+                            context.pushReplacementNamed(
                               Routes.lessonQuizRetry,
                               arguments: LessonQuizRetryArgs(
                                 retryQuestions: result.retryQuestions!,
@@ -163,12 +165,11 @@ class LessonQuizResultView extends StatelessWidget {
                     ],
                     Expanded(
                       child: _ActionButton(
-                        label: 'متابعة',
+                        label: CommonStrings.continueAction,
                         backgroundColor: const Color(0xFF55A6F8), // أزرق
                         onTap: () {
-                          Navigator.of(context).pushNamedAndRemoveUntil(
+                          context.pushNamedAndRemoveAll(
                             Routes.mainLayout,
-                            (route) => false,
                           );
                         },
                       ),
@@ -179,7 +180,7 @@ class LessonQuizResultView extends StatelessWidget {
                 if (result.essayResults?.isNotEmpty == true) ...[
                   const SizedBox(height: 16),
                   _ActionButton(
-                    label: 'عرض اجابات الاسالة المقالية',
+                    label: LessonStrings.showEssayAnswers,
                     backgroundColor: const Color(0xFF5C9E54),
                     onTap: () {},
                   ),
@@ -216,7 +217,7 @@ class _ScoreGauge extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                  'المجموع',
+                  LessonStrings.total,
                   style: AppStyles.semiBold14
                       .responsive(context)
                       .copyWith(color: Colors.grey.shade500),
@@ -262,7 +263,7 @@ class _ScoreGaugePainter extends CustomPainter {
 
     // ستايل شريط التقدم الأخضر
     final fgPaint = Paint()
-      ..color = const Color(0xFF4CAF50)
+      ..color = AppColors.brandSecondaryGreen
       ..style = PaintingStyle.stroke
       ..strokeWidth = strokeWidth
       ..strokeCap = StrokeCap.round;
@@ -297,12 +298,12 @@ class _StatCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 20),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: AppColors.surfaceDefault,
         borderRadius: BorderRadius.circular(16),
         border: Border.all(color: Colors.grey.shade200),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(alpha: 0.04),
+            color: AppColors.black.withValues(alpha: 0.04),
             blurRadius: 10,
             offset: const Offset(0, 4),
           ),
@@ -349,7 +350,7 @@ class _ActionButton extends StatelessWidget {
         onPressed: onTap,
         style: ElevatedButton.styleFrom(
           backgroundColor: backgroundColor,
-          foregroundColor: Colors.white,
+          foregroundColor: AppColors.textOnBrand,
           elevation: 0, // شلنا الـ Shadow عشان يكون Flat زي التصميم
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(16),
@@ -360,7 +361,7 @@ class _ActionButton extends StatelessWidget {
           style: AppStyles.bold16
               .responsive(context)
               .copyWith(
-                color: Colors.white,
+                color: AppColors.textOnBrand,
               ),
         ),
       ),

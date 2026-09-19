@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:volt/core/constants/app_strings.dart';
 import 'package:volt/core/constants/assets.gen.dart';
+import 'package:volt/core/extensions/navigation_extension.dart';
 import 'package:volt/core/routing/routes.dart';
 import 'package:volt/core/shared_widgets/lesson_banner_button.dart';
 import 'package:volt/core/shared_widgets/top_stats_bar.dart';
@@ -41,7 +43,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
     return BlocBuilder<HomeCubit, HomeState>(
       builder: (context, state) {
         return Scaffold(
-          backgroundColor: const Color(0xFFF4F6FB),
+          backgroundColor: AppColors.surfaceBackgroundScaffold,
           body: Stack(
             children: [
               Positioned(
@@ -90,7 +92,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
           levelName: inProgress.levelName ?? '',
           lessonName: inProgress.lessonName ?? '',
           onTap: () {
-            Navigator.of(context).pushNamed(
+            context.pushNamed(
               Routes.lessonContent,
               arguments: inProgress.lessonId,
             );
@@ -120,7 +122,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
               const SizedBox(height: 16),
               TextButton(
                 onPressed: () => context.read<HomeCubit>().getPublishedLessons(),
-                child: const Text('إعادة المحاولة'),
+                child: const Text(CommonStrings.retry),
               ),
             ],
           ),

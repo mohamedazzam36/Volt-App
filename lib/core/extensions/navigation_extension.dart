@@ -37,6 +37,10 @@ extension NavigationHelper on BuildContext {
     Navigator.pop(this, result);
   }
 
+  Future<bool> maybePop<T extends Object?>([T? result]) {
+    return Navigator.maybePop(this, result);
+  }
+
   void popTimes(int count) {
     int popped = 0;
     Navigator.popUntil(this, (_) => popped++ >= count);

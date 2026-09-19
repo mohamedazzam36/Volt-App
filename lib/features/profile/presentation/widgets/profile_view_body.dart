@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:volt/core/constants/app_strings.dart';
 import 'package:volt/core/constants/assets.gen.dart';
+import 'package:volt/core/extensions/navigation_extension.dart';
 import 'package:volt/core/routing/routes.dart';
 import 'package:volt/core/theme/app_colors.dart';
 import 'package:volt/core/theme/app_styles.dart';
@@ -16,7 +18,7 @@ class ProfileViewBody extends StatelessWidget {
       listener: (context, state) {
         if (state is UnAuthenticated) {
           // When logged out, navigate to Splash which handles auth routing
-          Navigator.of(context).pushNamedAndRemoveUntil(Routes.splash, (route) => false);
+          context.pushNamedAndRemoveAll(Routes.splash);
         }
       },
       builder: (context, state) {
@@ -62,7 +64,7 @@ class ProfileViewBody extends StatelessWidget {
 
                   // User Name
                   Text(
-                    user.fullName.isNotEmpty ? user.fullName : 'بطل فولت',
+                    user.fullName.isNotEmpty ? user.fullName : ProfileStrings.voltHero,
                     style: AppStyles.bold24.copyWith(color: AppColors.textPrimary),
                   ),
                   const SizedBox(height: 8),
@@ -75,7 +77,7 @@ class ProfileViewBody extends StatelessWidget {
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: Text(
-                      'العمر: ${user.age} سنة',
+                      '${ProfileStrings.agePrefix} ${user.age} ${ProfileStrings.years}',
                       style: AppStyles.semiBold14.copyWith(color: AppColors.brandPrimary),
                     ),
                   ),
@@ -85,11 +87,11 @@ class ProfileViewBody extends StatelessWidget {
                   Container(
                     padding: const EdgeInsets.all(20),
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: AppColors.surfaceDefault,
                       borderRadius: BorderRadius.circular(20),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.black.withValues(alpha: 0.04),
+                          color: AppColors.black.withValues(alpha: 0.04),
                           blurRadius: 12,
                           offset: const Offset(0, 4),
                         ),
@@ -103,20 +105,20 @@ class ProfileViewBody extends StatelessWidget {
                             Container(
                               padding: const EdgeInsets.all(10),
                               decoration: BoxDecoration(
-                                color: Colors.amber.withValues(alpha: 0.2),
+                                color: AppColors.starAmber.withValues(alpha: 0.2),
                                 shape: BoxShape.circle,
                               ),
-                              child: const Icon(Icons.star_rounded, color: Colors.amber, size: 24),
+                              child: const Icon(Icons.star_rounded, color: AppColors.starAmber, size: 24),
                             ),
                             const SizedBox(width: 16),
                             Text(
-                              'الدور',
+                              ProfileStrings.role,
                               style: AppStyles.semiBold16.copyWith(color: AppColors.textPrimary),
                             ),
                           ],
                         ),
                         Text(
-                          user.role == 'Child' ? 'طفل' : 'ولي أمر',
+                          user.role == 'Child' ? ProfileStrings.child : ProfileStrings.parent,
                           style: AppStyles.bold16.copyWith(color: AppColors.brandPrimary),
                         ),
                       ],
@@ -133,10 +135,10 @@ class ProfileViewBody extends StatelessWidget {
                       onPressed: () {
                         context.read<AuthCubit>().logout();
                       },
-                      icon: const Icon(Icons.logout_rounded, color: Colors.white),
+                      icon: const Icon(Icons.logout_rounded, color: AppColors.textOnBrand),
                       label: Text(
-                        'تسجيل الخروج',
-                        style: AppStyles.bold16.copyWith(color: Colors.white),
+                        ProfileStrings.logout,
+                        style: AppStyles.bold16.copyWith(color: AppColors.textOnBrand),
                       ),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: AppColors.brandPrimary,

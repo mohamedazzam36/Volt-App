@@ -28,7 +28,7 @@ class AuthButtonsSection extends StatelessWidget {
         CustomElevatedButton(
           onTap: onMainButtonTap,
           backgroundColor: isValid ? activeColor : AppColors.neutralSlate,
-          textColor: Colors.white,
+          textColor: AppColors.textOnBrand,
           text: buttonText,
           width: double.infinity,
         ),

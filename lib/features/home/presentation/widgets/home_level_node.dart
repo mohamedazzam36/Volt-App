@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:volt/core/constants/assets.gen.dart';
 import 'package:volt/core/enums/app_enums.dart';
+import 'package:volt/core/extensions/navigation_extension.dart';
 import 'package:volt/core/extensions/ui_extension.dart';
 import 'package:volt/core/routing/routes.dart';
 import 'package:volt/core/theme/app_colors.dart';
@@ -71,7 +72,7 @@ class LevelNode extends StatelessWidget {
                   isUnlocked: _isUnlocked,
                   onTap: isPlaceholder
                       ? null
-                      : () => Navigator.of(context).pushNamed(
+                      : () => context.pushNamed(
                             Routes.lessonQuiz,
                             arguments: lesson!.lessonId,
                           ),
@@ -84,7 +85,7 @@ class LevelNode extends StatelessWidget {
                   progress: status == LessonStatus.inProgress ? 0.5 : null,
                   onTap: isPlaceholder
                       ? null
-                      : () => Navigator.of(context).pushNamed(
+                      : () => context.pushNamed(
                             Routes.lessonContent,
                             arguments: lesson!.lessonId,
                           ),

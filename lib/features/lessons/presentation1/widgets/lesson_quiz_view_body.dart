@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:volt/core/constants/app_strings.dart';
 import 'package:volt/core/constants/assets.gen.dart';
 import 'package:volt/core/enums/app_enums.dart';
 import 'package:volt/core/shared_widgets/custom_elevated_button.dart';
@@ -62,7 +63,7 @@ class _QuizQuestionBody extends StatelessWidget {
 
         SliverToBoxAdapter(
           child: SpeakingRobot(
-            message: question.questionText ?? 'السؤال غير متاح',
+            message: question.questionText ?? LessonStrings.questionUnavailable,
             robotImagePath: Assets.images.authRobotThinking.path,
             robotWidth: 130,
             isMessageOneLine: false,
@@ -138,7 +139,7 @@ class _QuizQuestionBody extends StatelessWidget {
           SliverToBoxAdapter(
             child: CustomElevatedButton(
               width: double.infinity,
-              text: cubit.isLastQuestion ? 'إنهاء' : 'التالي',
+              text: cubit.isLastQuestion ? CommonStrings.finish : CommonStrings.next,
               onTap: _canProceed(question.questionType)
                   ? () {
                       if (cubit.isLastQuestion) {
@@ -223,7 +224,7 @@ class _HelpButtonState extends State<_HelpButton> {
             borderRadius: BorderRadius.circular(30),
           ),
           child: Text(
-            'مساعدة',
+            LessonStrings.help,
             style: AppStyles.bold14.copyWith(color: AppColors.textOnBrand),
           ),
         ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:volt/core/constants/assets.gen.dart';
+import 'package:volt/core/extensions/navigation_extension.dart';
 import 'package:volt/core/extensions/snack_bar_extension.dart';
 import 'package:volt/core/routing/routes.dart';
 import 'package:volt/features/lessons/presentation1/cubits/lesson_quiz_cubit/lesson_quiz_cubit.dart';
@@ -19,7 +20,7 @@ class LessonQuizView extends StatelessWidget {
         if (state is LessonQuizError) {
           context.showSnackBar(state.message, type: SnackBarType.error);
         } else if (state is LessonQuizSubmitted) {
-          Navigator.of(context).pushReplacementNamed(
+          context.pushReplacementNamed(
             Routes.lessonQuizResult,
             arguments: LessonQuizResultArgs(
               result: state.result,
@@ -41,7 +42,7 @@ class LessonQuizView extends StatelessWidget {
             onCloseTap: () {
               final cubit = context.read<LessonQuizCubit>();
               if (cubit.isFirstQuestion) {
-                Navigator.of(context).maybePop();
+                context.pop();
               } else {
                 cubit.prevQuestion();
               }

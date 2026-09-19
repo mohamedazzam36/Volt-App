@@ -60,4 +60,6 @@ abstract final class AppColors {
 
   static const Color neutralSlate = Color(0xFF93A1B4);
   static const Color black = Color(0xFF000000);
+  static const Color surfaceBackgroundScaffold = Color(0xFFF4F6FB);
+  static const Color starAmber = Color(0xFFFFC107);
 }

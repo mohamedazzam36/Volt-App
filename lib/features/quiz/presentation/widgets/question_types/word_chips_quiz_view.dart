@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:volt/core/constants/app_strings.dart';
 
 import '../../../../../core/extensions/text_style_extension.dart';
 import '../../../../../core/theme/app_colors.dart';
@@ -45,7 +46,7 @@ class WordChipsQuizView extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  'يقاس الجهد الكهربائي بوحدة',
+                  QuizStrings.voltageIsMeasuredIn,
                   maxLines: 1,
                   style: AppStyles.regular16
                       .responsive(context)

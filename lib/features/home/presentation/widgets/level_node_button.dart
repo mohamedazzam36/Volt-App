@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:volt/core/theme/app_colors.dart';
 
 class LevelNodeButton extends StatefulWidget {
   final bool isLocked;
@@ -65,7 +66,7 @@ class _LevelNodeButtonState extends State<LevelNodeButton> {
                   child: CircularProgressIndicator(
                     value: widget.progress,
                     strokeWidth: 6,
-                    color: Colors.amber,
+                    color: AppColors.starAmber,
                     backgroundColor: Colors.grey.shade300,
                     strokeCap: StrokeCap.round,
                   ),

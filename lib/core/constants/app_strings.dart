@@ -5,6 +5,8 @@ abstract final class CommonStrings {
   static const String continueAction = 'متابعة';
   static const String back = 'رجوع';
   static const String sent = 'إرسال';
+  static const String retry = 'إعادة المحاولة';
+  static const String finish = 'إنهاء';
 }
 
 abstract final class SplashStrings {
@@ -135,3 +137,26 @@ abstract final class QuizStrings {
   static const String ohNoError = 'يا الهى خطأ !!!';
   static const String dontWorryNextTimeEasier = 'لا بأس سيصبح الامر اسهل المرة القادمة';
 }
+
+abstract final class ProfileStrings {
+  static const String voltHero = 'بطل فولت';
+  static const String agePrefix = 'العمر:';
+  static const String years = 'سنة';
+  static const String role = 'الدور';
+  static const String child = 'طفل';
+  static const String parent = 'ولي أمر';
+  static const String logout = 'تسجيل الخروج';
+}
+
+abstract final class LessonStrings {
+  static const String results = 'Results';
+  static const String correctAnswers = 'اجابات صحيحة';
+  static const String wrongAnswers = 'اجابات خاطئة';
+  static const String retriesExhausted = 'استنفذت محاولات إعادة الاختبار';
+  static const String total = 'المجموع';
+  static const String retryQuiz = 'اعد المحاولة';
+  static const String showEssayAnswers = 'عرض اجابات الاسالة المقالية';
+  static const String questionUnavailable = 'السؤال غير متاح';
+  static const String help = 'مساعدة';
+}
+
