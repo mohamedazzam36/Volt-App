@@ -6,10 +6,10 @@ import 'package:volt/core/constants/assets.gen.dart';
 import 'package:volt/core/extensions/navigation_extension.dart';
 import 'package:volt/core/extensions/snack_bar_extension.dart';
 import 'package:volt/core/extensions/ui_extension.dart';
+import 'package:volt/core/routing/routes.dart';
 import 'package:volt/core/shared_widgets/speaking_robot.dart';
 import 'package:volt/core/theme/app_colors.dart';
 import 'package:volt/features/auth/presentation/cubits/register_cubit/register_cubit.dart';
-import 'package:volt/features/auth/presentation/widgets/auth_widgets/auth_ready_view.dart';
 
 import 'sequential_dots_loading.dart';
 
@@ -50,7 +50,9 @@ class _AuthFinishLoadingViewState extends State<AuthFinishLoadingView> {
         listener: (context, state) {
           if (state is RegisterSuccess) {
             Future.delayed(const Duration(seconds: 1), () {
-              if (context.mounted) context.push(const AuthReadyView());
+              if (context.mounted) {
+                context.pushNamedAndRemoveAll(Routes.authReady);
+              }
             });
           } else if (state is RegisterError) {
             context.showSnackBar(state.errorMessage, type: SnackBarType.error);

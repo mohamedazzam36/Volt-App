@@ -7,6 +7,7 @@ class QuizInitialView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // The cubit is provided by the router (app_router.dart)
     return const Scaffold(
       backgroundColor: AppColors.surfaceOrangeSoft,
       body: QuizStartViewBody(),

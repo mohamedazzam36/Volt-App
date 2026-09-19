@@ -1,9 +1,11 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http_cache_hive_store/http_cache_hive_store.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:volt/core/extensions/navigation_extension.dart';
 import 'package:volt/core/network/interceptors/cache_interceptor_helper.dart';
@@ -21,13 +23,17 @@ import 'package:volt/features/home/data/data_sources/home_remote_data_source.dar
 import 'package:volt/features/home/data/repos/home_repo.dart';
 import 'package:volt/features/home/data/repos/home_repo_impl.dart';
 import 'package:volt/features/home/presentation/cubits/home_cubit.dart';
-import 'package:volt/features/lessons/data/data_sources/lessons_remote_data_source.dart';
 import 'package:volt/features/lessons/data/data_sources/lessons_local_data_source.dart';
+import 'package:volt/features/lessons/data/data_sources/lessons_remote_data_source.dart';
 import 'package:volt/features/lessons/data/repos/lessons_repo.dart';
 import 'package:volt/features/lessons/data/repos/lessons_repo_impl.dart';
 import 'package:volt/features/lessons/presentation/cubits/lesson_content_cubit/lesson_content_cubit.dart';
 import 'package:volt/features/lessons/presentation/cubits/lesson_quiz_cubit/lesson_quiz_cubit.dart';
 import 'package:volt/features/main_layout/presentation/cubits/main_layout_cubit/main_layout_cubit.dart';
+import 'package:volt/features/placement_quiz/data/data_sources/placement_remote_data_source.dart';
+import 'package:volt/features/placement_quiz/data/repos/placement_repo.dart';
+import 'package:volt/features/placement_quiz/data/repos/placement_repo_impl.dart';
+import 'package:volt/features/placement_quiz/presentation/cubits/placement_quiz_cubit.dart';
 import 'package:volt/volt_app.dart';
 
 import '../network/api_service.dart';
@@ -44,6 +50,7 @@ Future<void> setupServiceLocator() async {
   _initAuthFeature();
   _initHome();
   _initLessonFeature();
+  _initPlacementFeature();
 }
 
 Future<void> _initCore() async {
@@ -92,16 +99,16 @@ Future<void> _initCore() async {
 
     ResponseUnwrapperInterceptor(),
 
-    // if (kDebugMode)
-    //   PrettyDioLogger(
-    //     requestHeader: true,
-    //     requestBody: true,
-    //     responseBody: true,
-    //     responseHeader: false,
-    //     error: true,
-    //     compact: true,
-    //     maxWidth: 90,
-    //   ),
+    if (kDebugMode)
+      PrettyDioLogger(
+        requestHeader: true,
+        requestBody: true,
+        responseBody: true,
+        responseHeader: false,
+        error: true,
+        compact: true,
+        maxWidth: 90,
+      ),
   ]);
 
   sl.registerLazySingleton(() => dio);
@@ -114,9 +121,9 @@ void _initAuthFeature() {
   sl.registerLazySingleton<AuthRemoteDataSource>(() => AuthRemoteDataSourceImpl(sl()));
   sl.registerLazySingleton<AuthLocalDataSource>(() => AuthLocalDataSourceImpl(sl()));
 
-  sl.registerLazySingleton<AuthRepo>(() => AuthRepoImpl(sl(), sl()));
+  sl.registerLazySingleton<AuthRepo>(() => AuthRepoImpl(sl(), sl(), sl()));
 
-  sl.registerLazySingleton(() => AuthCubit(sl()));
+  sl.registerLazySingleton(() => AuthCubit(sl(), sl(), sl()));
   sl.registerFactory(() => LoginCubit(sl()));
   sl.registerFactory(() => RegisterCubit(sl()));
 }
@@ -134,4 +141,12 @@ void _initLessonFeature() {
   sl.registerLazySingleton<LessonsRepo>(() => LessonsRepoImpl(sl(), sl()));
   sl.registerFactory(() => LessonContentCubit(sl()));
   sl.registerFactory(() => LessonQuizCubit(sl()));
+}
+
+void _initPlacementFeature() {
+  sl.registerLazySingleton<PlacementRemoteDataSource>(
+    () => PlacementRemoteDataSourceImpl(sl()),
+  );
+  sl.registerLazySingleton<PlacementRepo>(() => PlacementRepoImpl(sl()));
+  sl.registerFactory(() => PlacementQuizCubit(sl()));
 }

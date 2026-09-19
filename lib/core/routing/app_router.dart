@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:volt/core/models/quiz_attempt_result/quiz_attempt_result_model.dart';
+import 'package:volt/features/auth/presentation/cubits/auth_cubit/auth_cubit.dart';
 import 'package:volt/features/auth/presentation/views/auth_view.dart';
 import 'package:volt/features/auth/presentation/views/login_view.dart';
 import 'package:volt/features/auth/presentation/views/register_view.dart';
+import 'package:volt/features/auth/presentation/widgets/auth_widgets/auth_ready_view.dart';
 import 'package:volt/features/home/presentation/cubits/home_cubit.dart';
 import 'package:volt/features/lessons/presentation/cubits/lesson_content_cubit/lesson_content_cubit.dart';
 import 'package:volt/features/lessons/presentation/cubits/lesson_quiz_cubit/lesson_quiz_cubit.dart';
@@ -12,6 +15,9 @@ import 'package:volt/features/lessons/presentation/views/lesson_quiz_view.dart';
 import 'package:volt/features/main_layout/presentation/cubits/main_layout_cubit/main_layout_cubit.dart';
 import 'package:volt/features/main_layout/presentation/views/main_layout_view.dart';
 import 'package:volt/features/onboarding/presentation/views/onboarding_view.dart';
+import 'package:volt/features/placement_quiz/presentation/cubits/placement_quiz_cubit.dart';
+import 'package:volt/features/placement_quiz/presentation/views/placement_quiz_result_view.dart';
+import 'package:volt/features/placement_quiz/presentation/views/placement_quiz_view.dart';
 import 'package:volt/features/placement_quiz/presentation/views/quiz_initial_view.dart';
 import 'package:volt/features/splash/presentation/views/splash_view.dart';
 
@@ -47,9 +53,19 @@ class AppRouter {
         settings: settings,
         builder: (context) => const RegisterView(),
       ),
+      Routes.authReady => MaterialPageRoute(
+        settings: settings,
+        builder: (context) => BlocProvider.value(
+          value: sl<AuthCubit>(),
+          child: const AuthReadyView(),
+        ),
+      ),
       Routes.quiz => MaterialPageRoute(
         settings: settings,
-        builder: (context) => const QuizInitialView(),
+        builder: (context) => BlocProvider(
+          create: (_) => sl<PlacementQuizCubit>(),
+          child: const QuizInitialView(),
+        ),
       ),
       Routes.mainLayout => MaterialPageRoute(
         settings: settings,
@@ -108,6 +124,20 @@ class AppRouter {
             },
             child: LessonQuizView(retryAttemptNumber: args.retryAttemptNumber),
           );
+        },
+      ),
+      Routes.placementQuiz => MaterialPageRoute(
+        settings: settings,
+        builder: (context) => BlocProvider.value(
+          value: settings.arguments as PlacementQuizCubit,
+          child: const PlacementQuizView(),
+        ),
+      ),
+      Routes.placementQuizResult => MaterialPageRoute(
+        settings: settings,
+        builder: (context) {
+          final result = settings.arguments as QuizAttemptResultModel;
+          return PlacementQuizResultView(result: result);
         },
       ),
       _ => MaterialPageRoute(

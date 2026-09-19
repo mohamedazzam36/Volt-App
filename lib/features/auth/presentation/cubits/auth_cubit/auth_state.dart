@@ -13,3 +13,16 @@ final class Authenticated extends AuthState {
 }
 
 final class UnAuthenticated extends AuthState {}
+
+final class AuthCheckingPlacement extends AuthState {}
+
+/// Emitted when placement check resolves to "go to main layout"
+final class AuthGoToMain extends AuthState {}
+
+/// Emitted when placement check resolves to "go to quiz intro"
+final class AuthGoToQuiz extends AuthState {}
+
+final class AuthPlacementError extends AuthState {
+  final String message;
+  const AuthPlacementError({required this.message});
+}
