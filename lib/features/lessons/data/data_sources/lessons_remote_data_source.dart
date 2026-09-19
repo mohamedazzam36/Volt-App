@@ -3,6 +3,7 @@ import 'package:volt/core/models/quiz_attempt_result/quiz_attempt_result_model.d
 import 'package:volt/core/models/submit_attempt/submit_quiz_attempt_model.dart';
 import 'package:volt/core/network/api_endpoints.dart';
 import 'package:volt/core/network/api_service.dart';
+import 'package:volt/features/lessons/data/models/hint_response_model.dart';
 import 'package:volt/features/lessons/data/models/lesson_detail/lesson_content_model.dart';
 import 'package:volt/features/lessons/data/models/lesson_quiz_model.dart';
 
@@ -12,10 +13,17 @@ abstract class LessonsRemoteDataSource {
   Future<List<LessonContentModel>> getLessonContents({required int id});
   Future<LessonQuizModel> getLessonQuiz({required int lessonId});
   Future<void> postLessonProgress({required int lessonId});
-  Future<QuizAttemptModel> startQuizAttempt({required int quizId});
+  Future<QuizAttemptModel> startQuizAttempt({
+    required int quizId,
+    int? previousAttemptId,
+  });
   Future<QuizAttemptResultModel> submitQuizAttempt({
     required int attemptId,
     required SubmitQuizAttemptModel body,
+  });
+  Future<HintResponseModel> getHint({
+    required int attemptId,
+    required int questionId,
   });
 }
 
@@ -42,8 +50,13 @@ class LessonsRemoteDataSourceImpl implements LessonsRemoteDataSource {
   }
 
   @override
-  Future<QuizAttemptModel> startQuizAttempt({required int quizId}) async {
-    final result = await _apiService.post(ApiEndpoints.startQuizAttempt(quizId));
+  Future<QuizAttemptModel> startQuizAttempt({
+    required int quizId,
+    int? previousAttemptId,
+  }) async {
+    final result = await _apiService.post(
+      ApiEndpoints.startQuizAttempt(quizId, previousAttemptId: previousAttemptId),
+    );
     return QuizAttemptModel.fromJson(result);
   }
 
@@ -57,5 +70,16 @@ class LessonsRemoteDataSourceImpl implements LessonsRemoteDataSource {
       data: body.toJson(),
     );
     return QuizAttemptResultModel.fromJson(result);
+  }
+
+  @override
+  Future<HintResponseModel> getHint({
+    required int attemptId,
+    required int questionId,
+  }) async {
+    final result = await _apiService.post(
+      ApiEndpoints.quizHint(attemptId: attemptId, questionId: questionId),
+    );
+    return HintResponseModel.fromJson(result);
   }
 }

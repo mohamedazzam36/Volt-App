@@ -6,6 +6,7 @@ import 'package:volt/core/models/quiz_attempt_result/quiz_attempt_result_model.d
 import 'package:volt/core/models/submit_attempt/quiz_attempt_essay_answer_model.dart';
 import 'package:volt/core/models/submit_attempt/quiz_attempt_mistake_model.dart';
 import 'package:volt/core/models/submit_attempt/submit_quiz_attempt_model.dart';
+import 'package:volt/features/lessons/data/models/hint_response_model.dart';
 import 'package:volt/features/lessons/data/repos/lessons_repo.dart';
 
 part 'lesson_quiz_state.dart';
@@ -55,6 +56,35 @@ class LessonQuizCubit extends Cubit<LessonQuizState> {
             }
           },
         );
+      },
+    );
+  }
+
+  /// يبدأ محاولة إعادة عن طريق API بتمرير previousAttemptId
+  Future<void> startRetryFromApi({required int quizId, required int previousAttemptId}) async {
+    emit(LessonQuizLoading());
+    final result = await _lessonsRepo.startQuizAttempt(
+      quizId: quizId,
+      previousAttemptId: previousAttemptId,
+    );
+
+    result.fold(
+      (failure) => emit(LessonQuizError(message: failure.errMessage)),
+      (attempt) {
+        // ─ نملّي الـ retry state من الـ attempt الجديد ─
+        _isRetryMode = true;
+        _retryAttemptId = attempt.attemptId;
+        _retryQuestions = attempt.questions ?? [];
+        _attemptModel = null; // مش محتاجينه في retry mode
+        _currentIndex = 0;
+        _selectedOptions.clear();
+        _essayAnswers.clear();
+
+        if (_retryQuestions.isNotEmpty) {
+          _emitCurrentQuestion();
+        } else {
+          emit(const LessonQuizError(message: 'لا توجد أسئلة في هذه المحاولة'));
+        }
       },
     );
   }
@@ -195,4 +225,39 @@ class LessonQuizCubit extends Cubit<LessonQuizState> {
   }
 
   bool get isLastQuestion => _questions.isNotEmpty && _currentIndex == _questions.length - 1;
+
+  // ─── Hint ──────────────────────────────────────────────────────────────────
+
+  Future<void> fetchHint({required int questionId}) async {
+    final current = state;
+    if (current is! LessonQuizQuestion) return;
+
+    final id = attemptId;
+    if (id == null) return;
+
+    // أوقف الزرار وابدأ اللودينج بدون ما نكسر شاشة السؤال
+    emit(current.copyWith(isHintLoading: true));
+
+    final result = await _lessonsRepo.getHint(
+      attemptId: id,
+      questionId: questionId,
+    );
+
+    // استخدم آخر question state (مش current لأن الـ state اتغير)
+    final latest = state;
+    if (latest is! LessonQuizQuestion) return;
+
+    result.fold(
+      (failure) => emit(latest.copyWith(isHintLoading: false)),
+      (hintModel) => emit(latest.copyWith(isHintLoading: false, pendingHint: hintModel)),
+    );
+  }
+
+  /// بيتسمى بعد ما يتعرض الـ dialog عشان يمسح الـ pendingHint
+  void clearPendingHint() {
+    final current = state;
+    if (current is LessonQuizQuestion) {
+      emit(current.copyWith(clearPendingHint: true));
+    }
+  }
 }

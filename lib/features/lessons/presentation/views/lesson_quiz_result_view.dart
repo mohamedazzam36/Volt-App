@@ -151,8 +151,8 @@ class LessonQuizResultView extends StatelessWidget {
                             context.pushReplacementNamed(
                               Routes.lessonQuizRetry,
                               arguments: LessonQuizRetryArgs(
-                                retryQuestions: result.retryQuestions!,
-                                attemptId: result.attemptId,
+                                quizId: result.quizId,
+                                previousAttemptId: result.attemptId,
                                 retryAttemptNumber: retryAttemptNumber + 1,
                               ),
                             );

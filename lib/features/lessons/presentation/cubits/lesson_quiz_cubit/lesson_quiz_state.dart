@@ -22,8 +22,13 @@ final class LessonQuizQuestion extends LessonQuizState {
   final double progress;
 
   final int? selectedOptionId;
-
   final String essayText;
+
+  /// true while waiting for the hint API response
+  final bool isHintLoading;
+
+  /// non-null when a hint has arrived and hasn't been shown yet
+  final HintResponseModel? pendingHint;
 
   const LessonQuizQuestion({
     required this.question,
@@ -32,6 +37,8 @@ final class LessonQuizQuestion extends LessonQuizState {
     required this.progress,
     this.selectedOptionId,
     this.essayText = '',
+    this.isHintLoading = false,
+    this.pendingHint,
   });
 
   LessonQuizQuestion copyWith({
@@ -42,6 +49,9 @@ final class LessonQuizQuestion extends LessonQuizState {
     int? selectedOptionId,
     String? essayText,
     bool clearOptionId = false,
+    bool? isHintLoading,
+    HintResponseModel? pendingHint,
+    bool clearPendingHint = false,
   }) {
     return LessonQuizQuestion(
       question: question ?? this.question,
@@ -50,6 +60,8 @@ final class LessonQuizQuestion extends LessonQuizState {
       progress: progress ?? this.progress,
       selectedOptionId: clearOptionId ? null : (selectedOptionId ?? this.selectedOptionId),
       essayText: essayText ?? this.essayText,
+      isHintLoading: isHintLoading ?? this.isHintLoading,
+      pendingHint: clearPendingHint ? null : (pendingHint ?? this.pendingHint),
     );
   }
 }

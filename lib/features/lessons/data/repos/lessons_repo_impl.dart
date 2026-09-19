@@ -7,6 +7,7 @@ import 'package:volt/core/models/quiz_attempt_result/quiz_attempt_result_model.d
 import 'package:volt/core/models/submit_attempt/submit_quiz_attempt_model.dart';
 import 'package:volt/features/lessons/data/data_sources/lessons_remote_data_source.dart';
 import 'package:volt/features/lessons/data/data_sources/lessons_local_data_source.dart';
+import 'package:volt/features/lessons/data/models/hint_response_model.dart';
 import 'package:volt/features/lessons/data/models/lesson_detail/lesson_content_model.dart';
 import 'package:volt/features/lessons/data/models/lesson_quiz_model.dart';
 import 'package:volt/features/lessons/data/repos/lessons_repo.dart';
@@ -54,9 +55,15 @@ class LessonsRepoImpl implements LessonsRepo {
   }
 
   @override
-  Future<Either<Failure, QuizAttemptModel>> startQuizAttempt({required int quizId}) async {
+  Future<Either<Failure, QuizAttemptModel>> startQuizAttempt({
+    required int quizId,
+    int? previousAttemptId,
+  }) async {
     try {
-      final result = await _lessonsRemoteDataSource.startQuizAttempt(quizId: quizId);
+      final result = await _lessonsRemoteDataSource.startQuizAttempt(
+        quizId: quizId,
+        previousAttemptId: previousAttemptId,
+      );
       return right(result);
     } on DioException catch (e) {
       return left(ApiFailure.fromDioException(e));
@@ -92,4 +99,23 @@ class LessonsRepoImpl implements LessonsRepo {
       return left(UnknownFailure(e.toString()));
     }
   }
+
+  @override
+  Future<Either<Failure, HintResponseModel>> getHint({
+    required int attemptId,
+    required int questionId,
+  }) async {
+    try {
+      final result = await _lessonsRemoteDataSource.getHint(
+        attemptId: attemptId,
+        questionId: questionId,
+      );
+      return right(result);
+    } on DioException catch (e) {
+      return left(ApiFailure.fromDioException(e));
+    } catch (e) {
+      return left(UnknownFailure(e.toString()));
+    }
+  }
 }
+

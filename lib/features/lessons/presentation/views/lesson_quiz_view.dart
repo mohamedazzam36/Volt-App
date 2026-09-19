@@ -6,7 +6,6 @@ import 'package:volt/core/extensions/snack_bar_extension.dart';
 import 'package:volt/core/routing/routes.dart';
 import 'package:volt/features/lessons/presentation/cubits/lesson_quiz_cubit/lesson_quiz_cubit.dart';
 import 'package:volt/features/lessons/presentation/widgets/lesson_quiz_app_bar.dart';
-import 'package:volt/core/models/quiz_attempt/quiz_question_for_attempt_model.dart';
 import 'package:volt/features/lessons/presentation/widgets/lesson_quiz_view_body.dart';
 
 class LessonQuizView extends StatelessWidget {
@@ -70,13 +69,13 @@ class LessonQuizResultArgs {
 }
 
 class LessonQuizRetryArgs {
-  final List<QuizQuestionForAttemptModel> retryQuestions;
-  final int attemptId;
+  final int quizId;
+  final int previousAttemptId;
   final int retryAttemptNumber;
 
   const LessonQuizRetryArgs({
-    required this.retryQuestions,
-    required this.attemptId,
+    required this.quizId,
+    required this.previousAttemptId,
     required this.retryAttemptNumber,
   });
 }

@@ -34,4 +34,11 @@ abstract final class ApiEndpoints {
   static const String placement = 'api/placement';
 
   static String placementStart({String lang = 'ar'}) => 'api/placement/start?language=$lang';
+
+  static String quizHint({
+    required int attemptId,
+    required int questionId,
+    String lang = 'ar',
+  }) =>
+      'api/quiz-attempts/$attemptId/questions/$questionId/hint?language=$lang';
 }

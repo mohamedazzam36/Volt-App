@@ -114,14 +114,11 @@ class AppRouter {
         builder: (context) {
           final args = settings.arguments as LessonQuizRetryArgs;
           return BlocProvider(
-            create: (context) {
-              final cubit = sl<LessonQuizCubit>();
-              cubit.startRetry(
-                retryQuestions: args.retryQuestions,
-                attemptId: args.attemptId,
-              );
-              return cubit;
-            },
+            create: (context) => sl<LessonQuizCubit>()
+              ..startRetryFromApi(
+                quizId: args.quizId,
+                previousAttemptId: args.previousAttemptId,
+              ),
             child: LessonQuizView(retryAttemptNumber: args.retryAttemptNumber),
           );
         },

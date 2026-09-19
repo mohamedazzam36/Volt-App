@@ -7,6 +7,7 @@ abstract final class CommonStrings {
   static const String sent = 'إرسال';
   static const String retry = 'إعادة المحاولة';
   static const String finish = 'إنهاء';
+  static const String ok = 'حسناً';
 }
 
 abstract final class SplashStrings {
@@ -158,5 +159,8 @@ abstract final class LessonStrings {
   static const String showEssayAnswers = 'عرض اجابات الاسالة المقالية';
   static const String questionUnavailable = 'السؤال غير متاح';
   static const String help = 'مساعدة';
+  static const String aiHint = 'تلميح الذكاء الاصطناعي';
+  static const String hintUnavailable = 'لا يوجد تلميح متاح حالياً';
+  static const String hintsRemaining = 'تلميحات متبقية:';
 }
 
