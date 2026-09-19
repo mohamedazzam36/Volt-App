@@ -53,7 +53,6 @@ class MainBottomNavBar extends StatelessWidget {
               isActive: currentIndex == 4,
               iconPath: Assets.svgs.profileNavIcon.path,
               onTap: () => onTap(4),
-              isLocked: true,
             ),
           ],
         ),

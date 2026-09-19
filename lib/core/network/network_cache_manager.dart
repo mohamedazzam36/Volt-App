@@ -16,6 +16,10 @@ class NetworkCacheManager {
     await _cacheStore.delete(key);
   }
 
+  Future<void> clearAllCache() async {
+    await _cacheStore.clean();
+  }
+
   Future<void> clearHomeCache() async {
     await clearCacheForEndpoint(ApiEndpoints.publishedLessons);
   }

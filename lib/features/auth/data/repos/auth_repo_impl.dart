@@ -9,7 +9,9 @@ import 'package:volt/features/auth/data/models/reset_token_model.dart';
 import 'package:volt/core/storage/cache_helper.dart';
 import 'package:volt/core/storage/pref_keys.dart';
 
+import 'dart:convert';
 import '../data_sources/auth_local_data_source.dart';
+import 'package:volt/core/network/network_cache_manager.dart';
 import '../data_sources/auth_remote_data_source.dart';
 import 'auth_repo.dart';
 
@@ -17,8 +19,14 @@ class AuthRepoImpl implements AuthRepo {
   final AuthRemoteDataSource _remoteDataSource;
   final AuthLocalDataSource _localDataSource;
   final CacheHelper _cacheHelper;
+  final NetworkCacheManager _networkCacheManager;
 
-  AuthRepoImpl(this._remoteDataSource, this._localDataSource, this._cacheHelper);
+  AuthRepoImpl(
+    this._remoteDataSource,
+    this._localDataSource,
+    this._cacheHelper,
+    this._networkCacheManager,
+  );
 
   @override
   Future<Either<Failure, UserModel>> register(RegisterRequestModel request) async {
@@ -29,6 +37,14 @@ class AuthRepoImpl implements AuthRepo {
         accessToken: result.tokens.accessToken,
         refreshToken: result.tokens.refreshToken,
       );
+      
+      final userData = {
+        'email': request.email,
+        'fullName': result.user.fullName,
+        'age': result.user.age,
+      };
+      await _cacheHelper.setString(PrefKeys.cachedUserData, jsonEncode(userData));
+
       return Right(result.user);
     } on DioException catch (e) {
       return Left(ApiFailure.fromDioException(e));
@@ -49,6 +65,13 @@ class AuthRepoImpl implements AuthRepo {
         accessToken: result.tokens.accessToken,
         refreshToken: result.tokens.refreshToken,
       );
+
+      final userData = {
+        'email': email,
+        'fullName': result.user.fullName,
+        'age': result.user.age,
+      };
+      await _cacheHelper.setString(PrefKeys.cachedUserData, jsonEncode(userData));
 
       return Right(result.user);
     } on DioException catch (e) {
@@ -104,8 +127,13 @@ class AuthRepoImpl implements AuthRepo {
   Future<Either<Failure, void>> logout() async {
     try {
       await _localDataSource.clearAll();
-      // مسح كاش الـ placement quiz عشان لو بيوزر تاني يتعمل الـ check من أول
+      // مسح كاش الـ placement quiz واليوزر داتا
       await _cacheHelper.remove(PrefKeys.isPlacementCompleted);
+      await _cacheHelper.remove(PrefKeys.cachedUserData);
+      
+      // مسح جميع بيانات الكاش الخاصة بالشبكة (الـ API Requests)
+      await _networkCacheManager.clearAllCache();
+
       return const Right(null);
     } catch (e) {
       return Left(UnknownFailure('Failed to clear local data'));

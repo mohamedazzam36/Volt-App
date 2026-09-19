@@ -146,7 +146,27 @@ abstract final class ProfileStrings {
   static const String role = 'الدور';
   static const String child = 'طفل';
   static const String parent = 'ولي أمر';
+  
+  // Profile View
+  static const String account = 'الحساب';
+  static const String personalInfo = 'المعلومات الشخصية';
+  static const String changePassword = 'تغير كلمة المرور';
+  static const String supportAndSettings = 'الدعم & الاعدادات';
+  static const String settings = 'الاعدادات';
+  static const String help = 'المساعدة';
+  static const String termsAndConditions = 'الشروط والاحكام';
+  static const String accountActions = 'إجراءات الحساب';
   static const String logout = 'تسجيل الخروج';
+  static const String deleteAccount = 'حذف الحساب';
+
+  // Personal Info View
+  static const String basicInfo = 'المعلومات الاساسية';
+  static const String name = 'الاسم';
+  static const String age = 'العمر';
+  static const String contactInfo = 'معلومات التواصل';
+  static const String email = 'البريد الالكترونى';
+  static const String save = 'حفظ';
+  static const String cancel = 'إلغاء';
 }
 
 abstract final class LessonStrings {

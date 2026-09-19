@@ -13,4 +13,5 @@ abstract final class Routes {
   static const String lessonQuizRetry = "/lesson_quiz_retry";
   static const String placementQuiz = "/placement_quiz";
   static const String placementQuizResult = "/placement_quiz_result";
+  static const String personalInfo = "/personal_info";
 }

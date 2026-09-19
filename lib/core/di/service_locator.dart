@@ -121,7 +121,7 @@ void _initAuthFeature() {
   sl.registerLazySingleton<AuthRemoteDataSource>(() => AuthRemoteDataSourceImpl(sl()));
   sl.registerLazySingleton<AuthLocalDataSource>(() => AuthLocalDataSourceImpl(sl()));
 
-  sl.registerLazySingleton<AuthRepo>(() => AuthRepoImpl(sl(), sl(), sl()));
+  sl.registerLazySingleton<AuthRepo>(() => AuthRepoImpl(sl(), sl(), sl(), sl()));
 
   sl.registerLazySingleton(() => AuthCubit(sl(), sl(), sl()));
   sl.registerFactory(() => LoginCubit(sl()));

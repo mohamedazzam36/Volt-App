@@ -19,6 +19,7 @@ import 'package:volt/features/placement_quiz/presentation/cubits/placement_quiz_
 import 'package:volt/features/placement_quiz/presentation/views/placement_quiz_result_view.dart';
 import 'package:volt/features/placement_quiz/presentation/views/placement_quiz_view.dart';
 import 'package:volt/features/placement_quiz/presentation/views/quiz_initial_view.dart';
+import 'package:volt/features/profile/presentation/views/personal_info_view.dart';
 import 'package:volt/features/splash/presentation/views/splash_view.dart';
 
 import '../di/service_locator.dart';
@@ -136,6 +137,10 @@ class AppRouter {
           final result = settings.arguments as QuizAttemptResultModel;
           return PlacementQuizResultView(result: result);
         },
+      ),
+      Routes.personalInfo => MaterialPageRoute(
+        settings: settings,
+        builder: (context) => const PersonalInfoView(),
       ),
       _ => MaterialPageRoute(
         settings: settings,

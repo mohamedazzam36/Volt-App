@@ -21,7 +21,11 @@ class AuthCubit extends Cubit<AuthState> {
   Future<void> checkAuthStatus() async {
     final result = await _authRepo.checkAuthStatus();
     result.fold(
-      (failure) => emit(UnAuthenticated()),
+      (failure) {
+        if (state is! UnAuthenticated) {
+          emit(UnAuthenticated());
+        }
+      },
       (user) {
         // بعد التحقق من التوكن – شيك كاش الـ placement
         if (_cacheHelper.getBool(PrefKeys.isPlacementCompleted) == true) {
@@ -34,6 +38,7 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   Future<void> logout() async {
+    if (state is UnAuthenticated) return;
     await _authRepo.logout();
     emit(UnAuthenticated());
   }
