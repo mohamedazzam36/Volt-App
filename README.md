@@ -6,7 +6,6 @@
 [![Dart](https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white)](https://dart.dev)
 [![Architecture](https://img.shields.io/badge/Architecture-Feature--First%20Layered-orange?style=for-the-badge)](#-architecture)
 [![State Management](https://img.shields.io/badge/State%20Management-BLoC%2FCubit-blueviolet?style=for-the-badge)](https://bloclibrary.dev)
-[![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](#)
 
 ---
 
