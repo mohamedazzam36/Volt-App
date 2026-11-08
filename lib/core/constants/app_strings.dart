@@ -45,8 +45,8 @@ abstract final class AuthStrings {
 
   static const String robotWelcome = 'لتبدأ مغامرة الالكترونيات';
   static const String robotIntro = 'هيا بنا لانشاء حساب جديد !';
-  static const String askRobotName = 'ما اسم الروبوت الخاص بك ؟';
-  static const String greatRobotName = 'اسم رائع ! ⚡';
+  static const String askName = 'ما اسمك يا ترى؟';
+  static const String greatName = 'اسم رائع ! ⚡';
   static const String askEmail = 'كيف يمكننا الوصول اليك؟';
   static const String validEmailMessage = 'عظيم !';
   static const String inputErrorRobotMessage = 'يبدو ان هناك خطأ ما !';
@@ -146,7 +146,7 @@ abstract final class ProfileStrings {
   static const String role = 'الدور';
   static const String child = 'طفل';
   static const String parent = 'ولي أمر';
-  
+
   // Profile View
   static const String account = 'الحساب';
   static const String personalInfo = 'المعلومات الشخصية';
@@ -183,4 +183,3 @@ abstract final class LessonStrings {
   static const String hintUnavailable = 'لا يوجد تلميح متاح حالياً';
   static const String hintsRemaining = 'تلميحات متبقية:';
 }
-

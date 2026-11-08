@@ -93,13 +93,13 @@ class _RegisterNameInputBodyState extends State<RegisterNameInputBody> {
       children: [
         _isValid
             ? SpeakingRobot(
-                message: AuthStrings.greatRobotName,
+                message: AuthStrings.greatName,
                 robotImagePath: Assets.images.authRobotHappy.path,
                 messageShiftingRatio: 0.52,
                 spaceAfterMessage: 6,
                 robotWidth: (context.width * 0.4).clamp(150.0, 250.0),
               )
-            : const AuthThinkingRobot(AuthStrings.askRobotName),
+            : const AuthThinkingRobot(AuthStrings.askName),
 
         const SizedBox(height: 40),
 
